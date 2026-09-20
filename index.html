@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111111">
-  <meta name="description" content="Primeira versão de uma adega e depósito de bebidas com delivery.">
-  <title>Primeira Versão X | Adega & Bebidas</title>
+  <meta name="theme-color" content="#0b0b0d">
+  <meta name="description" content="Primeira Versão X - Adega e Depósito de Bebidas.">
+  <title>Primeira Versão X | Adega & Depósito</title>
 
   <style>
     :root {
@@ -15,10 +15,8 @@
       --text: #ffffff;
       --muted: #a8a8b3;
       --accent: #ffb000;
-      --accent-2: #ff7a00;
       --success: #25d366;
       --border: rgba(255,255,255,.08);
-      --danger: #ff5252;
       --radius: 18px;
       --max: 1180px;
     }
@@ -40,6 +38,11 @@
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     button,
@@ -57,17 +60,88 @@
     }
 
     .container {
-      width: min(100% - 32px, var(--max));
-      margin: auto;
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
     }
 
-    /* HEADER */
+    /* =========================
+       AVISO DE IDADE
+    ========================= */
+
+    .age-warning {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(5,5,6,.97);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .age-warning.hidden {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    .age-box {
+      width: min(470px, 100%);
+      text-align: center;
+      background: #151519;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .age-box .big {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    .age-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .age-box p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .age-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .age-buttons button {
+      flex: 1;
+      padding: 13px;
+      border-radius: 10px;
+      font-weight: 900;
+    }
+
+    .yes {
+      background: var(--accent);
+      border: 0;
+      color: #111;
+    }
+
+    .no {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: white;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
       position: sticky;
       top: 0;
       z-index: 50;
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       background: rgba(11,11,13,.88);
       border-bottom: 1px solid var(--border);
     }
@@ -113,7 +187,9 @@
       font-size: 12px;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       padding: 70px 0 50px;
@@ -134,7 +210,7 @@
 
     .hero h1 {
       max-width: 850px;
-      margin: auto;
+      margin-inline: auto;
       font-size: clamp(38px, 7vw, 72px);
       line-height: .98;
       letter-spacing: -3px;
@@ -163,21 +239,23 @@
       border-radius: 12px;
       padding: 13px 19px;
       font-weight: 900;
-      border: 1px solid transparent;
     }
 
     .primary {
       background: var(--accent);
       color: #111;
+      border: 1px solid var(--accent);
     }
 
     .secondary {
       background: transparent;
-      border-color: var(--border);
+      border: 1px solid var(--border);
       color: white;
     }
 
-    /* BENEFITS */
+    /* =========================
+       BENEFÍCIOS
+    ========================= */
 
     .benefits {
       display: grid;
@@ -203,7 +281,9 @@
       font-size: 13px;
     }
 
-    /* CATALOG */
+    /* =========================
+       CATÁLOGO
+    ========================= */
 
     .section-title {
       margin-bottom: 18px;
@@ -352,7 +432,9 @@
       grid-column: 1 / -1;
     }
 
-    /* PROMOTIONS */
+    /* =========================
+       PROMOÇÕES
+    ========================= */
 
     .promo-section {
       padding: 65px 0 20px;
@@ -407,7 +489,9 @@
       margin-top: 10px;
     }
 
-    /* INFO */
+    /* =========================
+       INFORMAÇÕES
+    ========================= */
 
     .info {
       display: grid;
@@ -432,7 +516,9 @@
       font-size: 14px;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       border-top: 1px solid var(--border);
@@ -442,7 +528,9 @@
       text-align: center;
     }
 
-    /* CART */
+    /* =========================
+       CARRINHO
+    ========================= */
 
     .overlay {
       position: fixed;
@@ -574,7 +662,9 @@
       font-size: 15px;
     }
 
-    /* MODAL */
+    /* =========================
+       MODAL
+    ========================= */
 
     .modal-overlay {
       position: fixed;
@@ -629,6 +719,10 @@
       outline: none;
     }
 
+    .form-group input:focus {
+      border-color: rgba(255,176,0,.6);
+    }
+
     .modal-actions {
       display: flex;
       gap: 10px;
@@ -648,71 +742,9 @@
       border: 1px solid var(--border);
     }
 
-    /* AGE */
-
-    .age-warning {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(5,5,6,.96);
-      display: grid;
-      place-items: center;
-      padding: 20px;
-    }
-
-    .age-box {
-      width: min(470px,100%);
-      text-align: center;
-      background: #151519;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 30px;
-    }
-
-    .age-box .big {
-      font-size: 55px;
-      margin-bottom: 10px;
-    }
-
-    .age-box h2 {
-      margin-bottom: 10px;
-    }
-
-    .age-box p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 22px;
-    }
-
-    .age-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .age-buttons button {
-      flex: 1;
-      padding: 13px;
-      border-radius: 10px;
-      font-weight: 900;
-    }
-
-    .yes {
-      background: var(--accent);
-      border: 0;
-      color: #111;
-    }
-
-    .no {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: white;
-    }
-
-    .age-warning.hidden {
-      display: none;
-    }
-
-    /* RESPONSIVE */
+    /* =========================
+       RESPONSIVO
+    ========================= */
 
     @media (max-width: 950px) {
       .products {
@@ -753,7 +785,7 @@
 
     @media (max-width: 390px) {
       .container {
-        width: min(100% - 22px, var(--max));
+        width: min(calc(100% - 22px), var(--max));
       }
 
       .products {
@@ -772,47 +804,91 @@
       .price {
         font-size: 16px;
       }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .cart-button {
+        padding: 9px 12px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- AVISO DE IDADE -->
+  <!-- =========================
+       VERIFICAÇÃO DE IDADE
+  ========================== -->
+
   <div class="age-warning" id="ageWarning">
     <div class="age-box">
+
       <div class="big">🍻</div>
+
       <h2>Você tem 18 anos ou mais?</h2>
+
       <p>
-        Este site apresenta bebidas alcoólicas. A compra e o consumo de
-        bebidas alcoólicas são destinados exclusivamente a maiores de 18 anos.
+        Este site apresenta bebidas alcoólicas.
+        A compra e o consumo de bebidas alcoólicas são
+        destinados exclusivamente a maiores de 18 anos.
       </p>
 
       <div class="age-buttons">
-        <button class="yes" onclick="confirmAge()">SIM, TENHO 18+</button>
-        <button class="no" onclick="denyAge()">NÃO</button>
+        <button
+          type="button"
+          class="yes"
+          id="ageYesButton"
+        >
+          SIM, TENHO 18+
+        </button>
+
+        <button
+          type="button"
+          class="no"
+          id="ageNoButton"
+        >
+          NÃO
+        </button>
       </div>
+
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header>
     <div class="container nav">
-      <a href="#" class="logo">PRIMEIRA<span> VERSÃO X</span></a>
 
-      <button class="cart-button" onclick="openCart()">
+      <a href="#" class="logo">
+        PRIMEIRA<span> VERSÃO X</span>
+      </a>
+
+      <button
+        type="button"
+        class="cart-button"
+        id="openCartButton"
+      >
         🛒 Carrinho
         <span class="cart-count" id="cartCount">0</span>
       </button>
+
     </div>
   </header>
 
   <main>
 
     <!-- HERO -->
+
     <section class="hero">
       <div class="container">
-        <div class="badge">🍺 ADEGA • DEPÓSITO • DELIVERY</div>
+
+        <div class="badge">
+          🍺 ADEGA • DEPÓSITO • DELIVERY
+        </div>
 
         <h1>
           Seu rolê começa<br>
@@ -820,145 +896,160 @@
         </h1>
 
         <p>
-          Bebidas geladas, combos, destilados, energéticos, gelo,
-          refrigerantes e muito mais. Monte seu pedido e envie pelo WhatsApp.
+          Bebidas geladas, combos, destilados, energéticos,
+          refrigerantes, gelo, petiscos e muito mais.
         </p>
 
         <div class="hero-actions">
-          <a href="#catalogo" class="primary">Ver bebidas</a>
-          <button class="secondary" onclick="openCart()">Ver carrinho</button>
+
+          <a href="#catalogo" class="primary">
+            Ver bebidas
+          </a>
+
+          <button
+            type="button"
+            class="secondary"
+            id="heroCartButton"
+          >
+            Ver carrinho
+          </button>
+
         </div>
+
       </div>
     </section>
 
     <!-- BENEFÍCIOS -->
+
     <section class="container benefits">
+
       <div class="benefit">
         <strong>❄️ Bebidas geladas</strong>
-        <span>Produtos selecionados para o seu rolê.</span>
+        <span>
+          Produtos selecionados para o seu rolê.
+        </span>
       </div>
 
       <div class="benefit">
         <strong>🛵 Delivery</strong>
-        <span>Faça seu pedido pelo WhatsApp.</span>
+        <span>
+          Faça seu pedido pelo WhatsApp.
+        </span>
       </div>
 
       <div class="benefit">
         <strong>🔥 Combos</strong>
-        <span>Monte seu kit e economize.</span>
+        <span>
+          Monte seu kit para a ocasião.
+        </span>
       </div>
+
     </section>
 
     <!-- CATÁLOGO -->
+
     <section class="container" id="catalogo">
 
       <div class="section-title">
+
         <h2>Nosso catálogo</h2>
-        <p>Escolha seus produtos e monte o pedido.</p>
+
+        <p>
+          Escolha seus produtos e monte o pedido.
+        </p>
+
       </div>
 
       <div class="search">
+
         <input
           type="search"
           id="searchInput"
           placeholder="🔎 Procurar cerveja, vodka, energético..."
-          oninput="filterProducts()"
+          autocomplete="off"
         >
+
       </div>
 
-      <div class="categories" id="categories">
-        <button class="category active" data-category="todos" onclick="selectCategory('todos', this)">Todos</button>
-        <button class="category" data-category="cervejas" onclick="selectCategory('cervejas', this)">🍺 Cervejas</button>
-        <button class="category" data-category="destilados" onclick="selectCategory('destilados', this)">🥃 Destilados</button>
-        <button class="category" data-category="energeticos" onclick="selectCategory('energeticos', this)">⚡ Energéticos</button>
-        <button class="category" data-category="refrigerantes" onclick="selectCategory('refrigerantes', this)">🥤 Refrigerantes</button>
-        <button class="category" data-category="gelo" onclick="selectCategory('gelo', this)">🧊 Gelo</button>
-        <button class="category" data-category="drinks" onclick="selectCategory('drinks', this)">🍹 Drinks & Ice</button>
-        <button class="category" data-category="agua" onclick="selectCategory('agua', this)">💧 Água</button>
-        <button class="category" data-category="petiscos" onclick="selectCategory('petiscos', this)">🍿 Petiscos</button>
-        <button class="category" data-category="descartaveis" onclick="selectCategory('descartaveis', this)">🥤 Descartáveis</button>
+      <div class="categories">
+
+        <button type="button" class="category active" data-category="todos">
+          Todos
+        </button>
+
+        <button type="button" class="category" data-category="cervejas">
+          🍺 Cervejas
+        </button>
+
+        <button type="button" class="category" data-category="destilados">
+          🥃 Destilados
+        </button>
+
+        <button type="button" class="category" data-category="energeticos">
+          ⚡ Energéticos
+        </button>
+
+        <button type="button" class="category" data-category="refrigerantes">
+          🥤 Refrigerantes
+        </button>
+
+        <button type="button" class="category" data-category="gelo">
+          🧊 Gelo
+        </button>
+
+        <button type="button" class="category" data-category="drinks">
+          🍹 Drinks & Ice
+        </button>
+
+        <button type="button" class="category" data-category="agua">
+          💧 Água
+        </button>
+
+        <button type="button" class="category" data-category="petiscos">
+          🍿 Petiscos
+        </button>
+
+        <button type="button" class="category" data-category="descartaveis">
+          🥤 Descartáveis
+        </button>
+
       </div>
 
       <div class="products" id="products"></div>
-      <div class="empty" id="empty">Nenhum produto encontrado.</div>
+
+      <div class="empty" id="empty">
+        Nenhum produto encontrado.
+      </div>
+
     </section>
 
     <!-- PROMOÇÕES -->
+
     <section class="container promo-section">
+
       <div class="promo">
+
         <h2>🔥 Combos para o seu rolê</h2>
-        <p>Opções inspiradas no formato de venda comum em adegas e depósitos.</p>
+
+        <p>
+          Algumas opções de exemplo.
+        </p>
 
         <div class="combo-list">
 
           <div class="combo">
             <strong>Combo Resenha</strong>
-            <span>6 cervejas + 1 saco de gelo 5kg</span>
-            <div class="combo-price">R$ 39,90</div>
+            <span>
+              6 cervejas + 1 saco de gelo 5kg
+            </span>
+            <div class="combo-price">
+              R$ 39,90
+            </div>
           </div>
 
           <div class="combo">
             <strong>Combo Gin</strong>
-            <span>Gin nacional + 2 energéticos + gelo para drinks</span>
-            <div class="combo-price">R$ 89,90</div>
-          </div>
-
-          <div class="combo">
-            <strong>Combo Whisky</strong>
-            <span>Whisky nacional + 4 energéticos + gelo</span>
-            <div class="combo-price">R$ 119,90</div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- INFORMAÇÕES -->
-    <section class="container info">
-
-      <div class="info-card">
-        <h3>🛵 Como funciona?</h3>
-        <p>
-          Escolha os produtos, adicione ao carrinho e informe seus dados.
-          O pedido será preparado para confirmação pelo WhatsApp.
-        </p>
-      </div>
-
-      <div class="info-card">
-        <h3>📍 Entrega</h3>
-        <p>
-          Consulte a taxa e a área de entrega diretamente pelo WhatsApp.
-          O valor pode variar conforme a distância.
-        </p>
-      </div>
-
-      <div class="info-card">
-        <h3>🔞 Compra responsável</h3>
-        <p>
-          Venda de bebidas alcoólicas somente para maiores de 18 anos.
-          É proibida a venda para menores de idade.
-        </p>
-      </div>
-
-      <div class="info-card">
-        <h3>💳 Pagamento</h3>
-        <p>
-          Combine Pix, dinheiro ou cartão no momento da confirmação do pedido.
-        </p>
-      </div>
-
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <strong>PRIMEIRA VERSÃO X</strong>
-      <br><br>
-      Adega & Depósito de Bebidas
-      <br>
-      Venda de bebidas alcoólicas somente para maiores de 18 anos.
-      <br><br>
-      © <span id="year"></span> Primeira Versão X. Todos os direitos reservados.
-    </div>
-  </f
+            <span>
+              Gin nacional + 2 energéticos + gelo
+            </span>
+            <div class="combo-price">
