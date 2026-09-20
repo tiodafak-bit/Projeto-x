@@ -33,7 +33,11 @@
 
     body {
       background:
-        radial-gradient(circle at 80% -10%, rgba(255,176,0,.16), transparent 30%),
+        radial-gradient(
+          circle at 80% -10%,
+          rgba(255,176,0,.16),
+          transparent 30%
+        ),
         var(--bg);
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
@@ -65,22 +69,24 @@
     }
 
     /* =========================
-       AVISO DE IDADE
+       IDADE
     ========================= */
 
-    .age-warning {
+    #ageWarning {
       position: fixed;
       inset: 0;
-      z-index: 9999;
-      background: rgba(5,5,6,.97);
-      display: grid;
-      place-items: center;
+      z-index: 99999;
+      background: rgba(5,5,6,.98);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
     }
 
-    .age-warning.hidden {
+    #ageWarning.age-hidden {
       display: none !important;
       visibility: hidden !important;
+      opacity: 0 !important;
       pointer-events: none !important;
     }
 
@@ -353,7 +359,11 @@
     }
 
     .product {
-      background: linear-gradient(145deg, var(--card-2), var(--card));
+      background: linear-gradient(
+        145deg,
+        var(--card-2),
+        var(--card)
+      );
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
@@ -367,7 +377,11 @@
       display: grid;
       place-items: center;
       background:
-        radial-gradient(circle at center, rgba(255,176,0,.14), transparent 60%),
+        radial-gradient(
+          circle at center,
+          rgba(255,176,0,.14),
+          transparent 60%
+        ),
         #101014;
       font-size: 58px;
     }
@@ -442,7 +456,11 @@
 
     .promo {
       background:
-        linear-gradient(120deg, rgba(255,176,0,.18), rgba(255,122,0,.05)),
+        linear-gradient(
+          120deg,
+          rgba(255,176,0,.18),
+          rgba(255,122,0,.05)
+        ),
         var(--card);
       border: 1px solid rgba(255,176,0,.2);
       border-radius: 24px;
@@ -819,15 +837,17 @@
 <body>
 
   <!-- =========================
-       VERIFICAÇÃO DE IDADE
-  ========================== -->
+       BLOQUEIO DE IDADE
+       ========================= -->
 
-  <div class="age-warning" id="ageWarning">
+  <div id="ageWarning">
     <div class="age-box">
 
       <div class="big">🍻</div>
 
-      <h2>Você tem 18 anos ou mais?</h2>
+      <h2>
+        Você tem 18 anos ou mais?
+      </h2>
 
       <p>
         Este site apresenta bebidas alcoólicas.
@@ -836,10 +856,11 @@
       </p>
 
       <div class="age-buttons">
+
         <button
           type="button"
           class="yes"
-          id="ageYesButton"
+          onclick="confirmAgeDirect()"
         >
           SIM, TENHO 18+
         </button>
@@ -847,10 +868,11 @@
         <button
           type="button"
           class="no"
-          id="ageNoButton"
+          onclick="denyAgeDirect()"
         >
           NÃO
         </button>
+
       </div>
 
     </div>
@@ -858,7 +880,7 @@
 
   <!-- =========================
        HEADER
-  ========================== -->
+       ========================= -->
 
   <header>
     <div class="container nav">
@@ -873,17 +895,27 @@
         id="openCartButton"
       >
         🛒 Carrinho
-        <span class="cart-count" id="cartCount">0</span>
+
+        <span
+          class="cart-count"
+          id="cartCount"
+        >
+          0
+        </span>
+
       </button>
 
     </div>
   </header>
 
+  <!-- =========================
+       CONTEÚDO
+       ========================= -->
+
   <main>
 
-    <!-- HERO -->
-
     <section class="hero">
+
       <div class="container">
 
         <div class="badge">
@@ -896,13 +928,17 @@
         </h1>
 
         <p>
-          Bebidas geladas, combos, destilados, energéticos,
-          refrigerantes, gelo, petiscos e muito mais.
+          Bebidas geladas, combos, destilados,
+          energéticos, refrigerantes, gelo,
+          petiscos e muito mais.
         </p>
 
         <div class="hero-actions">
 
-          <a href="#catalogo" class="primary">
+          <a
+            href="#catalogo"
+            class="primary"
+          >
             Ver bebidas
           </a>
 
@@ -917,6 +953,7 @@
         </div>
 
       </div>
+
     </section>
 
     <!-- BENEFÍCIOS -->
@@ -924,35 +961,55 @@
     <section class="container benefits">
 
       <div class="benefit">
-        <strong>❄️ Bebidas geladas</strong>
+
+        <strong>
+          ❄️ Bebidas geladas
+        </strong>
+
         <span>
-          Produtos selecionados para o seu rolê.
+          Bebidas selecionadas para o seu rolê.
         </span>
+
       </div>
 
       <div class="benefit">
-        <strong>🛵 Delivery</strong>
+
+        <strong>
+          🛵 Delivery
+        </strong>
+
         <span>
           Faça seu pedido pelo WhatsApp.
         </span>
+
       </div>
 
       <div class="benefit">
-        <strong>🔥 Combos</strong>
+
+        <strong>
+          🔥 Combos
+        </strong>
+
         <span>
           Monte seu kit para a ocasião.
         </span>
+
       </div>
 
     </section>
 
     <!-- CATÁLOGO -->
 
-    <section class="container" id="catalogo">
+    <section
+      class="container"
+      id="catalogo"
+    >
 
       <div class="section-title">
 
-        <h2>Nosso catálogo</h2>
+        <h2>
+          Nosso catálogo
+        </h2>
 
         <p>
           Escolha seus produtos e monte o pedido.
@@ -973,83 +1030,81 @@
 
       <div class="categories">
 
-        <button type="button" class="category active" data-category="todos">
+        <button
+          type="button"
+          class="category active"
+          data-category="todos"
+        >
           Todos
         </button>
 
-        <button type="button" class="category" data-category="cervejas">
+        <button
+          type="button"
+          class="category"
+          data-category="cervejas"
+        >
           🍺 Cervejas
         </button>
 
-        <button type="button" class="category" data-category="destilados">
+        <button
+          type="button"
+          class="category"
+          data-category="destilados"
+        >
           🥃 Destilados
         </button>
 
-        <button type="button" class="category" data-category="energeticos">
+        <button
+          type="button"
+          class="category"
+          data-category="energeticos"
+        >
           ⚡ Energéticos
         </button>
 
-        <button type="button" class="category" data-category="refrigerantes">
+        <button
+          type="button"
+          class="category"
+          data-category="refrigerantes"
+        >
           🥤 Refrigerantes
         </button>
 
-        <button type="button" class="category" data-category="gelo">
+        <button
+          type="button"
+          class="category"
+          data-category="gelo"
+        >
           🧊 Gelo
         </button>
 
-        <button type="button" class="category" data-category="drinks">
+        <button
+          type="button"
+          class="category"
+          data-category="drinks"
+        >
           🍹 Drinks & Ice
         </button>
 
-        <button type="button" class="category" data-category="agua">
+        <button
+          type="button"
+          class="category"
+          data-category="agua"
+        >
           💧 Água
         </button>
 
-        <button type="button" class="category" data-category="petiscos">
+        <button
+          type="button"
+          class="category"
+          data-category="petiscos"
+        >
           🍿 Petiscos
         </button>
 
-        <button type="button" class="category" data-category="descartaveis">
-          🥤 Descartáveis
-        </button>
-
-      </div>
-
-      <div class="products" id="products"></div>
-
-      <div class="empty" id="empty">
-        Nenhum produto encontrado.
-      </div>
-
-    </section>
-
-    <!-- PROMOÇÕES -->
-
-    <section class="container promo-section">
-
-      <div class="promo">
-
-        <h2>🔥 Combos para o seu rolê</h2>
-
-        <p>
-          Algumas opções de exemplo.
-        </p>
-
-        <div class="combo-list">
-
-          <div class="combo">
-            <strong>Combo Resenha</strong>
-            <span>
-              6 cervejas + 1 saco de gelo 5kg
-            </span>
-            <div class="combo-price">
-              R$ 39,90
-            </div>
-          </div>
-
-          <div class="combo">
-            <strong>Combo Gin</strong>
-            <span>
-              Gin nacional + 2 energéticos + gelo
-            </span>
-            <div class="combo-price">
+        <button
+          type="button"
+          class="category"
+          data-category="descartaveis"
+        >
+          ?
