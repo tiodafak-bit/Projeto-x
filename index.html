@@ -1,1079 +1,1821 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="Primeira Versão X - Adega e Depósito. Bebidas, gelo, energéticos, refrigerantes e muito mais."
-  >
-
-  <meta name="theme-color" content="#0b0b0d">
-
-  <title>Primeira Versão X | Adega & Depósito</title>
-
-  <style>
-    :root {
-      --bg: #0b0b0d;
-      --card: #151519;
-      --card2: #1d1d22;
-      --text: #ffffff;
-      --muted: #a8a8b3;
-      --accent: #ffb000;
-      --accent-dark: #d99100;
-      --green: #25d366;
-      --red: #ff4545;
-      --border: rgba(255,255,255,.09);
-      --radius: 18px;
-      --max: 1180px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.5;
-      min-height: 100vh;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 30px));
-      margin: auto;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(11,11,13,.94);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .header-inner {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -.5px;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    .cart-button {
-      border: 0;
-      background: var(--accent);
-      color: #111;
-      padding: 11px 16px;
-      border-radius: 12px;
-      font-weight: 900;
-      transition: .2s;
-    }
-
-    .cart-button:hover {
-      background: #ffc12b;
-      transform: translateY(-1px);
-    }
-
-    #cartCount {
-      display: inline-flex;
-      min-width: 22px;
-      height: 22px;
-      align-items: center;
-      justify-content: center;
-      margin-left: 5px;
-      border-radius: 50%;
-      background: #111;
-      color: #fff;
-      font-size: 12px;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      padding: 55px 0 30px;
-    }
-
-    .hero-box {
-      background:
-        radial-gradient(circle at 90% 20%, rgba(255,176,0,.18), transparent 35%),
-        linear-gradient(135deg, #18181d, #0e0e11);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px 28px;
-    }
-
-    .hero h1 {
-      font-size: clamp(32px, 7vw, 60px);
-      line-height: 1;
-      max-width: 700px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 span {
-      color: var(--accent);
-    }
-
-    .hero p {
-      color: var(--muted);
-      max-width: 650px;
-      font-size: 17px;
-      margin-bottom: 25px;
-    }
-
-    .hero-button {
-      display: inline-block;
-      background: var(--accent);
-      color: #111;
-      padding: 13px 19px;
-      border-radius: 12px;
-      font-weight: 900;
-    }
-
-    /* =========================
-       CATALOG
-    ========================= */
-
-    #catalogo {
-      padding: 25px 0 70px;
-    }
-
-    .section-title {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .search-box {
-      margin-bottom: 15px;
-    }
-
-    .search-box input {
-      width: 100%;
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      outline: none;
-      padding: 15px 16px;
-      border-radius: 14px;
-    }
-
-    .search-box input:focus {
-      border-color: var(--accent);
-    }
-
-    .categories {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .category {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 10px 13px;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: .2s;
-    }
-
-    .category:hover,
-    .category.active {
-      background: var(--accent);
-      color: #111;
-      border-color: var(--accent);
-    }
-
-    /* =========================
-       PRODUCTS
-    ========================= */
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 15px;
-    }
-
-    .product {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      transition: .2s;
-    }
-
-    .product:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255,176,0,.35);
-    }
-
-    .product-image {
-      height: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(circle, rgba(255,176,0,.14), transparent 65%),
-        var(--card2);
-      font-size: 58px;
-    }
-
-    .product-info {
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .product-category {
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    .product h3 {
-      font-size: 17px;
-      line-height: 1.25;
-      margin-bottom: 7px;
-    }
-
-    .product-description {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 14px;
-    }
-
-    .product-bottom {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .price {
-      font-size: 19px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .add {
-      border: 0;
-      background: var(--accent);
-      color: #111;
-      border-radius: 10px;
-      padding: 9px 12px;
-      font-weight: 900;
-    }
-
-    .add:hover {
-      background: #ffc12b;
-    }
-
-    .empty {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      color: var(--muted);
-    }
-
-    /* =========================
-       AGE MODAL
-    ========================= */
-
-    #ageWarning {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: rgba(0,0,0,.94);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    #ageWarning.age-hidden {
-      display: none !important;
-    }
-
-    .age-box {
-      width: min(470px, 100%);
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 20px 80px rgba(0,0,0,.6);
-    }
-
-    .age-icon {
-      font-size: 55px;
-      margin-bottom: 10px;
-    }
-
-    .age-box h2 {
-      margin-bottom: 10px;
-      font-size: 27px;
-    }
-
-    .age-box p {
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .age-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .age-buttons button {
-      border: 0;
-      padding: 13px;
-      border-radius: 12px;
-      font-weight: 900;
-    }
-
-    .yes {
-      background: var(--accent);
-      color: #111;
-    }
-
-    .no {
-      background: #29292f;
-      color: #fff;
-    }
-
-    /* =========================
-       CART DRAWER
-    ========================= */
-
-    .cart-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 5000;
-      background: rgba(0,0,0,.7);
-      display: none;
-    }
-
-    .cart-overlay.show {
-      display: block;
-    }
-
-    .cart {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: min(430px, 100%);
-      background: #111114;
-      border-left: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-header {
-      padding: 18px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .close {
-      border: 0;
-      background: transparent;
-      color: #fff;
-      font-size: 25px;
-    }
-
-    .cart-items {
-      padding: 15px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    .cart-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      padding: 13px;
-      margin-bottom: 10px;
-    }
-
-    .cart-item-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .cart-item-name {
-      font-weight: 800;
-    }
-
-    .cart-item-price {
-      color: var(--accent);
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .cart-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .quantity-button {
-      width: 30px;
-      height: 30px;
-      border: 0;
-      border-radius: 8px;
-      background: var(--card2);
-      color: #fff;
-      font-weight: 900;
-    }
-
-    .remove-button {
-      margin-left: auto;
-      border: 0;
-      background: transparent;
-      color: var(--red);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .cart-empty {
-      text-align: center;
-      color: var(--muted);
-      padding: 40px 10px;
-    }
-
-    .cart-footer {
-      border-top: 1px solid var(--border);
-      padding: 18px;
-    }
-
-    .total {
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-      font-weight: 900;
-      margin-bottom: 14px;
-    }
-
-    .checkout-button {
-      width: 100%;
-      border: 0;
-      background: var(--green);
-      color: #071008;
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: 900;
-    }
-
-    .checkout-button:disabled {
-      opacity: .4;
-      cursor: not-allowed;
-    }
-
-    /* =========================
-       CHECKOUT
-    ========================= */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 6000;
-      background: rgba(0,0,0,.82);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-box {
-      width: min(500px, 100%);
-      max-height: 90vh;
-      overflow-y: auto;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 22px;
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-    }
-
-    .form-group {
-      margin-bottom: 13px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: #0e0e11;
-      color: #fff;
-      border: 1px solid var(--border);
-      outline: none;
-      padding: 12px;
-      border-radius: 11px;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent);
-    }
-
-    .send-order {
-      width: 100%;
-      border: 0;
-      background: var(--green);
-      color: #071008;
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: 900;
-      margin-top: 5px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 30px 0;
-      color: var(--muted);
-      text-align: center;
-      font-size: 13px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 950px) {
-      .products {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 700px) {
-      .products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero-box {
-        padding: 30px 20px;
-      }
-
-      .product-image {
-        height: 125px;
-        font-size: 48px;
-      }
-    }
-
-    @media (max-width: 430px) {
-      .container {
-        width: min(100% - 20px, var(--max));
-      }
-
-      .header-inner {
-        min-height: 62px;
-      }
-
-      .logo {
-        font-size: 16px;
-      }
-
-      .cart-button {
-        padding: 9px 11px;
-      }
-
-      .products {
-        grid-template-columns: 1fr 1fr;
-        gap: 9px;
-      }
-
-      .product-info {
-        padding: 11px;
-      }
-
-      .product h3 {
-        font-size: 15px;
-      }
-
-      .product-description {
-        font-size: 12px;
-      }
-
-      .price {
-        font-size: 16px;
-      }
-
-      .add {
-        padding: 8px 9px;
-        font-size: 12px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b0b">
+
+<title>Primeira Versão X</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body.modal-open{
+  overflow:hidden;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#111;
+  border-bottom:1px solid #292929;
+}
+
+.top{
+  max-width:1100px;
+  margin:auto;
+  padding:18px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:900;
+  color:#ffd400;
+}
+
+.logo small{
+  display:block;
+  color:#aaa;
+  font-size:11px;
+  font-weight:600;
+  margin-top:3px;
+}
+
+.cart-btn{
+  border:1px solid #3b3b3b;
+  background:#1b1b1b;
+  color:#fff;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:800;
+}
+
+.cart-btn span{
+  color:#ffd400;
+}
+
+/* HERO */
+
+.hero{
+  max-width:1100px;
+  margin:auto;
+  padding:42px 16px 28px;
+}
+
+.hero-box{
+  background:linear-gradient(145deg,#171717,#0f0f0f);
+  border:1px solid #292929;
+  border-radius:22px;
+  padding:30px;
+}
+
+.badge{
+  display:inline-block;
+  background:#ffd400;
+  color:#111;
+  border-radius:999px;
+  padding:7px 11px;
+  font-weight:900;
+  font-size:12px;
+}
+
+h1{
+  font-size:clamp(32px,7vw,58px);
+  line-height:1;
+  margin:16px 0 12px;
+}
+
+.hero p{
+  color:#bdbdbd;
+  max-width:650px;
+  line-height:1.55;
+  margin:0;
+}
+
+/* CATALOG */
+
+.catalog{
+  max-width:1100px;
+  margin:auto;
+  padding:10px 16px 80px;
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.search{
+  flex:1 1 240px;
+  background:#151515;
+  border:1px solid #333;
+  color:#fff;
+  border-radius:12px;
+  padding:13px 14px;
+  outline:none;
+}
+
+.search:focus{
+  border-color:#ffd400;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.cat{
+  white-space:nowrap;
+  border:1px solid #333;
+  background:#151515;
+  color:#ddd;
+  border-radius:999px;
+  padding:10px 14px;
+  font-weight:800;
+}
+
+.cat.active,
+.cat:hover{
+  background:#ffd400;
+  color:#111;
+  border-color:#ffd400;
+}
+
+.section-title{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:10px;
+  margin:24px 0 14px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:24px;
+}
+
+.section-title p{
+  margin:0;
+  color:#888;
+  font-size:13px;
+}
+
+/* PRODUCTS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:13px;
+}
+
+.card{
+  background:#151515;
+  border:1px solid #292929;
+  border-radius:17px;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  min-height:235px;
+}
+
+.card-icon{
+  font-size:36px;
+}
+
+.card h3{
+  margin:12px 0 6px;
+  font-size:17px;
+}
+
+.card .desc{
+  color:#999;
+  font-size:13px;
+  line-height:1.4;
+  min-height:36px;
+}
+
+.price{
+  font-size:22px;
+  font-weight:900;
+  color:#ffd400;
+  margin:12px 0;
+}
+
+.add{
+  margin-top:auto;
+  width:100%;
+  border:0;
+  border-radius:11px;
+  padding:11px;
+  background:#ffd400;
+  color:#111;
+  font-weight:900;
+}
+
+.add:hover{
+  filter:brightness(1.08);
+}
+
+.empty{
+  padding:30px;
+  text-align:center;
+  border:1px dashed #444;
+  border-radius:16px;
+  color:#999;
+  grid-column:1/-1;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid #252525;
+  background:#101010;
+  color:#888;
+  text-align:center;
+  padding:25px 16px;
+  font-size:13px;
+}
+
+/* AGE GATE */
+
+#ageWarning{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.94);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.age-box{
+  width:min(430px,100%);
+  background:#171717;
+  border:1px solid #333;
+  border-radius:22px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 20px 70px #000;
+}
+
+.age-icon{
+  font-size:48px;
+}
+
+.age-box h2{
+  margin:12px 0 8px;
+}
+
+.age-box p{
+  color:#aaa;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.age-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+
+.age-actions button{
+  border:0;
+  border-radius:11px;
+  padding:13px;
+  font-weight:900;
+}
+
+.yes{
+  background:#ffd400;
+  color:#111;
+}
+
+.no{
+  background:#292929;
+  color:#fff;
+}
+
+/* MODAIS */
+
+#cartModal,
+#checkoutModal{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(0,0,0,.78);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal{
+  width:min(560px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#151515;
+  border:1px solid #333;
+  border-radius:20px;
+  padding:20px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.modal-head h2{
+  margin:0;
+}
+
+.close{
+  background:#292929;
+  border:0;
+  color:#fff;
+  border-radius:9px;
+  padding:8px 11px;
+}
+
+.cart-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  padding:14px 0;
+  border-bottom:1px solid #292929;
+}
+
+.cart-item strong{
+  display:block;
+}
+
+.cart-item small{
+  color:#999;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.qty button{
+  width:30px;
+  height:30px;
+  border:0;
+  border-radius:8px;
+  background:#292929;
+  color:#fff;
+  font-weight:900;
+}
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  font-weight:900;
+  margin:20px 0;
+}
+
+.checkout{
+  width:100%;
+  border:0;
+  background:#25d366;
+  color:#071b0e;
+  border-radius:11px;
+  padding:13px;
+  font-weight:900;
+}
+
+.form{
+  display:grid;
+  gap:10px;
+  margin-top:15px;
+}
+
+.form input,
+.form textarea,
+.form select{
+  width:100%;
+  background:#0e0e0e;
+  color:#fff;
+  border:1px solid #333;
+  border-radius:10px;
+  padding:12px;
+  outline:none;
+}
+
+.form textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.notice{
+  font-size:12px;
+  color:#888;
+  line-height:1.45;
+}
+
+/* MOBILE */
+
+@media(max-width:520px){
+
+  .hero-box{
+    padding:23px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .card{
+    min-height:250px;
+    padding:13px;
+  }
+
+  .card h3{
+    font-size:15px;
+  }
+
+  .price{
+    font-size:19px;
+  }
+
+  .age-actions{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- =========================
-       AVISO DE IDADE
-  ========================== -->
+<!-- PORTÃO 18+ -->
+<div id="ageWarning">
 
-  <div id="ageWarning">
-    <div class="age-box">
-      <div class="age-icon">🔞</div>
+  <div class="age-box">
 
-      <h2>Você tem 18 anos ou mais?</h2>
+    <div class="age-icon">🔞</div>
 
-      <p>
-        A venda e o consumo de bebidas alcoólicas são destinados
-        exclusivamente a maiores de 18 anos.
-      </p>
+    <h2>Você tem 18 anos ou mais?</h2>
 
-      <div class="age-buttons">
-        <button
-          type="button"
-          class="yes"
-          onclick="confirmAgeDirect()"
-        >
-          SIM, TENHO 18+
-        </button>
+    <p>
+      Este catálogo apresenta bebidas alcoólicas.
+      Confirme sua idade para continuar.
+    </p>
 
-        <button
-          type="button"
-          class="no"
-          onclick="denyAgeDirect()"
-        >
-          NÃO
-        </button>
-      </div>
-    </div>
-  </div>
+    <div class="age-actions">
 
-  <!-- =========================
-       HEADER
-  ========================== -->
-
-  <header>
-    <div class="container header-inner">
-
-      <a href="#" class="logo">
-        Primeira <span>Versão X</span>
-      </a>
+      <!-- CORREÇÃO: fechamento direto, sem depender de função externa -->
+      <button
+        type="button"
+        class="yes"
+        onclick="document.getElementById('ageWarning').style.display='none';"
+      >
+        SIM, TENHO 18+
+      </button>
 
       <button
         type="button"
-        class="cart-button"
-        onclick="openCart()"
+        class="no"
+        onclick="window.location.href='https://www.google.com';"
       >
-        🛒 Carrinho
-        <span id="cartCount">0</span>
+        NÃO
       </button>
 
     </div>
-  </header>
-
-  <!-- =========================
-       HERO
-  ========================== -->
-
-  <main>
-
-    <section class="hero">
-      <div class="container">
-
-        <div class="hero-box">
-
-          <h1>
-            Sua bebida,
-            <span>do seu jeito.</span>
-          </h1>
-
-          <p>
-            Encontre bebidas, cervejas, energéticos, refrigerantes,
-            gelo, drinks e muito mais.
-          </p>
-
-          <a href="#catalogo" class="hero-button">
-            Ver catálogo
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =========================
-         CATÁLOGO
-    ========================== -->
-
-    <section id="catalogo">
-
-      <div class="container">
-
-        <h2 class="section-title">
-          Nosso catálogo
-        </h2>
-
-        <p class="section-subtitle">
-          Escolha seus produtos e monte seu pedido.
-        </p>
-
-        <div class="search-box">
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="🔎 Buscar produto..."
-            autocomplete="off"
-          >
-        </div>
-
-        <div class="categories">
-
-          <button
-            type="button"
-            class="category active"
-            data-category="todos"
-          >
-            Todos
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="cervejas"
-          >
-            🍺 Cervejas
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="destilados"
-          >
-            🥃 Destilados
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="energeticos"
-          >
-            ⚡ Energéticos
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="refrigerantes"
-          >
-            🥤 Refrigerantes
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="gelo"
-          >
-            🧊 Gelo
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="drinks"
-          >
-            🍹 Drinks & Ice
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="agua"
-          >
-            💧 Água
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="petiscos"
-          >
-            🍿 Petiscos
-          </button>
-
-          <button
-            type="button"
-            class="category"
-            data-category="descartaveis"
-          >
-            🥤 Descartáveis
-          </button>
-
-        </div>
-
-        <!-- PRODUTOS SÃO INSERIDOS AQUI -->
-        <div
-          class="products"
-          id="productGrid"
-        ></div>
-
-        <div
-          class="empty"
-          id="emptyMessage"
-        >
-          Nenhum produto encontrado.
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- =========================
-       CARRINHO
-  ========================== -->
-
-  <div
-    class="cart-overlay"
-    id="cartOverlay"
-    onclick="closeCartOutside(event)"
-  >
-
-    <aside
-      class="cart"
-      onclick="event.stopPropagation()"
-    >
-
-      <div class="cart-header">
-
-        <h2>Seu carrinho</h2>
-
-        <button
-          type="button"
-          class="close"
-          onclick="closeCart()"
-          aria-label="Fechar carrinho"
-        >
-          ×
-        </button>
-
-      </div>
-
-      <div
-        class="cart-items"
-        id="cartItems"
-      ></div>
-
-      <div class="cart-footer">
-
-        <div class="total">
-          <span>Total</span>
-          <span id="cartTotal">R$ 0,00</span>
-        </div>
-
-        <button
-          type="button"
-          class="checkout-button"
-          id="checkoutButton"
-          onclick="openCheckout()"
-          disabled
-        >
-          Finalizar pedido
-        </button>
-
-      </div>
-
-    </aside>
 
   </div>
 
-  <!-- =========================
-       CHECKOUT
-  ========================== -->
+</div>
+
+<header>
+
+  <div class="top">
+
+    <a class="logo" href="#">
+      PRIMEIRA VERSÃO X
+      <small>BEBA COM RESPONSABILIDADE</small>
+    </a>
+
+    <button
+      class="cart-btn"
+      type="button"
+      onclick="openCart()"
+    >
+      🛒 Carrinho
+      <span id="cartCount">0</span>
+    </button>
+
+  </div>
+
+</header>
+
+<main>
+
+<section class="hero">
+
+  <div class="hero-box">
+
+    <span class="badge">
+      CATÁLOGO ONLINE
+    </span>
+
+    <h1>
+      Bebidas para o seu momento.
+    </h1>
+
+    <p>
+      Confira cervejas, destilados, energéticos,
+      refrigerantes, gelo, drinks, água,
+      petiscos e descartáveis.
+    </p>
+
+  </div>
+
+</section>
+
+<section class="catalog" id="catalogo">
+
+  <div class="controls">
+
+    <input
+      id="searchInput"
+      class="search"
+      type="search"
+      placeholder="🔎 Procurar produto..."
+      autocomplete="off"
+    >
+
+  </div>
 
   <div
-    class="modal"
-    id="checkoutModal"
-  >
+    class="categories"
+    id="categories"
+  ></div>
 
-    <div class="modal-box">
+  <div class="section-title">
 
-      <div class="modal-header">
+    <h2>Produtos</h2>
 
-        <h2>Finalizar pedido</h2>
+    <p id="productCount"></p>
 
-        <button
-          type="button"
-          class="close"
-          onclick="closeCheckout()"
-          aria-label="Fechar"
-        >
-          ×
-        </button>
+  </div>
 
-      </div>
+  <div
+    class="grid"
+    id="productGrid"
+  ></div>
 
-      <form id="checkoutForm">
+</section>
 
-        <div class="form-group">
+</main>
 
-          <label for="customerName">
-            Nome
-          </label>
+<footer>
 
-          <input
-            type="text"
-            id="customerName"
-            placeholder="Seu nome"
-            required
-          >
+  Primeira Versão X • Catálogo demonstrativo •
+  Venda responsável para maiores de 18 anos.
 
-        </div>
+</footer>
 
-        <div class="form-group">
+<!-- CARRINHO -->
 
-          <label for="customerAddress">
-            Endereço
-          </label>
+<div
+  id="cartModal"
+  onclick="if(event.target===this) closeCart()"
+>
 
-          <textarea
-            id="customerAddress"
-            rows="3"
-            placeholder="Rua, número e bairro"
-            required
-          ></textarea>
+  <div class="modal">
 
-        </div>
+    <div class="modal-head">
 
-        <div class="form-group">
+      <h2>Seu carrinho</h2>
 
-          <label for="payment">
-            Forma de pagamento
-          </label>
+      <button
+        class="close"
+        type="button"
+        onclick="closeCart()"
+      >
+        ✕
+      </button>
 
-          <select
-            id="payment"
-            required
-          >
-            <option value="">
-              Selecione
-            </option>
+    </div>
 
-            <option value="Pix">
-              Pix
-            </option>
+    <div id="cartItems"></div>
 
-            <option value="Dinheiro">
-              Dinheiro
-            </option>
+    <div class="total">
 
-            <option value="Cartão">
-              Cartão
-            </option>
-          </select>
+      <span>Total</span>
 
-        </div>
+      <span id="cartTotal">
+        R$ 0,00
+      </span>
 
-        <button
-          type="submit"
-          class="send-order"
-        >
-          📲 Enviar pedido pelo WhatsApp
-        </button>
+    </div>
 
-      </form>
+    <button
+      class="checkout"
+      type="button"
+      onclick="openCheckout()"
+    >
+      Finalizar pedido pelo WhatsApp
+    </button>
+
+  </div>
+
+</div>
+
+<!-- CHECKOUT -->
+
+<div
+  id="checkoutModal"
+  onclick="if(event.target===this) closeCheckout()"
+>
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2>Finalizar pedido</h2>
+
+      <button
+        class="close"
+        type="button"
+        onclick="closeCheckout()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <p class="notice">
+      Preencha os dados abaixo.
+      O pedido será montado e enviado para o WhatsApp.
+    </p>
+
+    <div class="form">
+
+      <input
+        id="customerName"
+        type="text"
+        placeholder="Seu nome"
+      >
+
+      <input
+        id="customerAddress"
+        type="text"
+        placeholder="Endereço / retirada"
+      >
+
+      <textarea
+        id="customerObs"
+        placeholder="Observações do pedido"
+      ></textarea>
+
+      <button
+        class="checkout"
+        type="button"
+        onclick="sendWhatsApp()"
+      >
+        Enviar pedido pelo WhatsApp
+      </button>
 
     </div>
 
   </div>
 
- 
+</div>
+
+<script>
+
+"use strict";
+
+/* COLOQUE AQUI O WHATSAPP REAL DA EMPRESA */
+const WHATSAPP_NUMBER = "5516999999999";
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+const products = [
+
+  /* CERVEJAS */
+
+  {
+    id:1,
+    name:"Brahma Lata 350ml",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:5,
+    icon:"🍺",
+    description:"Lata 350ml"
+  },
+
+  {
+    id:2,
+    name:"Skol Lata 350ml",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:5,
+    icon:"🍺",
+    description:"Lata 350ml"
+  },
+
+  {
+    id:3,
+    name:"Original Lata 350ml",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:6,
+    icon:"🍺",
+    description:"Lata 350ml"
+  },
+
+  {
+    id:4,
+    name:"Spaten Lata 350ml",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:7.5,
+    icon:"🍺",
+    description:"Lata 350ml"
+  },
+
+  {
+    id:5,
+    name:"Heineken Long Neck",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:12,
+    icon:"🍺",
+    description:"Long Neck"
+  },
+
+  {
+    id:6,
+    name:"Budweiser Long Neck",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:10,
+    icon:"🍺",
+    description:"Long Neck"
+  },
+
+  {
+    id:7,
+    name:"Amstel 473ml",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:6,
+    icon:"🍺",
+    description:"Lata 473ml"
+  },
+
+  {
+    id:8,
+    name:"Brahma Latão 550ml",
+    category:"cervejas",
+    categoryName:"Cervejas",
+    price:6.5,
+    icon:"🍺",
+    description:"Lata 550ml"
+  },
+
+
+  /* DESTILADOS */
+
+  {
+    id:9,
+    name:"Vodka Nacional",
+    category:"destilados",
+    categoryName:"Destilados",
+    price:49.9,
+    icon:"🥃",
+    description:"Garrafa"
+  },
+
+  {
+    id:10,
+    name:"Absolut",
+    category:"destilados",
+    categoryName:"Destilados",
+    price:149.9,
+    icon:"🥃",
+    description:"Garrafa"
+  },
+
+  {
+    id:11,
+    name:"Gin Nacional",
+    category:"destilados",
+    categoryName:"Destilados",
+    price:89.9,
+    icon:"🍸",
+    description:"Garrafa"
+  },
+
+  {
+    id:12,
+    name:"Beefeater",
+    category:"destilados",
+    categoryName:"Destilados",
+    price:159.9,
+    icon:"🍸",
+    description:"Garrafa"
+  },
+
+  {
+    id:13,
+    name:"Red Label",
+    category:"destilados",
+    categoryName:"Destilados",
+    price:179.9,
+    icon:"🥃",
+    description:"Whisky"
+  },
+
+  {
+    id:14,
+    name:"Black & White",
+    category:"destilados",
+    categoryName:"Destilados",
+    price:119.9,
+    icon:"🥃",
+    description:"Whisky"
+  },
+
+  {
+    id:15,
+    name:"Cachaça 51",
+    category:"destilados",
+    categoryName:"Destilados",
+    price:17.9,
+    icon:"🥃",
+    description:"Garrafa"
+  },
+
+
+  /* ENERGÉTICOS */
+
+  {
+    id:16,
+    name:"Red Bull 250ml",
+    category:"energeticos",
+    categoryName:"Energéticos",
+    price:10,
+    icon:"⚡",
+    description:"Lata 250ml"
+  },
+
+  {
+    id:17,
+    name:"Red Bull 355ml",
+    category:"energeticos",
+    categoryName:"Energéticos",
+    price:14,
+    icon:"⚡",
+    description:"Lata 355ml"
+  },
+
+  {
+    id:18,
+    name:"TNT 269ml",
+    category:"energeticos",
+    categoryName:"Energéticos",
+    price:7,
+    icon:"⚡",
+    description:"Lata 269ml"
+  },
+
+  {
+    id:19,
+    name:"Energético 2L",
+    category:"energeticos",
+    categoryName:"Energéticos",
+    price:10,
+    icon:"⚡",
+    description:"Garrafa 2L"
+  },
+
+
+  /* REFRIGERANTES */
+
+  {
+    id:20,
+    name:"Coca-Cola 2L",
+    category:"refrigerantes",
+    categoryName:"Refrigerantes",
+    price:12,
+    icon:"🥤",
+    description:"Garrafa 2L"
+  },
+
+  {
+    id:21,
+    name:"Guaraná 2L",
+    category:"refrigerantes",
+    categoryName:"Refrigerantes",
+    price:10,
+    icon:"🥤",
+    description:"Garrafa 2L"
+  },
+
+  {
+    id:22,
+    name:"Refrigerante Lata",
+    category:"refrigerantes",
+    categoryName:"Refrigerantes",
+    price:5,
+    icon:"🥤",
+    description:"Lata"
+  },
+
+  {
+    id:23,
+    name:"Água Tônica",
+    category:"refrigerantes",
+    categoryName:"Refrigerantes",
+    price:6,
+    icon:"🥤",
+    description:"Lata / garrafa"
+  },
+
+
+  /* GELO */
+
+  {
+    id:24,
+    name:"Gelo 5kg",
+    category:"gelo",
+    categoryName:"Gelo",
+    price:10,
+    icon:"🧊",
+    description:"Pacote 5kg"
+  },
+
+  {
+    id:25,
+    name:"Gelo 10kg",
+    category:"gelo",
+    categoryName:"Gelo",
+    price:15,
+    icon:"🧊",
+    description:"Pacote 10kg"
+  },
+
+  {
+    id:26,
+    name:"Gelo para Drinks",
+    category:"gelo",
+    categoryName:"Gelo",
+    price:4,
+    icon:"🧊",
+    description:"Para drinks"
+  },
+
+
+  /* DRINKS */
+
+  {
+    id:27,
+    name:"Ice Limão",
+    category:"drinks",
+    categoryName:"Drinks",
+    price:8,
+    icon:"🍹",
+    description:"Bebida pronta"
+  },
+
+  {
+    id:28,
+    name:"Ice Frutas Vermelhas",
+    category:"drinks",
+    categoryName:"Drinks",
+    price:8,
+    icon:"🍹",
+    description:"Bebida pronta"
+  },
+
+  {
+    id:29,
+    name:"Coquetel 500ml",
+    category:"drinks",
+    categoryName:"Drinks",
+    price:5,
+    icon:"🍹",
+    description:"500ml"
+  },
+
+
+  /* ÁGUA */
+
+  {
+    id:30,
+    name:"Água Mineral 500ml",
+    category:"agua",
+    categoryName:"Água",
+    price:3,
+    icon:"💧",
+    description:"Sem gás"
+  },
+
+  {
+    id:31,
+    name:"Água com Gás",
+    category:"agua",
+    categoryName:"Água",
+    price:4,
+    icon:"💧",
+    description:"Garrafa"
+  },
+
+  {
+    id:32,
+    name:"Água de Coco",
+    category:"agua",
+    categoryName:"Água",
+    price:8,
+    icon:"🥥",
+    description:"Bebida de coco"
+  },
+
+
+  /* PETISCOS */
+
+  {
+    id:33,
+    name:"Batata Chips",
+    category:"petiscos",
+    categoryName:"Petiscos",
+    price:7,
+    icon:"🥔",
+    description:"Pacote"
+  },
+
+  {
+    id:34,
+    name:"Amendoim",
+    category:"petiscos",
+    categoryName:"Petiscos",
+    price:6,
+    icon:"🥜",
+    description:"Pacote"
+  },
+
+  {
+    id:35,
+    name:"Salgadinho",
+    category:"petiscos",
+    categoryName:"Petiscos",
+    price:5,
+    icon:"🍿",
+    description:"Pacote"
+  },
+
+  {
+    id:36,
+    name:"Pipoca",
+    category:"petiscos",
+    categoryName:"Petiscos",
+    price:4,
+    icon:"🍿",
+    description:"Pacote"
+  },
+
+
+  /* DESCARTÁVEIS */
+
+  {
+    id:37,
+    name:"Copo 300ml",
+    category:"descartaveis",
+    categoryName:"Descartáveis",
+    price:0.8,
+    icon:"🥤",
+    description:"Unidade"
+  },
+
+  {
+    id:38,
+    name:"Copo 500ml",
+    category:"descartaveis",
+    categoryName:"Descartáveis",
+    price:1.2,
+    icon:"🥤",
+    description:"Unidade"
+  },
+
+  {
+    id:39,
+    name:"Canudo",
+    category:"descartaveis",
+    categoryName:"Descartáveis",
+    price:0.5,
+    icon:"🥤",
+    description:"Unidade"
+  }
+
+];
+
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+let selectedCategory = "todos";
+
+let searchTerm = "";
+
+let cart = [];
+
+
+/* =========================
+   DINHEIRO
+========================= */
+
+function money(value){
+
+  return value.toLocaleString(
+    "pt-BR",
+    {
+      style:"currency",
+      currency:"BRL"
+    }
+  );
+
+}
+
+
+/* =========================
+   SEGURANÇA DE TEXTO
+========================= */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+function renderCategories(){
+
+  const categoriesEl =
+    document.getElementById("categories");
+
+  const categoryMap = new Map();
+
+  products.forEach(product => {
+
+    categoryMap.set(
+      product.category,
+      product.categoryName
+    );
+
+  });
+
+  let html = `
+    <button
+      type="button"
+      class="cat active"
+      data-category="todos"
+    >
+      Todos
+    </button>
+  `;
+
+  categoryMap.forEach((name,key)=>{
+
+    html += `
+      <button
+        type="button"
+        class="cat"
+        data-category="${escapeHtml(key)}"
+      >
+        ${escapeHtml(name)}
+      </button>
+    `;
+
+  });
+
+  categoriesEl.innerHTML = html;
+
+
+  categoriesEl
+    .querySelectorAll(".cat")
+    .forEach(button=>{
+
+      button.addEventListener(
+        "click",
+        ()=>{
+
+          selectedCategory =
+            button.dataset.category;
+
+          categoriesEl
+            .querySelectorAll(".cat")
+            .forEach(item =>
+              item.classList.remove("active")
+            );
+
+          button.classList.add("active");
+
+          renderProducts();
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =========================
+   FILTRO
+========================= */
+
+function getFilteredProducts(){
+
+  const normalized =
+    searchTerm.trim().toLowerCase();
+
+  return products.filter(product=>{
+
+    const categoryOK =
+      selectedCategory === "todos" ||
+      product.category === selectedCategory;
+
+    const textOK =
+      !normalized ||
+      product.name
+        .toLowerCase()
+        .includes(normalized) ||
+
+      product.categoryName
+        .toLowerCase()
+        .includes(normalized) ||
+
+      product.description
+        .toLowerCase()
+        .includes(normalized);
+
+    return categoryOK && textOK;
+
+  });
+
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+function renderProducts(){
+
+  const grid =
+    document.getElementById("productGrid");
+
+  const filtered =
+    getFilteredProducts();
+
+  document.getElementById(
+    "productCount"
+  ).textContent =
+    filtered.length +
+    (
+      filtered.length === 1
+      ? " produto"
+      : " produtos"
+    );
+
+
+  if(!filtered.length){
+
+    grid.innerHTML = `
+      <div class="empty">
+        Nenhum produto encontrado.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+    filtered.map(product=>`
+
+      <article class="card">
+
+        <div class="card-icon">
+          ${product.icon}
+        </div>
+
+        <h3>
+          ${escapeHtml(product.name)}
+        </h3>
+
+        <div class="desc">
+          ${escapeHtml(product.description)}
+          •
+          ${escapeHtml(product.categoryName)}
+        </div>
+
+        <div class="price">
+          ${money(product.price)}
+        </div>
+
+        <button
+          type="button"
+          class="add"
+          onclick="addToCart(${product.id})"
+        >
+          Adicionar
+        </button>
+
+      </article>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   CARRINHO
+========================= */
+
+function addToCart(id){
+
+  const product =
+    products.find(
+      product => product.id === id
+    );
+
+  if(!product) return;
+
+
+  const existing =
+    cart.find(
+      item => item.id === id
+    );
+
+
+  if(existing){
+
+    existing.qty += 1;
+
+  }else{
+
+    cart.push({
+      id:product.id,
+      qty:1
+    });
+
+  }
+
+
+  updateCart();
+
+}
+
+
+function changeQty(id,delta){
+
+  const item =
+    cart.find(
+      item => item.id === id
+    );
+
+  if(!item) return;
+
+
+  item.qty += delta;
+
+
+  if(item.qty <= 0){
+
+    cart =
+      cart.filter(
+        item => item.id !== id
+      );
+
+  }
+
+
+  updateCart();
+
+  renderCart();
+
+}
+
+
+function updateCart(){
+
+  const count =
+    cart.reduce(
+      (sum,item)=>sum + item.qty,
+      0
+    );
+
+  document.getElementById(
+    "cartCount"
+  ).textContent = count;
+
+}
+
+
+/* =========================
+   MOSTRAR CARRINHO
+========================= */
+
+function renderCart(){
+
+  const container =
+    document.getElementById("cartItems");
+
+  if(!cart.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        Seu carrinho está vazio.
+      </div>
+    `;
+
+    document.getElementById(
+      "cartTotal"
+    ).textContent = money(0);
+
+    return;
+
+  }
+
+
+  let total = 0;
+
+
+  container.innerHTML =
+    cart.map(item=>{
+
+      const product =
+        products.find(
+          product => product.id === item.id
+        );
+
+      const subtotal =
+        product.price * item.qty;
+
+      total += subtotal;
+
+
+      return `
+
+        <div class="cart-item">
+
+          <div>
+
+            <strong>
+              ${escapeHtml(product.name)}
+            </strong>
+
+            <small>
+              ${money(product.price)} cada
+            </small>
+
+          </div>
+
+          <div class="qty">
+
+            <button
+              type="button"
+              onclick="changeQty(${product.id},-1)"
+            >
+              −
+            </button>
+
+            <strong>
+              ${item.qty}
+            </strong>
+
+            <button
+              type="button"
+              onclick="changeQty(${product.id},1)"
+            >
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById(
+    "cartTotal"
+  ).textContent = money(total);
+
+}
+
+
+function openCart(){
+
+  renderCart();
+
+  document.getElementById(
+    "cartModal"
+  ).style.display = "flex";
+
+  document.body.classList.add(
+    "modal-open"
+  );
+
+}
+
+
+function closeCart(){
+
+  document.getElementById(
+    "cartModal"
+  ).style.display = "none";
+
+
+  if(
+    document.getElementById(
+      "checkoutModal"
+    ).style.display !== "flex"
+  ){
+
+    document.body.classList.remove(
+      "modal-open"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function openCheckout(){
+
+  if(!cart.length){
+
+    alert(
+      "Adicione pelo menos um produto ao carrinho."
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "cartModal"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "checkoutModal"
+  ).style.display = "flex";
+
+}
+
+
+function closeCheckout(){
+
+  document.getElementById(
+    "checkoutModal"
+  ).style.display = "none";
+
+
+  document.body.classList.remove(
+    "modal-open"
+  );
+
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+function sendWhatsApp(){
+
+  if(!cart.length){
+
+    alert(
+      "Seu carrinho está vazio."
+    );
+
+    return;
+
+  }
+
+
+  const name =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+
+  const address =
+    document
+      .getElementById("customerAddress")
+      .value
+      .trim();
+
+
+  const obs =
+    document
+      .getElementById("customerObs")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    alert(
+      "Digite seu nome."
+    );
+
+    document
+      .getElementById("customerName")
+      .focus();
+
+    return;
+
+  }
+
+
+  let total = 0;
+
+
+  const lines =
+    cart.map(item=>{
+
+      const product =
+        products.find(
+          product => product.id === item.id
+        );
+
+      const subtotal =
+        product.price * item.qty;
+
+      total += subtotal;
+
+
+      return `
+• ${item.qty}x ${product.name}
+— ${money(subtotal)}
+`;
+
+    });
+
+
+  const message =
+`Olá! Quero fazer um pedido.
+
+Nome: ${name}
+
+${address
+  ? "Endereço/retirada: " + address
+  : ""
+}
+
+Produtos:
+${lines.join("\n")}
+
+Total: ${money(total)}
+
+${obs
+  ? "Observações: " + obs
+  : ""
+}`;
+
+
+  const url =
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
+
+
+  window.open(
+    url,
+    "_blank",
+    "noopener"
+  );
+
+}
+
+
+/* =========================
+   BUSCA
+========================= */
+
+document
+  .getElementById("searchInput")
+  .addEventListener(
+    "input",
+    event=>{
+
+      searchTerm =
+        event.target.value;
+
+      renderProducts();
+
+    }
+  );
+
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key === "Escape"){
+
+      closeCart();
+
+      closeCheckout();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+renderCategories();
+
+renderProducts();
+
+updateCart();
+
+</script>
+
+</body>
+</html>
