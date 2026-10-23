@@ -3,1008 +3,358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090a0d">
-<title>LDN Artigos | Vista sua atitude</title>
+<meta name="theme-color" content="#090909">
+<title>LDN Artigos | Estilo e Atitude</title>
 
 <style>
-:root {
-  --bg: #090a0d;
-  --panel: #111318;
-  --silver: #d9dbe1;
-  --muted: #9a9da8;
-  --line: #292c34;
-  --white: #f7f7f9;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--white);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button, input {
-  font: inherit;
-}
-
-.wrap {
-  width: min(1160px, 92%);
-  margin: auto;
-}
-
-.topline {
-  height: 3px;
-  background: linear-gradient(90deg, #555, #fff, #555);
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(9,10,13,.96);
-  border-bottom: 1px solid var(--line);
-}
-
-.nav {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-
-.brand img {
-  width: 49px;
-  height: 49px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid #555;
-}
-
-.brand small {
-  display: block;
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: 2px;
-  margin-top: 4px;
-}
-
-.navlinks {
-  display: flex;
-  gap: 22px;
-  font-size: 12px;
-  color: #ccc;
-}
-
-.navlinks a:hover {
-  color: white;
-}
-
-.cartbtn, .btn {
-  border: 1px solid #777;
-  background: #eeeef1;
-  color: #090a0d;
-  padding: 12px 16px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.cartbtn {
-  background: transparent;
-  color: white;
-  padding: 10px 12px;
-}
-
-.cartbtn:hover {
-  background: white;
-  color: black;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn.secondary {
-  background: transparent;
-  color: white;
-  border-color: #555;
-}
-
-/* APRESENTAÇÃO */
-
-.hero {
-  padding: 55px 0 42px;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.eyebrow {
-  color: #c2c5ce;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 10px;
-  font-weight: bold;
-}
-
-.hero h1 {
-  font-size: clamp(42px, 7vw, 78px);
-  line-height: .96;
-  letter-spacing: -3px;
-  margin: 20px 0;
-}
-
-.hero h1 span {
-  color: #9da1ab;
-}
-
-.hero p {
-  color: #b4b6bf;
-  line-height: 1.8;
-  max-width: 470px;
-  font-size: 14px;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 25px;
-}
-
-.hero-art {
-  min-height: 360px;
-  background: radial-gradient(ellipse, #34363d, #17191f 50%, #0d0e12);
-  border: 1px solid #30323a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-art img {
-  width: min(72%, 300px);
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 20px 70px #000;
-}
-
-.strip {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 17px 0;
-  color: #c7c9d0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 10px;
-}
-
-.strip .wrap {
-  display: flex;
-  justify-content: space-around;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-/* CATÁLOGO */
-
-.catalog {
-  padding: 65px 0 75px;
-}
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 20px;
-  margin-bottom: 25px;
-}
-
-.section-head h2 {
-  font-size: clamp(28px, 4vw, 42px);
-  margin: 10px 0 0;
-}
-
-.section-head p {
-  color: var(--muted);
-  font-size: 13px;
-  max-width: 330px;
-  line-height: 1.7;
-}
-
-.demo-note {
-  background: #202127;
-  border: 1px dashed #777b85;
-  color: #d4d5db;
-  padding: 12px 14px;
-  font-size: 11px;
-  line-height: 1.6;
-  margin-bottom: 22px;
-}
-
-.tools {
-  display: flex;
-  gap: 9px;
-  flex-wrap: wrap;
-  margin: 22px 0 27px;
-}
-
-.search {
-  flex: 1;
-  min-width: 190px;
-  background: #111318;
-  border: 1px solid var(--line);
-  color: white;
-  padding: 13px;
-  outline: none;
-}
-
-.search:focus {
-  border-color: #aaa;
-}
-
-.filter {
-  background: #111318;
-  border: 1px solid #343740;
-  color: #ddd;
-  padding: 11px 14px;
-  cursor: pointer;
-}
-
-.filter.active, .filter:hover {
-  background: #e5e6e9;
-  color: #090a0d;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.product {
-  background: var(--panel);
-  border: 1px solid #242730;
-  overflow: hidden;
-  transition: .25s;
-}
-
-.product:hover {
-  transform: translateY(-4px);
-  border-color: #777b85;
-}
-
-.photo {
-  height: 300px;
-  background: #1a1c22;
-  position: relative;
-  overflow: hidden;
-}
-
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .4s;
-}
-
-.product:hover .photo img {
-  transform: scale(1.035);
-}
-
-.tag {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-  background: #090a0de8;
-  border: 1px solid #555963;
-  padding: 6px 8px;
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.product-info {
-  padding: 17px;
-}
-
-.category {
-  color: #9da1ab;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 9px;
-}
-
-.product-info h3 {
-  font-size: 16px;
-  margin: 10px 0 7px;
-}
-
-.product-info p {
-  font-size: 12px;
-  line-height: 1.6;
-  color: #a9abb4;
-  min-height: 38px;
-  margin-bottom: 17px;
-}
-
-.product-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.price {
-  font-weight: 800;
-  font-size: 12px;
-}
-
-.price small {
-  display: block;
-  color: #858894;
-  font-size: 10px;
-  font-weight: normal;
-  margin-top: 5px;
-}
-
-.add {
-  background: #e9e9ec;
-  color: #101115;
-  border: 0;
-  padding: 11px 12px;
-  font-size: 10px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.add:hover {
-  background: white;
-}
-
-/* SOBRE */
-
-.about {
-  padding: 50px 0;
-  background: #111318;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.about h2 {
-  font-size: clamp(28px, 4vw, 42px);
-}
-
-.about p {
-  color: #b5b7c0;
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-.values {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.value {
-  padding: 18px;
-  border: 1px solid #30333c;
-  background: #15171d;
-}
-
-.value b {
-  display: block;
-  font-size: 12px;
-  margin-bottom: 7px;
-}
-
-.value span {
-  font-size: 11px;
-  color: #a4a7b1;
-  line-height: 1.5;
-}
-
-footer {
-  padding: 30px 0;
-  color: #858894;
-  font-size: 11px;
-}
-
-.foot {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.foot strong {
-  color: #eee;
-  letter-spacing: 2px;
-}
-
-/* SACOLA */
-
-.drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background: #0009;
-  z-index: 40;
-  display: none;
-}
-
-.drawer-backdrop.open {
-  display: block;
-}
-
-.drawer {
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  height: 100dvh;
-  width: min(420px, 100%);
-  background: #101116;
-  border-left: 1px solid #393c45;
-  z-index: 41;
-  padding: 22px;
-  transform: translateX(105%);
-  transition: transform .25s;
-  display: flex;
-  flex-direction: column;
-}
-
-.drawer.open {
-  transform: translateX(0);
-}
-
-.drawer-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 16px;
-}
-
-.iconbtn {
-  background: none;
-  border: 1px solid #555963;
-  color: white;
-  padding: 8px 11px;
-  cursor: pointer;
-}
-
-.cart-items {
-  overflow: auto;
-  flex: 1;
-  padding: 10px 0;
-}
-
-.cart-row {
-  display: flex;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.cart-row img {
-  width: 68px;
-  height: 76px;
-  object-fit: cover;
-}
-
-.cart-row h4 {
-  font-size: 13px;
-  margin: 3px 0 8px;
-}
-
-.cart-row small {
-  color: #aaa;
-}
-
-.qty {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-  flex-wrap: wrap;
-}
-
-.qty button {
-  background: #252730;
-  border: 0;
-  color: white;
-  padding: 5px 9px;
-  cursor: pointer;
-}
-
-.cart-total {
-  border-top: 1px solid var(--line);
-  padding-top: 15px;
-}
-
-.cart-total .btn {
-  width: 100%;
-  margin-top: 13px;
-}
-
-.empty {
-  color: #999;
-  font-size: 13px;
-  text-align: center;
-  padding: 30px 0;
-}
-
-.toast {
-  position: fixed;
-  left: 50%;
-  bottom: 22px;
-  transform: translate(-50%, 20px);
-  opacity: 0;
-  pointer-events: none;
-  background: #eee;
-  color: #111;
-  padding: 12px 18px;
-  z-index: 60;
-  font-size: 12px;
-  transition: .2s;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-/* CELULAR */
-
-@media(max-width:760px) {
-  .nav { min-height: 66px; }
-  .navlinks { display: none; }
-  .brand img { width: 43px; height: 43px; }
-  .brand { letter-spacing: 1px; }
-  .brand small { letter-spacing: 1px; font-size: 8px; }
-  .hero { padding-top: 28px; }
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-art { min-height: 270px; grid-row: 1; }
-  .hero h1 { letter-spacing: -2px; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .photo { height: 220px; }
-  .product-info { padding: 12px; }
-  .product-info h3 { font-size: 14px; }
-  .product-info p { font-size: 11px; }
-  .product-bottom { align-items: stretch; flex-direction: column; }
-  .add { width: 100%; }
-  .section-head { align-items: flex-start; flex-direction: column; }
-  .section-head p { margin: 0; }
-  .about-grid { grid-template-columns: 1fr; }
-  .strip .wrap { justify-content: center; }
-}
-
-@media(max-width:390px) {
-  .photo { height: 180px; }
-  .product-info h3 { font-size: 13px; }
-  .hero-art { min-height: 230px; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#090909;color:#f5f5f5;font-family:Arial,sans-serif}
+button,input{font:inherit}
+a{color:inherit;text-decoration:none}
+.container{width:92%;max-width:1100px;margin:auto}
+
+.top{background:#e9e9e9;color:#111;text-align:center;padding:10px;font-size:10px;letter-spacing:2px;font-weight:bold}
+
+header{position:sticky;top:0;z-index:10;background:#0b0b0bf5;border-bottom:1px solid #292929}
+.nav{height:72px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px;font-size:14px}
+.logo img{width:45px;height:45px;object-fit:cover;border-radius:50%;border:1px solid #777}
+.logo small{display:block;font-size:8px;color:#aaa;margin-top:5px;letter-spacing:1px}
+.navlinks{display:flex;gap:20px;font-size:11px;color:#ccc}
+.cart-button{background:transparent;color:white;border:1px solid #777;padding:11px;font-size:10px;cursor:pointer}
+
+.hero{background:radial-gradient(ellipse at 80% 40%,#343434,#111 40%,#090909 75%);border-bottom:1px solid #292929}
+.hero-grid{min-height:420px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:25px;padding:40px 0}
+.kicker{font-size:10px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
+h1{font-size:clamp(44px,7vw,78px);line-height:.95;letter-spacing:-3px;margin:20px 0;font-weight:900}
+h1 span{color:#999}
+.hero p{color:#bbb;line-height:1.8;font-size:13px;max-width:430px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.btn{display:inline-block;background:#eee;color:#111;padding:14px 16px;font-size:10px;font-weight:bold;letter-spacing:1px;border:1px solid #eee;cursor:pointer}
+.btn.secondary{background:transparent;color:white;border-color:#555}
+.hero-logo{display:flex;justify-content:center;align-items:center;min-height:280px}
+.hero-logo img{width:min(75%,290px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid #777;box-shadow:0 20px 60px #000}
+
+.benefits{padding:17px 0;border-bottom:1px solid #292929;color:#bbb;font-size:10px;letter-spacing:1px}
+.benefits .container{display:flex;justify-content:space-around;gap:15px;flex-wrap:wrap}
+
+.catalog{padding:60px 0 70px}
+.heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
+.heading small{color:#aaa;letter-spacing:3px;text-transform:uppercase}
+h2{font-size:clamp(28px,5vw,44px);margin:12px 0 0;letter-spacing:-1px}
+.heading p{color:#aaa;font-size:12px;line-height:1.7;max-width:330px}
+
+.notice{border:1px dashed #555;background:#151515;padding:12px;margin-bottom:22px;font-size:11px;line-height:1.6;color:#ccc}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
+.search{flex:1;min-width:180px;background:#151515;border:1px solid #333;color:white;padding:13px;outline:none}
+.filter{background:#151515;border:1px solid #333;color:#ddd;padding:11px 13px;font-size:10px;cursor:pointer}
+.filter.active,.filter:hover{background:#eee;color:#111}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.product{background:#121212;border:1px solid #292929;transition:.2s;min-width:0}
+.product:hover{transform:translateY(-4px);border-color:#777}
+.photo{height:290px;background:#202020;position:relative}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.tag{position:absolute;top:10px;left:10px;background:#090909e8;border:1px solid #555;padding:7px;font-size:9px;letter-spacing:1px}
+.info{padding:15px}
+.meta{color:#999;font-size:9px;letter-spacing:2px}
+.info h3{font-size:15px;margin:11px 0 8px}
+.info p{font-size:11px;color:#aaa;line-height:1.6;min-height:35px}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #292929;padding-top:13px}
+.price{font-size:11px;font-weight:bold}
+.price small{display:block;color:#999;font-size:9px;margin-top:5px;font-weight:normal}
+.add{background:#eee;color:#111;border:0;padding:11px 9px;font-size:9px;font-weight:bold;cursor:pointer}
+.add:hover{background:white}
+
+.about{padding:55px 0;background:#121212;border-top:1px solid #292929}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.about p{font-size:13px;color:#aaa;line-height:1.9}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.value{border:1px solid #333;padding:17px;background:#171717}
+.value b{font-size:11px;display:block;margin-bottom:8px}
+.value span{font-size:10px;color:#aaa;line-height:1.6}
+
+footer{padding:25px 0;color:#888;font-size:10px}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.foot strong{color:white;letter-spacing:2px}
+
+.backdrop{position:fixed;inset:0;background:#000b;z-index:20;display:none}
+.backdrop.open{display:block}
+.drawer{position:fixed;z-index:21;right:0;top:0;width:min(400px,100%);height:100%;height:100dvh;background:#111;padding:20px;border-left:1px solid #444;display:flex;flex-direction:column;transform:translateX(105%);transition:.25s}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;padding-bottom:15px}
+.close{background:transparent;color:white;border:1px solid #555;padding:9px;cursor:pointer}
+.cart-list{flex:1;overflow:auto}
+.cart-item{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #333}
+.cart-item img{width:70px;height:80px;object-fit:cover;background:#222}
+.cart-info{flex:1}
+.cart-info b{font-size:12px}
+.cart-info small{display:block;color:#aaa;font-size:10px;margin-top:7px}
+.qty{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.qty button{background:#252525;color:white;border:1px solid #444;padding:5px 10px;cursor:pointer}
+.remove{font-size:9px}
+.cart-bottom{border-top:1px solid #333;padding-top:15px}
+.cart-bottom p{font-size:10px;color:#999;line-height:1.6}
+.checkout{width:100%;margin-top:10px}
+.empty{text-align:center;color:#aaa;font-size:12px;padding:35px 10px;line-height:1.8}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;background:#eee;color:#111;padding:12px 17px;font-size:11px;z-index:30;transition:.2s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:750px){
+ .navlinks{display:none}
+ .hero-grid{grid-template-columns:1fr;padding:30px 0}
+ .hero-logo{grid-row:1;min-height:210px}
+ .hero-logo img{width:180px}
+ h1{font-size:55px}
+ .heading{display:block}
+ .heading p{margin-top:15px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .photo{height:clamp(160px,48vw,250px)}
+ .info{padding:11px}
+ .info h3{font-size:13px}
+ .info p{font-size:10px;min-height:46px}
+ .buy{align-items:stretch;flex-direction:column}
+ .add{width:100%}
+ .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+ .logo{font-size:11px;letter-spacing:1px}
+ .logo img{width:38px;height:38px}
+ .logo small{font-size:7px}
+ .cart-button{padding:9px 7px;font-size:9px}
+ .photo{height:165px}
+ .info{padding:9px}
+ .info h3{font-size:12px}
 }
 </style>
 </head>
 
 <body>
-<div class="topline"></div>
+<div class="top">LDN ARTIGOS · ESTILO QUE MARCA PRESENÇA</div>
 
 <header>
-  <div class="wrap nav">
-    <a class="brand" href="#inicio">
-      <img src="assets/logo-ldn.jpg" alt="Logo LDN Artigos">
-      <span>LDN ARTIGOS
-        <small>ESTILO • ATITUDE • PRESENÇA</small>
-      </span>
-    </a>
-
-    <nav class="navlinks">
-      <a href="#inicio">INÍCIO</a>
-      <a href="#catalogo">CATÁLOGO</a>
-      <a href="#sobre">A MARCA</a>
-    </nav>
-
-    <button class="cartbtn" id="openCart">
-      SACOLA (<span id="cartCount">0</span>)
-    </button>
-  </div>
+<div class="container nav">
+<a class="logo" href="#inicio">
+<img src="assets/logo-ldn.jpg" alt="LDN Artigos">
+<span>LDN ARTIGOS<small>ESTILO · ATITUDE · PRESENÇA</small></span>
+</a>
+<nav class="navlinks">
+<a href="#inicio">INÍCIO</a>
+<a href="#catalogo">CATÁLOGO</a>
+<a href="#marca">A MARCA</a>
+</nav>
+<button class="cart-button" onclick="openCart()">SACOLA (<span id="count">0</span>) ＋</button>
+</div>
 </header>
 
 <main>
 <section class="hero" id="inicio">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow">✦ Coleção selecionada</div>
-      <h1>VISTA SUA<br><span>ATITUDE.</span></h1>
-      <p>
-        Estilo que chama atenção nos detalhes.
-        Explore peças selecionadas, encontre seu próximo visual
-        e monte seu pedido com praticidade.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn" href="#catalogo">EXPLORAR PRODUTOS ↗</a>
-        <a class="btn secondary" href="#sobre">CONHEÇA A LDN</a>
-      </div>
-    </div>
-
-    <div class="hero-art">
-      <img src="assets/logo-ldn.jpg" alt="Logo LDN Artigos">
-    </div>
-  </div>
+<div class="container hero-grid">
+<div>
+<div class="kicker">Seleção LDN · Coleção em destaque</div>
+<h1>VISTA SUA<br><span>ATITUDE.</span></h1>
+<p>Peças que falam por você. Explore camisetas, conjuntos, bonés e moletons em uma experiência moderna, simples e feita para comprar pelo celular.</p>
+<div class="actions">
+<a class="btn" href="#catalogo">EXPLORAR COLEÇÃO ↗</a>
+<a class="btn secondary" href="#marca">CONHEÇA A LDN</a>
+</div>
+</div>
+<div class="hero-logo">
+<img src="assets/logo-ldn.jpg" alt="Logo oficial LDN Artigos">
+</div>
+</div>
 </section>
 
-<div class="strip">
-  <div class="wrap">
-    <span>✦ Estilo urbano</span>
-    <span>✦ Peças selecionadas</span>
-    <span>✦ Atendimento direto</span>
-    <span>✦ LDN Artigos</span>
-  </div>
-</div>
+<div class="benefits"><div class="container">
+<span>✦ ESTILO URBANO</span>
+<span>✦ PEÇAS SELECIONADAS</span>
+<span>✦ ATENDIMENTO DIRETO</span>
+<span>✦ LDN ARTIGOS</span>
+</div></div>
 
 <section class="catalog" id="catalogo">
-<div class="wrap">
+<div class="container">
+<div class="heading">
+<div><small>Descubra a seleção</small><h2>PEÇAS EM DESTAQUE.</h2></div>
+<p>Escolha seus favoritos, adicione à sacola e prepare seu pedido. Um catálogo prático para conhecer os produtos da LDN.</p>
+</div>
 
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">Encontre seu estilo</div>
-      <h2>CATÁLOGO <span style="color:#999da7">LDN</span></h2>
-    </div>
-    <p>
-      Confira alguns produtos da loja. Selecione suas peças
-      para montar um pedido demonstrativo.
-    </p>
-  </div>
+<div class="notice"><b>DEMONSTRAÇÃO DA LOJA:</b> os preços e a disponibilidade serão confirmados com o proprietário. Adicione produtos à sacola para testar a experiência.</div>
 
-  <div class="demo-note">
-    <strong>PRÉVIA DE DEMONSTRAÇÃO:</strong>
-    preços e disponibilidade precisam ser confirmados pela loja.
-    Os produtos estão identificados como valores a consultar.
-  </div>
+<div class="tools">
+<input class="search" id="search" placeholder="Buscar uma peça..." type="search">
+<button class="filter active" data-cat="Todos">TODOS</button>
+<button class="filter" data-cat="Camisetas">CAMISETAS</button>
+<button class="filter" data-cat="Bonés">BONÉS</button>
+<button class="filter" data-cat="Conjuntos">CONJUNTOS</button>
+<button class="filter" data-cat="Moletons">MOLETONS</button>
+<button class="filter" data-cat="Combos">COMBOS</button>
+</div>
 
-  <div class="tools">
-    <input class="search" id="search" type="search"
-      placeholder="Buscar camiseta, boné, conjunto...">
-
-    <button class="filter active" data-filter="Todos">Todos</button>
-    <button class="filter" data-filter="Camisetas">Camisetas</button>
-    <button class="filter" data-filter="Bonés">Bonés</button>
-    <button class="filter" data-filter="Conjuntos">Conjuntos</button>
-    <button class="filter" data-filter="Moletons">Moletons</button>
-    <button class="filter" data-filter="Combos">Combos</button>
-  </div>
-
-  <div class="grid" id="products"></div>
+<div class="grid" id="products"></div>
 </div>
 </section>
 
-<section class="about" id="sobre">
-  <div class="wrap about-grid">
-    <div>
-      <div class="eyebrow">A identidade LDN</div>
-      <h2>SEU ESTILO.<br>NOSSA SELEÇÃO.</h2>
-      <p>
-        A LDN Artigos reúne peças para quem gosta de se expressar
-        através do visual. Navegue pelo catálogo e monte seu pedido
-        de forma simples, direto pelo celular.
-      </p>
-      <a class="btn secondary" href="#catalogo">VER PRODUTOS ↗</a>
-    </div>
-
-    <div class="values">
-      <div class="value">
-        <b>01 / ESCOLHA</b>
-        <span>Produtos organizados para encontrar o que procura.</span>
-      </div>
-      <div class="value">
-        <b>02 / MONTE</b>
-        <span>Adicione diferentes itens à sua sacola.</span>
-      </div>
-      <div class="value">
-        <b>03 / CONFIRME</b>
-        <span>Confira seu pedido antes de enviar.</span>
-      </div>
-      <div class="value">
-        <b>04 / ATENDIMENTO</b>
-        <span>Finalize pelo canal de contato da loja.</span>
-      </div>
-    </div>
-  </div>
+<section class="about" id="marca">
+<div class="container about-grid">
+<div>
+<div class="kicker">Mais que vestir</div>
+<h2>SEU ESTILO.<br><span style="color:#999">SUA IDENTIDADE.</span></h2>
+<p>A LDN Artigos reúne peças para quem gosta de expressar seu estilo nos detalhes. Explore os produtos, monte seu pedido e entre em contato com a loja para consultar preços e disponibilidade.</p>
+<a class="btn secondary" href="#catalogo">ENCONTRAR MINHA PEÇA ↗</a>
+</div>
+<div class="values">
+<div class="value"><b>01 / DESCOBRIR</b><span>Produtos organizados por categoria.</span></div>
+<div class="value"><b>02 / ESCOLHER</b><span>Adicione diferentes itens à sacola.</span></div>
+<div class="value"><b>03 / CONFERIR</b><span>Revise as quantidades antes de continuar.</span></div>
+<div class="value"><b>04 / CONECTAR</b><span>Prepare a mensagem para enviar à loja.</span></div>
+</div>
+</div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap foot">
-    <strong>LDN ARTIGOS</strong>
-    <span>Catálogo demonstrativo • Valores sujeitos à confirmação</span>
-    <a href="#inicio">VOLTAR AO TOPO ↑</a>
-  </div>
-</footer>
+<footer><div class="container foot">
+<strong>LDN ARTIGOS</strong>
+<span>CATÁLOGO DEMONSTRATIVO · PREÇOS SOB CONSULTA</span>
+<a href="#inicio">VOLTAR AO TOPO ↑</a>
+</div></footer>
 
-<div class="drawer-backdrop" id="backdrop"></div>
-
-<aside class="drawer" id="drawer" aria-label="Sacola de compras">
-  <div class="drawer-head">
-    <strong>SUA SACOLA</strong>
-    <button class="iconbtn" id="closeCart">FECHAR ✕</button>
-  </div>
-
-  <div class="cart-items" id="cartItems"></div>
-
-  <div class="cart-total">
-    <div style="display:flex;justify-content:space-between">
-      <span style="color:#aaa;font-size:12px">Itens selecionados</span>
-      <strong id="cartQty">0</strong>
-    </div>
-
-    <button class="btn" id="checkout">CONTINUAR PEDIDO ↗</button>
-
-    <p style="color:#858894;font-size:10px;line-height:1.5">
-      Demonstração: os valores ainda precisam ser confirmados.
-    </p>
-  </div>
+<div class="backdrop" id="backdrop" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+<div class="drawer-head"><b>SUA SACOLA</b><button class="close" onclick="closeCart()">FECHAR ✕</button></div>
+<div class="cart-list" id="cartList"></div>
+<div class="cart-bottom">
+<div style="display:flex;justify-content:space-between"><span style="font-size:11px;color:#aaa">TOTAL DE PEÇAS</span><b id="totalQty">0</b></div>
+<p>Os valores ainda precisam ser confirmados. O WhatsApp abrirá com a lista dos produtos escolhidos.</p>
+<button class="btn checkout" onclick="checkout()">CONTINUAR PELO WHATSAPP ↗</button>
+</div>
 </aside>
-
 <div class="toast" id="toast"></div>
 
 <script>
 const products = [
-  {
-    id: 1,
-    name: "Camiseta Preta Sport",
-    category: "Camisetas",
-    desc: "Camiseta preta com estampa esportiva branca.",
-    image: "assets/camiseta-preta.jpg"
-  },
-  {
-    id: 2,
-    name: "Camiseta Branca Sport",
-    category: "Camisetas",
-    desc: "Visual clean com estampa esportiva em contraste.",
-    image: "assets/camiseta-branca-sport.jpg"
-  },
-  {
-    id: 3,
-    name: "Conjunto Esportivo Azul",
-    category: "Conjuntos",
-    desc: "Conjunto esportivo em azul-marinho.",
-    image: "assets/conjunto-esportivo-azul.jpg"
-  },
-  {
-    id: 4,
-    name: "Boné Motorsport",
-    category: "Bonés",
-    desc: "Boné claro com patch frontal e detalhes escuros.",
-    image: "assets/bone-motorsport.jpg"
-  },
-  {
-    id: 5,
-    name: "Boné Azul + Camiseta",
-    category: "Combos",
-    desc: "Combinação demonstrativa de camiseta e boné.",
-    image: "assets/camiseta-branca-bone-azul.jpg"
-  },
-  {
-    id: 6,
-    name: "Moletom Estampado",
-    category: "Moletons",
-    desc: "Moletom escuro com estampa gráfica colorida.",
-    image: "assets/moletom-estampado.jpg"
-  }
+ {id:1,name:"Camiseta Preta Sport",cat:"Camisetas",desc:"Camiseta preta com estampa esportiva.",img:"assets/camiseta-preta.jpg"},
+ {id:2,name:"Camiseta Branca Sport",cat:"Camisetas",desc:"Visual clean com estampa em contraste.",img:"assets/camiseta-branca-sport.jpg"},
+ {id:3,name:"Conjunto Esportivo Azul",cat:"Conjuntos",desc:"Conjunto esportivo azul-marinho.",img:"assets/conjunto-esportivo-azul.jpg"},
+ {id:4,name:"Boné Motorsport",cat:"Bonés",desc:"Boné claro com detalhes escuros.",img:"assets/bone-motorsport.jpg"},
+ {id:5,name:"Camiseta + Boné",cat:"Combos",desc:"Combinação casual para completar o visual.",img:"assets/camiseta-branca-bone-azul.jpg"},
+ {id:6,name:"Moletom Estampado",cat:"Moletons",desc:"Moletom escuro com estampa gráfica.",img:"assets/moletom-estampado.jpg"}
 ];
 
-let activeFilter = "Todos";
-let cart = {};
+let category="Todos";
+let cart={};
 
-const productsEl = document.getElementById("products");
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ const filtered=products.filter(p=>
+  (category==="Todos"||p.cat===category)&&
+  (p.name+" "+p.cat+" "+p.desc).toLowerCase().includes(q)
+ );
 
-function renderProducts() {
-  const query = document.getElementById("search")
-    .value.trim().toLowerCase();
-
-  const filtered = products.filter(product => {
-    const categoryMatch =
-      activeFilter === "Todos" ||
-      product.category === activeFilter;
-
-    const textMatch =
-      (product.name + " " + product.category + " " + product.desc)
-      .toLowerCase().includes(query);
-
-    return categoryMatch && textMatch;
-  });
-
-  productsEl.innerHTML = filtered.map(product => `
-    <article class="product">
-      <div class="photo">
-        <img src="${product.image}"
-             alt="${product.name}"
-             loading="lazy">
-        <span class="tag">${product.category}</span>
-      </div>
-
-      <div class="product-info">
-        <div class="category">LDN / SELEÇÃO</div>
-        <h3>${product.name}</h3>
-        <p>${product.desc}</p>
-
-        <div class="product-bottom">
-          <div class="price">
-            Consultar valor
-            <small>Disponibilidade sob consulta</small>
-          </div>
-
-          <button class="add"
-            onclick="addToCart(${product.id})">
-            ADICIONAR +
-          </button>
-        </div>
-      </div>
-    </article>
-  `).join("") ||
-  '<p style="color:#aaa">Nenhum produto encontrado.</p>';
+ document.getElementById("products").innerHTML=filtered.map(p=>`
+ <article class="product">
+  <div class="photo">
+   <img src="${p.img}" alt="${p.name}" loading="lazy">
+   <span class="tag">${p.cat}</span>
+  </div>
+  <div class="info">
+   <div class="meta">LDN / SELEÇÃO</div>
+   <h3>${p.name}</h3>
+   <p>${p.desc}</p>
+   <div class="buy">
+    <div class="price">Consultar valor<small>Disponibilidade sob consulta</small></div>
+    <button class="add" onclick="addToCart(${p.id})">ADICIONAR ＋</button>
+   </div>
+  </div>
+ </article>`).join("") || "<p>Nenhum produto encontrado.</p>";
 }
 
-function addToCart(id) {
-  cart[id] = (cart[id] || 0) + 1;
-  renderCart();
-  showToast("Produto adicionado à sacola.");
+function addToCart(id){
+ cart[id]=(cart[id]||0)+1;
+ renderCart();
+ toast("Produto adicionado à sacola!");
 }
 
-function changeQty(id, amount) {
-  cart[id] = (cart[id] || 0) + amount;
-
-  if (cart[id] <= 0) {
-    delete cart[id];
-  }
-
-  renderCart();
+function changeQty(id,n){
+ cart[id]=(cart[id]||0)+n;
+ if(cart[id]<=0) delete cart[id];
+ renderCart();
 }
 
-function renderCart() {
-  const entries = Object.entries(cart);
+function renderCart(){
+ const entries=Object.entries(cart);
+ const total=entries.reduce((sum,[id,n])=>sum+n,0);
+ document.getElementById("count").textContent=total;
+ document.getElementById("totalQty").textContent=total;
 
-  const count = entries.reduce(
-    (total, entry) => total + entry[1], 0
-  );
-
-  document.getElementById("cartCount").textContent = count;
-  document.getElementById("cartQty").textContent = count;
-
-  document.getElementById("cartItems").innerHTML =
-    entries.length
-      ? entries.map(([id, quantity]) => {
-          const product = products.find(
-            item => item.id === Number(id)
-          );
-
-          return `
-            <div class="cart-row">
-              <img src="${product.image}" alt="">
-              <div style="flex:1">
-                <h4>${product.name}</h4>
-                <small>Valor a consultar</small>
-
-                <div class="qty">
-                  <button onclick="changeQty(${product.id},-1)">−</button>
-                  <span>${quantity}</span>
-                  <button onclick="changeQty(${product.id},1)">+</button>
-                  <button class="iconbtn"
-                    onclick="changeQty(${product.id},-${quantity})">
-                    Remover
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join("")
-      : '<div class="empty">Sua sacola está vazia.<br>Escolha alguns produtos para começar.</div>';
+ document.getElementById("cartList").innerHTML=entries.length
+ ? entries.map(([id,n])=>{
+   const p=products.find(x=>x.id===Number(id));
+   return `<div class="cart-item">
+    <img src="${p.img}" alt="">
+    <div class="cart-info">
+     <b>${p.name}</b>
+     <small>Preço a confirmar</small>
+     <div class="qty">
+      <button onclick="changeQty(${p.id},-1)">−</button>
+      <span>${n}</span>
+      <button onclick="changeQty(${p.id},1)">+</button>
+      <button class="remove" onclick="changeQty(${p.id},-${n})">REMOVER</button>
+     </div>
+    </div>
+   </div>`;
+  }).join("")
+ : '<div class="empty">Sua sacola está vazia.<br>Escolha algumas peças para começar.</div>';
 }
 
-function openCart() {
-  document.getElementById("drawer").classList.add("open");
-  document.getElementById("backdrop").classList.add("open");
+function openCart(){
+ document.getElementById("drawer").classList.add("open");
+ document.getElementById("backdrop").classList.add("open");
 }
 
-function closeCart() {
-  document.getElementById("drawer").classList.remove("open");
-  document.getElementById("backdrop").classList.remove("open");
+function closeCart(){
+ document.getElementById("drawer").classList.remove("open");
+ document.getElementById("backdrop").classList.remove("open");
 }
 
-function showToast(message) {
-  const toast = document.getElementById("toast");
-
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  setTimeout(() => toast.classList.remove("show"), 1800);
+function toast(message){
+ const el=document.getElementById("toast");
+ el.textContent=message;
+ el.classList.add("show");
+ setTimeout(()=>el.classList.remove("show"),1800);
 }
 
-document.querySelectorAll(".filter").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".filter").forEach(item => {
-      item.classList.remove("active");
-    });
+function checkout(){
+ const entries=Object.entries(cart);
+ if(!entries.length){toast("Adicione produtos antes de continuar.");return;}
 
-    button.classList.add("active");
-    activeFilter = button.dataset.filter;
+ const lines=entries.map(([id,n])=>{
+  const p=products.find(x=>x.id===Number(id));
+  return "• "+p.name+" — quantidade: "+n;
+ }).join("\n");
 
-    renderProducts();
-  });
+ const message="Olá! Gostaria de consultar estes produtos da LDN Artigos:\n\n"+lines+"\n\nPode me informar os preços, tamanhos e disponibilidade?";
+
+ /* TROQUE PELO WHATSAPP REAL DA LOJA */
+ const whatsapp="5511999999999";
+
+ window.open("https://wa.me/"+whatsapp+"?text="+encodeURIComponent(message),"_blank");
+}
+
+document.querySelectorAll(".filter").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  category=button.dataset.cat;
+  renderProducts();
+ });
 });
 
-document.getElementById("search")
-  .addEventListener("input", renderProducts);
+document.getElementById("search").addEventListener("input",renderProducts);
 
-document.getElementById("openCart")
-  .addEventListener("click", openCart);
-
-document.getElementById("closeCart")
-  .addEventListener("click", closeCart);
-
-document.getElementById("backdrop")
-  .addEventListener("click", closeCart);
-
-document.getElementById("checkout")
-  .addEventListener("click", () => {
-    if (!Object.keys(cart).length) {
-      showToast("Adicione produtos antes de continuar.");
-      return;
-    }
-
-    const lines = Object.entries(cart).map(([id, quantity]) => {
-      const product = products.find(
-        item => item.id === Number(id)
-      );
-
-      return `- ${product.name} | Quantidade: ${quantity}`;
-    }).join("\n");
-
-    const message =
-      `Olá! Gostaria de consultar estes produtos da LDN Artigos:\n\n` +
-      `${lines}\n\nPode me informar os valores e a disponibilidade?`;
-
-    /*
-      IMPORTANTE:
-      Substitua 5511999999999 p
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
