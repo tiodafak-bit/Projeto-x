@@ -6,1199 +6,395 @@
 <meta name="theme-color" content="#080808">
 <meta name="description" content="+1 Depósito de Bebidas. Confira nosso catálogo e faça seu pedido pelo WhatsApp.">
 <title>+1 Depósito de Bebidas</title>
-
 <style>
-:root {
-  --gold: #f5bd26;
-  --black: #080808;
-  --card: #171717;
-  --text: #ffffff;
-  --muted: #aaa;
-  --green: #20b85a;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: var(--black);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-button, input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-header {
-  background: #101010;
-  border-bottom: 1px solid #292929;
-  padding: 14px 16px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.topo {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo img {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-.logo h1 {
-  color: var(--gold);
-  font-size: 19px;
-  letter-spacing: .5px;
-}
-
-.logo small {
-  color: #bbb;
-  font-size: 11px;
-}
-
-.carrinho-topo {
-  background: var(--gold);
-  border: 0;
-  padding: 12px 14px;
-  border-radius: 9px;
-  color: #111;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-.banner {
-  max-width: 1100px;
-  margin: 22px auto;
-  padding: 42px 20px;
-  text-align: center;
-  background: linear-gradient(135deg, #29200b, #111, #29200b);
-  border: 1px solid #70530d;
-  border-radius: 15px;
-}
-
-.banner h2 {
-  color: var(--gold);
-  font-size: 30px;
-  margin-bottom: 12px;
-}
-
-.banner p {
-  color: #ddd;
-  line-height: 1.6;
-}
-
-.conteudo {
-  max-width: 1100px;
-  padding: 15px;
-  margin: auto;
-}
-
-.pesquisa {
-  width: 100%;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #333;
-  background: #171717;
-  color: white;
-  outline: none;
-  margin-bottom: 18px;
-}
-
-.pesquisa:focus {
-  border-color: var(--gold);
-}
-
-.categorias {
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-  padding-bottom: 15px;
-  margin-bottom: 12px;
-}
-
-.categorias button {
-  flex-shrink: 0;
-  border: 1px solid #444;
-  background: #181818;
-  color: white;
-  padding: 11px 16px;
-  border-radius: 20px;
-  transition: .2s;
-}
-
-.categorias button.ativo {
-  background: var(--gold);
-  color: #111;
-  border-color: var(--gold);
-  font-weight: bold;
-}
-
-.titulo-secao {
-  color: var(--gold);
-  font-size: 22px;
-  margin: 15px 0;
-}
-
-.produtos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
-
-.produto {
-  background: var(--card);
-  border: 1px solid #292929;
-  border-radius: 13px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  transition: transform .2s, border-color .2s;
-}
-
-.produto:hover {
-  transform: translateY(-3px);
-  border-color: #8c6a16;
-}
-
-.produto .icone {
-  height: 95px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 50px;
-  background: #222;
-  border-radius: 9px;
-  margin-bottom: 12px;
-}
-
-.produto h3 {
-  font-size: 15px;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-
-.produto p {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 12px;
-  line-height: 1.5;
-  flex: 1;
-}
-
-.preco {
-  color: var(--gold);
-  font-weight: bold;
-  font-size: 19px;
-  margin-bottom: 12px;
-}
-
-.produto button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: var(--gold);
-  color: #111;
-  font-weight: bold;
-  transition: .2s;
-}
-
-.produto button:active {
-  transform: scale(.97);
-}
-
-.vazio {
-  color: #aaa;
-  text-align: center;
-  padding: 30px;
-  display: none;
-}
-
-.rodape {
-  margin-top: 40px;
-  padding: 28px 15px;
-  text-align: center;
-  border-top: 1px solid #292929;
-  color: #aaa;
-  font-size: 13px;
-  line-height: 1.9;
-}
-
-/* CARRINHO */
-
-.fundo-carrinho {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.78);
-  z-index: 20;
-  display: none;
-}
-
-.fundo-carrinho.aberto {
-  display: block;
-}
-
-.painel-carrinho {
-  position: fixed;
-  top: 0;
-  right: -110%;
-  width: 100%;
-  max-width: 420px;
-  height: 100%;
-  background: #111;
-  z-index: 21;
-  padding: 20px;
-  transition: right .25s ease;
-  overflow-y: auto;
-}
-
-.painel-carrinho.aberto {
-  right: 0;
-}
-
-.cabecalho-carrinho {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.cabecalho-carrinho h2 {
-  color: var(--gold);
-}
-
-.fechar {
-  background: #333;
-  color: white;
-  border: 0;
-  border-radius: 8px;
-  padding: 10px 13px;
-}
-
-.item-carrinho {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 0;
-  border-bottom: 1px solid #333;
-}
-
-.item-carrinho strong {
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.item-carrinho small {
-  display: block;
-  color: var(--gold);
-  margin-top: 5px;
-}
-
-.acoes-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.acoes-item button {
-  background: #292929;
-  color: white;
-  border: 0;
-  padding: 8px 11px;
-  border-radius: 6px;
-}
-
-.total {
-  color: var(--gold);
-  font-size: 23px;
-  font-weight: bold;
-  margin: 22px 0;
-}
-
-.finalizar {
-  width: 100%;
-  padding: 15px;
-  background: var(--green);
-  color: white;
-  border: 0;
-  border-radius: 9px;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.limpar {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: #292929;
-  color: white;
-  border: 0;
-  border-radius: 8px;
-}
-
-/* TELA DE IDADE */
-
-#telaIdade {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: rgba(0,0,0,.98);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-#telaIdade.escondida {
-  display: none !important;
-}
-
-.caixa-idade {
-  background: #151515;
-  border: 2px solid var(--gold);
-  border-radius: 16px;
-  width: 100%;
-  max-width: 390px;
-  padding: 30px 22px;
-  text-align: center;
-  box-shadow: 0 0 35px rgba(245,189,38,.12);
-}
-
-.simbolo-idade {
-  font-size: 55px;
-  margin-bottom: 12px;
-}
-
-.caixa-idade h2 {
-  color: var(--gold);
-  font-size: 27px;
-  margin-bottom: 12px;
-}
-
-.caixa-idade p {
-  color: #ddd;
-  line-height: 1.7;
-  margin-bottom: 23px;
-  font-size: 14px;
-}
-
-.botoes-idade {
-  display: flex;
-  gap: 10px;
-}
-
-.botoes-idade button {
-  flex: 1;
-  border: 0;
-  border-radius: 9px;
-  padding: 14px 8px;
-  font-weight: bold;
-}
-
-#botaoSim {
-  background: var(--gold);
-  color: #111;
-}
-
-#botaoNao {
-  background: #333;
-  color: white;
-}
-
-@media (max-width: 650px) {
-  .produtos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .produto {
-    padding: 11px;
-  }
-
-  .produto .icone {
-    height: 80px;
-    font-size: 42px;
-  }
-
-  .produto h3 {
-    font-size: 14px;
-  }
-
-  .produto p {
-    font-size: 12px;
-  }
-
-  .preco {
-    font-size: 17px;
-  }
-
-  .banner {
-    margin: 15px;
-    padding: 32px 15px;
-  }
-
-  .banner h2 {
-    font-size: 24px;
-  }
-
-  .logo h1 {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 350px) {
-  .produtos {
-    grid-template-columns: 1fr;
-  }
-
-  .logo img {
-    width: 42px;
-    height: 42px;
-  }
-
-  .carrinho-topo {
-    padding: 10px;
-    font-size: 12px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
-  }
-}
+:root{--gold:#f5bd26;--black:#080808;--card:#171717;--text:#fff;--muted:#aaa;--green:#20b85a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--black);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+body.sem-rolagem{overflow:hidden}
+button,input{font:inherit}button{cursor:pointer}
+header{background:#101010;border-bottom:1px solid #292929;padding:14px 16px;position:sticky;top:0;z-index:10}
+.topo{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo img{width:54px;height:54px;object-fit:contain;border-radius:8px}
+.logo h1{color:var(--gold);font-size:19px;letter-spacing:.5px}
+.logo small{color:#bbb;font-size:11px}
+.carrinho-topo{background:var(--gold);border:0;padding:12px 14px;border-radius:9px;color:#111;font-weight:bold;white-space:nowrap}
+.banner{max-width:1100px;margin:22px auto;padding:42px 20px;text-align:center;background:linear-gradient(135deg,#29200b,#111,#29200b);border:1px solid #70530d;border-radius:15px}
+.banner h2{color:var(--gold);font-size:30px;margin-bottom:12px}
+.banner p{color:#ddd;line-height:1.6}
+.conteudo{max-width:1100px;padding:15px;margin:auto}
+.pesquisa{width:100%;padding:15px;border-radius:10px;border:1px solid #333;background:#171717;color:#fff;outline:none;margin-bottom:18px}
+.pesquisa:focus{border-color:var(--gold)}
+.categorias{display:flex;gap:9px;overflow-x:auto;padding-bottom:15px;margin-bottom:12px}
+.categorias button{flex-shrink:0;border:1px solid #444;background:#181818;color:#fff;padding:11px 16px;border-radius:20px}
+.categorias button.ativo{background:var(--gold);color:#111;border-color:var(--gold);font-weight:bold}
+.titulo-secao{color:var(--gold);font-size:22px;margin:15px 0}
+.produtos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.produto{background:var(--card);border:1px solid #292929;border-radius:13px;padding:15px;display:flex;flex-direction:column;min-width:0;transition:transform .2s,border-color .2s}
+.produto:hover{transform:translateY(-3px);border-color:#8c6a16}
+.produto .icone{height:95px;display:flex;align-items:center;justify-content:center;font-size:50px;background:#222;border-radius:9px;margin-bottom:12px}
+.produto h3{font-size:15px;margin-bottom:8px;line-height:1.4}
+.produto p{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5;flex:1}
+.preco{color:var(--gold);font-weight:bold;font-size:19px;margin-bottom:12px}
+.produto button{width:100%;padding:12px;border:0;border-radius:8px;background:var(--gold);color:#111;font-weight:bold}
+.vazio{color:#aaa;text-align:center;padding:30px;display:none}
+.rodape{margin-top:40px;padding:28px 15px;text-align:center;border-top:1px solid #292929;color:#aaa;font-size:13px;line-height:1.9}
+.fundo-carrinho{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:20;display:none}
+.fundo-carrinho.aberto{display:block}
+.painel-carrinho{position:fixed;top:0;right:-110%;width:100%;max-width:420px;height:100%;background:#111;z-index:21;padding:20px;transition:right .25s ease;overflow-y:auto}
+.painel-carrinho.aberto{right:0}
+.cabecalho-carrinho{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.cabecalho-carrinho h2{color:var(--gold)}
+.fechar{background:#333;color:#fff;border:0;border-radius:8px;padding:10px 13px}
+.item-carrinho{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid #333}
+.item-carrinho strong{font-size:14px;line-height:1.4}
+.item-carrinho small{display:block;color:var(--gold);margin-top:5px}
+.acoes-item{display:flex;align-items:center;gap:7px}
+.acoes-item button{background:#292929;color:#fff;border:0;padding:8px 11px;border-radius:6px}
+.total{color:var(--gold);font-size:23px;font-weight:bold;margin:22px 0}
+.finalizar{width:100%;padding:15px;background:var(--green);color:#fff;border:0;border-radius:9px;font-weight:bold;font-size:16px}
+.limpar{width:100%;padding:12px;margin-top:10px;background:#292929;color:#fff;border:0;border-radius:8px}
+#telaIdade{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.98);display:flex;align-items:center;justify-content:center;padding:20px}
+#telaIdade[hidden]{display:none!important}
+.caixa-idade{background:#151515;border:2px solid var(--gold);border-radius:16px;width:100%;max-width:390px;padding:30px 22px;text-align:center;box-shadow:0 0 35px rgba(245,189,38,.12)}
+.simbolo-idade{font-size:55px;margin-bottom:12px}
+.caixa-idade h2{color:var(--gold);font-size:27px;margin-bottom:12px}
+.caixa-idade p{color:#ddd;line-height:1.7;margin-bottom:23px;font-size:14px}
+.botoes-idade{display:flex;gap:10px}
+.botoes-idade button{flex:1;border:0;border-radius:9px;padding:14px 8px;font-weight:bold}
+#botaoSim{background:var(--gold);color:#111}
+#botaoNao{background:#333;color:#fff}
+#avisoIdade{min-height:20px;color:#f5bd26;font-size:13px;margin-top:14px}
+@media(max-width:650px){.produtos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.produto{padding:11px}.produto .icone{height:80px;font-size:42px}.produto h3{font-size:14px}.produto p{font-size:12px}.preco{font-size:17px}.banner{margin:15px;padding:32px 15px}.banner h2{font-size:24px}.logo h1{font-size:16px}}
+@media(max-width:350px){.produtos{grid-template-columns:1fr}.logo img{width:42px;height:42px}.carrinho-topo{padding:10px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
 </head>
-
 <body>
 
-<!-- CONFIRMAÇÃO DE IDADE -->
-
-<div id="telaIdade">
+<div id="telaIdade" role="dialog" aria-modal="true" aria-labelledby="tituloIdade">
   <div class="caixa-idade">
-
     <div class="simbolo-idade">🔞</div>
-
-    <h2>ACESSO RESTRITO</h2>
-
-    <p>
-      Este site contém produtos destinados exclusivamente
-      a maiores de 18 anos.<br><br>
-      Você confirma que tem 18 anos ou mais?
-    </p>
-
+    <h2 id="tituloIdade">ACESSO RESTRITO</h2>
+    <p>Este site contém produtos destinados exclusivamente a maiores de 18 anos.<br><br>Você confirma que tem 18 anos ou mais?</p>
     <div class="botoes-idade">
-
-      <button type="button" id="botaoSim">
-        SIM, TENHO 18+
-      </button>
-
-      <button type="button" id="botaoNao">
-        NÃO
-      </button>
-
+      <button type="button" id="botaoSim">SIM, TENHO 18+</button>
+      <button type="button" id="botaoNao">NÃO</button>
     </div>
+    <div id="avisoIdade" aria-live="polite"></div>
   </div>
 </div>
 
-<!-- CABEÇALHO -->
-
 <header>
   <div class="topo">
-
     <div class="logo">
-
-      <img
-        src="assets/logo-mais1.jpg"
-        alt="Logo +1 Depósito"
-        onerror="this.style.display='none'"
-      >
-
-      <div>
-        <h1>+1 DEPÓSITO</h1>
-        <small>DEPÓSITO DE BEBIDAS</small>
-      </div>
-
+      <img src="assets/logo-mais1.jpg" alt="Logo +1 Depósito" onerror="this.style.display='none'">
+      <div><h1>+1 DEPÓSITO</h1><small>DEPÓSITO DE BEBIDAS</small></div>
     </div>
-
-    <button
-      class="carrinho-topo"
-      type="button"
-      onclick="abrirCarrinho()"
-    >
-      🛒 Carrinho
-      <span id="quantidadeTopo">0</span>
-    </button>
-
+    <button class="carrinho-topo" type="button" id="abrirCarrinhoTopo">🛒 Carrinho <span id="quantidadeTopo">0</span></button>
   </div>
 </header>
 
-<!-- BANNER -->
-
 <section class="banner">
-
   <h2>SEJA BEM-VINDO!</h2>
-
-  <p>
-    Seu depósito de bebidas e conveniência.<br>
-    Escolha seus produtos e faça seu pedido pelo WhatsApp!
-  </p>
-
+  <p>Seu depósito de bebidas e conveniência.<br>Escolha seus produtos e faça seu pedido pelo WhatsApp!</p>
 </section>
 
-<!-- CATÁLOGO -->
-
 <main class="conteudo">
-
-  <input
-    type="search"
-    id="pesquisa"
-    class="pesquisa"
-    placeholder="🔎 Pesquisar produto..."
-    autocomplete="off"
-    aria-label="Pesquisar produtos"
-  >
-
+  <input type="search" id="pesquisa" class="pesquisa" placeholder="🔎 Pesquisar produto..." autocomplete="off" aria-label="Pesquisar produtos">
   <div class="categorias">
-
-    <button class="ativo" data-categoria="todos">
-      Todos
-    </button>
-
-    <button data-categoria="cervejas">
-      🍺 Cervejas
-    </button>
-
-    <button data-categoria="combos">
-      🥤 Combos
-    </button>
-
-    <button data-categoria="destilados">
-      🥃 Destilados
-    </button>
-
-    <button data-categoria="outros">
-      📦 Outros
-    </button>
-
+    <button class="ativo" data-categoria="todos" type="button">Todos</button>
+    <button data-categoria="cervejas" type="button">🍺 Cervejas</button>
+    <button data-categoria="combos" type="button">🥤 Combos</button>
+    <button data-categoria="destilados" type="button">🥃 Destilados</button>
+    <button data-categoria="outros" type="button">📦 Outros</button>
   </div>
-
-  <h2 class="titulo-secao">
-    🔥 NOSSO CATÁLOGO
-  </h2>
-
+  <h2 class="titulo-secao">🔥 NOSSO CATÁLOGO</h2>
   <div class="produtos" id="listaProdutos"></div>
-
-  <div class="vazio" id="mensagemVazia">
-    Nenhum produto encontrado.
-  </div>
-
+  <div class="vazio" id="mensagemVazia">Nenhum produto encontrado.</div>
 </main>
 
-<!-- RODAPÉ -->
-
 <footer class="rodape">
-
   <strong>+1 DEPÓSITO DE BEBIDAS</strong><br>
-
   Atendimento e pedidos pelo WhatsApp.<br>
-
   Venda de bebidas alcoólicas proibida para menores de 18 anos.
-
 </footer>
 
-<!-- CARRINHO -->
-
-<div
-  class="fundo-carrinho"
-  id="fundoCarrinho"
-  onclick="fecharCarrinho()"
-></div>
-
-<aside
-  class="painel-carrinho"
-  id="painelCarrinho"
-  aria-label="Carrinho de compras"
->
-
+<div class="fundo-carrinho" id="fundoCarrinho"></div>
+<aside class="painel-carrinho" id="painelCarrinho" aria-label="Carrinho de compras" aria-hidden="true">
   <div class="cabecalho-carrinho">
-
     <h2>🛒 Seu carrinho</h2>
-
-    <button
-      class="fechar"
-      type="button"
-      onclick="fecharCarrinho()"
-      aria-label="Fechar carrinho"
-    >
-      ✕
-    </button>
-
+    <button class="fechar" type="button" id="fecharCarrinho" aria-label="Fechar carrinho">✕</button>
   </div>
-
   <div id="itensCarrinho"></div>
-
-  <div class="total" id="totalCarrinho">
-    Total: R$ 0,00
-  </div>
-
-  <button
-    class="finalizar"
-    type="button"
-    onclick="finalizarPedido()"
-  >
-    FINALIZAR PELO WHATSAPP
-  </button>
-
-  <button
-    class="limpar"
-    type="button"
-    onclick="limparCarrinho()"
-  >
-    Limpar carrinho
-  </button>
-
+  <div class="total" id="totalCarrinho">Total: R$ 0,00</div>
+  <button class="finalizar" type="button" id="botaoFinalizar">FINALIZAR PELO WHATSAPP</button>
+  <button class="limpar" type="button" id="botaoLimpar">Limpar carrinho</button>
 </aside>
 
 <script>
 "use strict";
 
-/* =================================
-   CONFIGURAÇÕES
-================================= */
+/* SISTEMA +18 */
+(function configurarMaioridade(){
+  const tela = document.getElementById("telaIdade");
+  const sim = document.getElementById("botaoSim");
+  const nao = document.getElementById("botaoNao");
+  const aviso = document.getElementById("avisoIdade");
+  const CHAVE = "mais1_maioridade_confirmada";
+
+  function esconderTela(){
+    tela.hidden = true;
+    tela.setAttribute("aria-hidden","true");
+    document.body.classList.remove("sem-rolagem");
+  }
+
+  let confirmado = false;
+  try {
+    confirmado = localStorage.getItem(CHAVE) === "sim";
+  } catch (erro) {
+    confirmado = false;
+  }
+
+  if (confirmado) {
+    esconderTela();
+  } else {
+    tela.hidden = false;
+    document.body.classList.add("sem-rolagem");
+  }
+
+  sim.addEventListener("click",function(){
+    try {
+      localStorage.setItem(CHAVE,"sim");
+    } catch (erro) {}
+    esconderTela();
+  });
+
+  nao.addEventListener("click",function(){
+    aviso.textContent = "A entrada é permitida somente para maiores de 18 anos.";
+  });
+})();
 
 const WHATSAPP = "5516997625257";
 
-/* =================================
-   CATÁLOGO DE PRODUTOS
-================================= */
-
 const produtos = [
-
-  {
-    id: 1,
-    nome: "Fardinho de Skol",
-    preco: 44.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "Fardinho de cerveja Skol."
-  },
-
-  {
-    id: 2,
-    nome: "Fardo de Cristal",
-    preco: 29.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "Fardo de cerveja Cristal."
-  },
-
-  {
-    id: 3,
-    nome: "Combo Mansão Maromba",
-    preco: 25.00,
-    categoria: "combos",
-    icone: "🥤",
-    descricao: "Combo especial."
-  },
-
-  {
-    id: 5,
-    nome: "Fardo de Brahma",
-    preco: 44.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "Fardo de cerveja Brahma."
-  },
-
-  {
-    id: 6,
-    nome: "Fardo de Antarctica Boa",
-    preco: 44.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "Fardo de Antarctica Boa."
-  },
-
-  {
-    id: 7,
-    nome: "Canelinha da Rocha",
-    preco: 19.99,
-    categoria: "destilados",
-    icone: "🥃",
-    descricao: "Canelinha da Rocha."
-  },
-
-  {
-    id: 8,
-    nome: "Combo Busca Brisa",
-    preco: 70.00,
-    categoria: "combos",
-    icone: "🥤",
-    descricao: "4 copos, 4 gelos e 1 energético Tadalafila da Baly."
-  },
-
-  {
-    id: 9,
-    nome: "Fardo de Heineken",
-    preco: 62.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "Fardo de cerveja Heineken."
-  },
-
-  {
-    id: 10,
-    nome: "Salgados fritos",
-    preco: null,
-    categoria: "outros",
-    icone: "🍟",
-    descricao: "Consulte disponibilidade e preço."
-  },
-
-  {
-    id: 11,
-    nome: "3 cervejas por R$ 10",
-    preco: 10.00,
-    categoria: "cervejas",
-    icone: "🍻",
-    descricao: "Promoção: 3 cervejas por R$ 10."
-  },
-
-  {
-    id: 12,
-    nome: "Red Label",
-    preco: 99.90,
-    categoria: "destilados",
-    icone: "🥃",
-    descricao: "Johnnie Walker Red Label."
-  },
-
-  {
-    id: 13,
-    nome: "White Horse",
-    preco: 79.90,
-    categoria: "destilados",
-    icone: "🥃",
-    descricao: "Whisky White Horse."
-  },
-
-  {
-    id: 14,
-    nome: "Jack Daniel's Apple",
-    preco: 149.90,
-    categoria: "destilados",
-    icone: "🥃",
-    descricao: "Jack Daniel's Apple."
-  },
-
-  {
-    id: 15,
-    nome: "Jack Daniel's Honey",
-    preco: 149.90,
-    categoria: "destilados",
-    icone: "🥃",
-    descricao: "Jack Daniel's Honey."
-  },
-
-  {
-    id: 16,
-    nome: "Romarinho 23 unidades - Boa, Skol ou Brahma",
-    preco: 62.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "23 unidades de 300 ml."
-  },
-
-  {
-    id: 17,
-    nome: "Romarinho 23 unidades - Antarctica Original",
-    preco: 75.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "23 unidades de 300 ml."
-  },
-
-  {
-    id: 18,
-    nome: "Romarinho 23 unidades - Budweiser",
-    preco: 69.99,
-    categoria: "cervejas",
-    icone: "🍺",
-    descricao: "23 unidades de 300 ml."
-  },
-
-  {
-    id: 19,
-    nome: "Carvão 3 kg",
-    preco: 17.88,
-    categoria: "outros",
-    icone: "🔥",
-    descricao: "Pacote de carvão de 3 kg."
-  }
-
+{id:1,nome:"Fardinho de Skol",preco:44.99,categoria:"cervejas",icone:"🍺",descricao:"Fardinho de cerveja Skol."},
+{id:2,nome:"Fardo de Cristal",preco:29.99,categoria:"cervejas",icone:"🍺",descricao:"Fardo de cerveja Cristal."},
+{id:3,nome:"Combo Mansão Maromba",preco:25,categoria:"combos",icone:"🥤",descricao:"Combo especial."},
+{id:5,nome:"Fardo de Brahma",preco:44.99,categoria:"cervejas",icone:"🍺",descricao:"Fardo de cerveja Brahma."},
+{id:6,nome:"Fardo de Antarctica Boa",preco:44.99,categoria:"cervejas",icone:"🍺",descricao:"Fardo de Antarctica Boa."},
+{id:7,nome:"Canelinha da Rocha",preco:19.99,categoria:"destilados",icone:"🥃",descricao:"Canelinha da Rocha."},
+{id:8,nome:"Combo Busca Brisa",preco:70,categoria:"combos",icone:"🥤",descricao:"4 copos, 4 gelos e 1 energético Tadalafila da Baly."},
+{id:9,nome:"Fardo de Heineken",preco:62.99,categoria:"cervejas",icone:"🍺",descricao:"Fardo de cerveja Heineken."},
+{id:10,nome:"Salgados fritos",preco:null,categoria:"outros",icone:"🍟",descricao:"Consulte disponibilidade e preço."},
+{id:11,nome:"3 cervejas por R$ 10",preco:10,categoria:"cervejas",icone:"🍻",descricao:"Promoção: 3 cervejas por R$ 10."},
+{id:12,nome:"Red Label",preco:99.90,categoria:"destilados",icone:"🥃",descricao:"Johnnie Walker Red Label."},
+{id:13,nome:"White Horse",preco:79.90,categoria:"destilados",icone:"🥃",descricao:"Whisky White Horse."},
+{id:14,nome:"Jack Daniel's Apple",preco:149.90,categoria:"destilados",icone:"🥃",descricao:"Jack Daniel's Apple."},
+{id:15,nome:"Jack Daniel's Honey",preco:149.90,categoria:"destilados",icone:"🥃",descricao:"Jack Daniel's Honey."},
+{id:16,nome:"Romarinho 23 unidades - Boa, Skol ou Brahma",preco:62.99,categoria:"cervejas",icone:"🍺",descricao:"23 unidades de 300 ml."},
+{id:17,nome:"Romarinho 23 unidades - Antarctica Original",preco:75.99,categoria:"cervejas",icone:"🍺",descricao:"23 unidades de 300 ml."},
+{id:18,nome:"Romarinho 23 unidades - Budweiser",preco:69.99,categoria:"cervejas",icone:"🍺",descricao:"23 unidades de 300 ml."},
+{id:19,nome:"Carvão 3 kg",preco:17.88,categoria:"outros",icone:"🔥",descricao:"Pacote de carvão de 3 kg."}
 ];
-
-/* =================================
-   ESTADO DO SITE
-================================= */
 
 let categoriaAtual = "todos";
 let carrinho = [];
 
-/* =================================
-   FORMATAÇÃO
-================================= */
-
-function formatarPreco(valor) {
-
-  return valor.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
-
+function formatarPreco(valor){
+  return valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 
-/* =================================
-   EXIBIR PRODUTOS
-================================= */
-
-function mostrarProdutos() {
-
+function mostrarProdutos(){
   const lista = document.getElementById("listaProdutos");
-
-  const pesquisa = document
-    .getElementById("pesquisa")
-    .value
-    .trim()
-    .toLowerCase();
-
+  const pesquisa = document.getElementById("pesquisa").value.trim().toLocaleLowerCase("pt-BR");
   lista.innerHTML = "";
 
-  const filtrados = produtos.filter(produto => {
-
-    const combinaCategoria =
-      categoriaAtual === "todos" ||
-      produto.categoria === categoriaAtual;
-
-    const combinaPesquisa =
-      produto.nome.toLowerCase().includes(pesquisa);
-
-    return combinaCategoria && combinaPesquisa;
-
+  const filtrados = produtos.filter(p=>{
+    const categoriaOk = categoriaAtual === "todos" || p.categoria === categoriaAtual;
+    const pesquisaOk = p.nome.toLocaleLowerCase("pt-BR").includes(pesquisa);
+    return categoriaOk && pesquisaOk;
   });
 
-  document.getElementById("mensagemVazia").style.display =
-    filtrados.length ? "none" : "block";
+  document.getElementById("mensagemVazia").style.display = filtrados.length ? "none" : "block";
 
-  filtrados.forEach(produto => {
-
-    const precoTexto = produto.preco === null
-      ? "Consultar preço"
-      : formatarPreco(produto.preco);
-
-    const botaoTexto = produto.preco === null
-      ? "Consultar no WhatsApp"
-      : "Adicionar ao carrinho";
-
+  filtrados.forEach(produto=>{
     const card = document.createElement("article");
-
     card.className = "produto";
 
     const icone = document.createElement("div");
-
     icone.className = "icone";
     icone.textContent = produto.icone;
 
     const nome = document.createElement("h3");
-
     nome.textContent = produto.nome;
 
     const descricao = document.createElement("p");
-
     descricao.textContent = produto.descricao;
 
     const preco = document.createElement("div");
-
     preco.className = "preco";
-    preco.textContent = precoTexto;
+    preco.textContent = produto.preco === null ? "Consultar preço" : formatarPreco(produto.preco);
 
     const botao = document.createElement("button");
-
     botao.type = "button";
-    botao.textContent = botaoTexto;
+    botao.textContent = produto.preco === null ? "Consultar no WhatsApp" : "Adicionar ao carrinho";
 
-    botao.addEventListener("click", () => {
-
-      if (produto.preco === null) {
-
-        consultarProduto(produto);
-
-      } else {
-
-        adicionarCarrinho(produto.id);
-
-      }
-
+    botao.addEventListener("click",()=>{
+      if(produto.preco === null) consultarProduto(produto);
+      else adicionarCarrinho(produto.id);
     });
 
-    card.append(
-      icone,
-      nome,
-      descricao,
-      preco,
-      botao
-    );
-
+    card.append(icone,nome,descricao,preco,botao);
     lista.appendChild(card);
-
   });
-
 }
 
-/* =================================
-   CATEGORIAS E PESQUISA
-================================= */
-
-document
-  .querySelectorAll(".categorias button")
-  .forEach(botao => {
-
-    botao.addEventListener("click", () => {
-
-      document
-        .querySelectorAll(".categorias button")
-        .forEach(item => {
-          item.classList.remove("ativo");
-        });
-
-      botao.classList.add("ativo");
-
-      categoriaAtual = botao.dataset.categoria;
-
-      mostrarProdutos();
-
-    });
-
+document.querySelectorAll(".categorias button").forEach(botao=>{
+  botao.addEventListener("click",()=>{
+    document.querySelectorAll(".categorias button").forEach(b=>b.classList.remove("ativo"));
+    botao.classList.add("ativo");
+    categoriaAtual = botao.dataset.categoria;
+    mostrarProdutos();
   });
+});
 
-document
-  .getElementById("pesquisa")
-  .addEventListener("input", mostrarProdutos);
+document.getElementById("pesquisa").addEventListener("input",mostrarProdutos);
 
-/* =================================
-   WHATSAPP
-================================= */
-
-function abrirWhatsApp(mensagem) {
-
-  const link =
-    "https://wa.me/" +
-    WHATSAPP +
-    "?text=" +
-    encodeURIComponent(mensagem);
-
-  window.open(link, "_blank");
-
+function abrirWhatsApp(mensagem){
+  const url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensagem);
+  window.location.href = url;
 }
 
-function consultarProduto(produto) {
-
-  abrirWhatsApp(
-    "Olá! Gostaria de consultar o preço de: " +
-    produto.nome +
-    "."
-  );
-
+function consultarProduto(produto){
+  abrirWhatsApp("Olá! Gostaria de consultar o preço de: " + produto.nome + ".");
 }
 
-/* =================================
-   ADICIONAR AO CARRINHO
-================================= */
+function adicionarCarrinho(id){
+  const produto = produtos.find(p=>p.id===id);
+  if(!produto || produto.preco===null) return;
 
-function adicionarCarrinho(id) {
-
-  const produto = produtos.find(item => item.id === id);
-
-  if (!produto || produto.preco === null) {
-    return;
-  }
-
-  const existente = carrinho.find(item => item.id === id);
-
-  if (existente) {
-
-    existente.quantidade++;
-
-  } else {
-
-    carrinho.push({
-      id: produto.id,
-      quantidade: 1
-    });
-
-  }
+  const existente = carrinho.find(i=>i.id===id);
+  if(existente) existente.quantidade++;
+  else carrinho.push({id:produto.id,quantidade:1});
 
   atualizarCarrinho();
-
   abrirCarrinho();
-
 }
 
-/* =================================
-   ALTERAR QUANTIDADE
-================================= */
-
-function alterarQuantidade(id, mudanca) {
-
-  const item = carrinho.find(produto => produto.id === id);
-
-  if (!item) return;
+function alterarQuantidade(id,mudanca){
+  const item = carrinho.find(i=>i.id===id);
+  if(!item) return;
 
   item.quantidade += mudanca;
-
-  if (item.quantidade <= 0) {
-
-    carrinho = carrinho.filter(
-      produto => produto.id !== id
-    );
-
-  }
-
+  if(item.quantidade<=0) carrinho = carrinho.filter(i=>i.id!==id);
   atualizarCarrinho();
-
 }
 
-/* =================================
-   ATUALIZAR CARRINHO
-================================= */
-
-function atualizarCarrinho() {
-
+function atualizarCarrinho(){
   const container = document.getElementById("itensCarrinho");
-
   container.innerHTML = "";
 
   let total = 0;
   let quantidadeTotal = 0;
 
-  if (carrinho.length === 0) {
+  if(carrinho.length===0) container.textContent = "Seu carrinho está vazio.";
 
-    container.textContent = "Seu carrinho está vazio.";
-
-  }
-
-  carrinho.forEach(item => {
-
-    const produto = produtos.find(p => p.id === item.id);
-
-    if (!produto || produto.preco === null) return;
+  carrinho.forEach(item=>{
+    const produto = produtos.find(p=>p.id===item.id);
+    if(!produto || produto.preco===null) return;
 
     const subtotal = produto.preco * item.quantidade;
-
     total += subtotal;
-
     quantidadeTotal += item.quantidade;
 
     const linha = document.createElement("div");
-
     linha.className = "item-carrinho";
 
     const informacoes = document.createElement("div");
-
     const nome = document.createElement("strong");
-
     nome.textContent = produto.nome;
 
     const valor = document.createElement("small");
-
-    valor.textContent =
-      formatarPreco(subtotal) +
-      " (" +
-      item.quantidade +
-      " un.)";
-
-    informacoes.append(nome, valor);
+    valor.textContent = formatarPreco(subtotal) + " (" + item.quantidade + " un.)";
+    informacoes.append(nome,valor);
 
     const acoes = document.createElement("div");
-
     acoes.className = "acoes-item";
 
     const menos = document.createElement("button");
-
     menos.type = "button";
     menos.textContent = "−";
-    menos.setAttribute("aria-label", "Diminuir quantidade");
-
-    menos.addEventListener("click", () => {
-      alterarQuantidade(item.id, -1);
-    });
+    menos.setAttribute("aria-label","Diminuir quantidade");
+    menos.addEventListener("click",()=>alterarQuantidade(item.id,-1));
 
     const numero = document.createElement("span");
-
     numero.textContent = item.quantidade;
 
     const mais = document.createElement("button");
-
     mais.type = "button";
     mais.textContent = "+";
-    mais.setAttribute("aria-label", "Aumentar quantidade");
+    mais.setAttribute("aria-label","Aumentar quantidade");
+    mais.addEventListener("click",()=>alterarQuantidade(item.id,1));
 
-    mais.addEventListener("click", () => {
-      alterarQuantidade(item.id, 1);
-    });
-
-    acoes.append(menos, numero, mais);
-
-    linha.append(informacoes, acoes);
-
+    acoes.append(menos,numero,mais);
+    linha.append(informacoes,acoes);
     container.appendChild(linha);
-
   });
 
-  document.getElementById("totalCarrinho").textContent =
-    "Total: " + formatarPreco(total);
-
-  document.getElementById("quantidadeTopo").textContent =
-    quantidadeTotal;
-
+  document.getElementById("totalCarrinho").textContent = "Total: " + formatarPreco(total);
+  document.getElementById("quantidadeTopo").textContent = quantidadeTotal;
 }
 
-/* =================================
-   ABRIR E FECHAR CARRINHO
-================================= */
+function abrirCarrinho(){
+  document.getElementById("painelCarrinho").classList.add("aberto");
+  document.getElementById("painelCarrinho").setAttribute("aria-hidden","false");
+  document.getElementById("fundoCarrinho").classList.add("aberto");
+}
 
-function abrirCarrinho() {
+function fecharCarrinho(){
+  document.getElementById("painelCarrinho").classList.remove("aberto");
+  document.getElementById("painelCarrinho").setAttribute("aria-hidden","true");
+  document.getElementById("fundoCarrinho").classList.remove("aberto");
+}
 
-  document
-    .getElementById("painelCarrinho")
-    .classList.add("aberto");
+function limparCarrinho(){
+  carrinho = [];
+  atualizarCarrinho();
+}
 
-  document
-    .getElementById("fund
+function finalizarPedido(){
+  if(carrinho.length===0){
+    alert("Adicione pelo menos um produto ao carrinho antes de finalizar.");
+    return;
+  }
+
+  const linhas = carrinho.map(item=>{
+    const p = produtos.find(produto=>produto.id===item.id);
+    return p.nome + " - " + item.quantidade + " x " + formatarPreco(p.preco) + " = " + formatarPreco(p.preco*item.quantidade);
+  });
+
+  const total = carrinho.reduce((soma,item)=>{
+    const p = produtos.find(produto=>produto.id===item.id);
+    return soma + p.preco*item.quantidade;
+  },0);
+
+  const mensagem = "Olá! Gostaria de fazer este pedido:\n\n" + linhas.join("\n") + "\n\nTotal: " + formatarPreco(total);
+  abrirWhatsApp(mensagem);
+}
+
+document.getElementById("abrirCarrinhoTopo").addEventListener("click",abrirCarrinho);
+document.getElementById("fecharCarrinho").addEventListener("click",fecharCarrinho);
+document.getElementById("fundoCarrinho").addEventListener("click",fecharCarrinho);
+document.getElementById("botaoLimpar").addEventListener("click",limparCarrinho);
+document.getElementById("botaoFinalizar").addEventListener("click",finalizarPedido);
+
+document.addEventListener("keydown",evento=>{
+  if(evento.key==="Escape") fecharCarrinho();
+});
+
+mostrarProdutos();
+atualizarCarrinho();
+</script>
+</body>
+  </html>
