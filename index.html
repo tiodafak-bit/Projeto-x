@@ -15,10 +15,10 @@
 
 :root {
     --preto: #090909;
-    --cinza: #171717;
+    --cinza: #191919;
     --amarelo: #f5c21b;
     --dourado: #c99b25;
-    --branco: #ffffff;
+    --branco: #fff;
 }
 
 body {
@@ -26,6 +26,13 @@ body {
     color: white;
     font-family: Arial, sans-serif;
 }
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* CABEÇALHO */
 
 header {
     background: #080808;
@@ -46,53 +53,50 @@ header {
 }
 
 .logo-header img {
-    width: 55px;
-    height: 55px;
+    width: 52px;
+    height: 52px;
     object-fit: cover;
     border-radius: 50%;
 }
 
 .logo-header h2 {
-    font-size: 16px;
     color: var(--amarelo);
+    font-size: 16px;
 }
 
 .logo-header p {
-    font-size: 10px;
     color: #ccc;
-}
-
-button {
-    cursor: pointer;
+    font-size: 10px;
 }
 
 .carrinho-topo {
     background: var(--amarelo);
     color: black;
-    border: none;
     padding: 12px 16px;
-    border-radius: 10px;
+    border: none;
+    border-radius: 9px;
     font-weight: bold;
 }
 
-/* CAPA */
+/* BANNER */
 
 .banner {
-    margin: 22px auto;
     width: 92%;
-    min-height: 250px;
-    border-radius: 18px;
+    max-width: 1100px;
+    margin: 22px auto;
+    padding: 25px;
+    min-height: 240px;
     border: 1px solid var(--dourado);
-    background: linear-gradient(130deg,#24200f,#090909 70%);
+    border-radius: 18px;
+    background: linear-gradient(130deg,#30260e,#090909);
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 25px;
-    gap: 15px;
+    gap: 20px;
 }
 
 .banner h1 {
-    font-size: 35px;
+    font-size: 36px;
     margin: 12px 0;
 }
 
@@ -106,41 +110,39 @@ button {
 }
 
 .banner img {
-    width: 190px;
+    width: 175px;
     border-radius: 50%;
 }
 
 .botao-banner {
     background: var(--amarelo);
-    color: black;
     border: none;
     padding: 13px 20px;
     border-radius: 9px;
     font-weight: bold;
-    margin-top: 17px;
+    margin-top: 15px;
 }
 
-/* CONTEÚDO */
+/* CATÁLOGO */
 
 .container {
     width: 92%;
-    max-width: 1150px;
+    max-width: 1100px;
     margin: auto;
 }
 
 .titulo {
-    margin: 30px 0 15px;
     color: var(--amarelo);
-    font-size: 24px;
+    margin: 30px 0 15px;
 }
 
 .pesquisa {
     width: 100%;
     padding: 15px;
-    background: #171717;
+    background: #191919;
     border: 1px solid #444;
-    border-radius: 10px;
     color: white;
+    border-radius: 10px;
     margin-bottom: 18px;
     outline: none;
 }
@@ -149,31 +151,28 @@ button {
     display: flex;
     gap: 9px;
     overflow-x: auto;
-    padding-bottom: 15px;
+    padding-bottom: 16px;
 }
 
 .categoria {
     white-space: nowrap;
-    padding: 11px 16px;
-    border-radius: 30px;
     background: #202020;
-    border: 1px solid #444;
     color: white;
+    border: 1px solid #444;
+    padding: 10px 15px;
+    border-radius: 25px;
 }
 
 .categoria.ativa {
     background: var(--amarelo);
     color: black;
     font-weight: bold;
-    border-color: var(--amarelo);
 }
-
-/* PRODUTOS */
 
 .produtos {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 15px;
+    gap: 14px;
     padding-bottom: 35px;
 }
 
@@ -181,29 +180,28 @@ button {
     background: linear-gradient(145deg,#202020,#111);
     border: 1px solid #393939;
     border-radius: 15px;
-    padding: 16px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
-    min-height: 205px;
+    min-height: 200px;
 }
 
 .icone {
     width: 58px;
     height: 58px;
-    display: grid;
-    place-items: center;
-    font-size: 35px;
     background: #302710;
     border: 1px solid #70561b;
     border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 34px;
     margin-bottom: 12px;
 }
 
 .produto small {
     color: var(--amarelo);
-    text-transform: uppercase;
     font-size: 10px;
-    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .produto h3 {
@@ -215,7 +213,6 @@ button {
     font-size: 12px;
     color: #aaa;
     line-height: 1.4;
-    margin-bottom: 10px;
 }
 
 .inferior {
@@ -224,19 +221,19 @@ button {
     justify-content: space-between;
     gap: 7px;
     margin-top: auto;
+    padding-top: 14px;
 }
 
 .preco {
     color: var(--amarelo);
-    font-size: 17px;
     font-weight: bold;
 }
 
 .adicionar {
     background: transparent;
-    border: 1px solid var(--amarelo);
     color: var(--amarelo);
-    padding: 9px 11px;
+    border: 1px solid var(--amarelo);
+    padding: 9px;
     border-radius: 8px;
     font-weight: bold;
 }
@@ -254,8 +251,8 @@ button {
     padding: 18px;
     border-radius: 12px;
     color: #ddd;
-    line-height: 1.6;
     font-size: 13px;
+    line-height: 1.6;
     margin-bottom: 30px;
 }
 
@@ -268,22 +265,28 @@ button {
 footer {
     border-top: 1px solid #444;
     text-align: center;
-    padding: 30px 15px;
+    padding: 30px;
     color: #aaa;
     font-size: 12px;
 }
 
-/* MAIORIDADE */
+/* TELA DE IDADE */
 
 .tela-idade {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,.97);
-    z-index: 100;
+    z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+}
+
+/* ESTA CLASSE ESCONDE A TELA */
+
+.tela-idade.escondida {
+    display: none !important;
 }
 
 .caixa-idade {
@@ -297,7 +300,7 @@ footer {
 }
 
 .caixa-idade img {
-    width: 115px;
+    width: 110px;
     border-radius: 50%;
     margin-bottom: 15px;
 }
@@ -329,6 +332,7 @@ footer {
 
 .sim {
     background: var(--amarelo);
+    color: black;
 }
 
 .nao {
@@ -373,8 +377,8 @@ footer {
 
 .fechar {
     background: #333;
-    border: none;
     color: white;
+    border: none;
     padding: 9px 12px;
     border-radius: 8px;
 }
@@ -394,8 +398,8 @@ footer {
 }
 
 .item-carrinho small {
-    color: #aaa;
     display: block;
+    color: #aaa;
     margin-top: 5px;
 }
 
@@ -434,9 +438,11 @@ footer {
 
 .vazio {
     text-align: center;
-    padding: 35px 10px;
+    padding: 35px;
     color: #aaa;
 }
+
+/* CELULAR */
 
 @media(max-width:700px) {
     .produtos {
@@ -453,7 +459,7 @@ footer {
     }
 
     .banner h1 {
-        font-size: 30px;
+        font-size: 29px;
     }
 }
 
@@ -468,6 +474,7 @@ footer {
 <body>
 
 <header>
+
     <div class="logo-header">
         <img src="assets/logo-mais1.jpg" alt="Logo +1">
         <div>
@@ -476,12 +483,14 @@ footer {
         </div>
     </div>
 
-    <button class="carrinho-topo" onclick="abrirCarrinho()">
+    <button class="carrinho-topo" id="abrirCarrinho">
         🛒 <span id="contador">0</span>
     </button>
+
 </header>
 
 <section class="banner">
+
     <div>
         <p style="color:#f5c21b;font-weight:bold">
             SEJA BEM-VINDO!
@@ -493,17 +502,17 @@ footer {
         </h1>
 
         <p>
-            Encontre suas bebidas favoritas e monte
-            seu pedido em poucos cliques.
+            Encontre suas bebidas favoritas
+            e monte seu pedido.
         </p>
 
-        <button class="botao-banner"
-        onclick="document.getElementById('catalogo').scrollIntoView()">
+        <button class="botao-banner" id="irCatalogo">
             CONFERIR CATÁLOGO ↓
         </button>
     </div>
 
     <img src="assets/logo-mais1.jpg" alt="Logo oficial">
+
 </section>
 
 <main class="container">
@@ -513,11 +522,9 @@ footer {
     </h2>
 
     <input
-        type="text"
         class="pesquisa"
         id="pesquisa"
         placeholder="🔎 O que você está procurando?"
-        oninput="mostrarProdutos()"
     >
 
     <div class="categorias" id="categorias"></div>
@@ -526,12 +533,11 @@ footer {
 
     <div class="aviso">
         <strong>ATENÇÃO:</strong><br>
-        A venda de bebidas alcoólicas é proibida
+        Venda de bebidas alcoólicas proibida
         para menores de 18 anos.
 
         A confirmação de idade no site não substitui
-        a verificação de documento no momento da venda
-        ou entrega.
+        a verificação de documento na venda ou entrega.
 
         Beba com responsabilidade.
         Preços e disponibilidade sujeitos à confirmação.
@@ -540,7 +546,7 @@ footer {
 </main>
 
 <footer>
-    <h3 style="color:#f5c21b;margin-bottom:8px">
+    <h3 style="color:#f5c21b">
         +1 DEPÓSITO DE BEBIDAS
     </h3>
 
@@ -548,55 +554,53 @@ footer {
 
     <br><br>
 
-    © <span id="ano"></span> Todos os direitos reservados.
+    © 2026 Todos os direitos reservados.
 </footer>
 
-<!-- TELA DE MAIORIDADE -->
+<!-- MODAL DE IDADE -->
 
 <div class="tela-idade" id="telaIdade">
 
     <div class="caixa-idade">
 
-        <img src="assets/logo-mais1.jpg" alt="Logo">
+        <img src="assets/logo-mais1.jpg" alt="Logo +1">
 
         <h2>VOCÊ TEM 18 ANOS OU MAIS?</h2>
 
         <p>
-            Este estabelecimento comercializa bebidas
-            alcoólicas.
-
-            Para acessar o catálogo, confirme que possui
-            idade legal para consumir bebidas alcoólicas.
+            Este catálogo apresenta bebidas alcoólicas.
+            Confirme que você possui 18 anos ou mais
+            para continuar.
         </p>
 
         <div class="botoes-idade">
 
-            <button class="sim" onclick="confirmarIdade()">
+            <button class="sim" id="botaoSim">
                 SIM, TENHO 18+
             </button>
 
-            <button class="nao" onclick="negarIdade()">
+            <button class="nao" id="botaoNao">
                 NÃO
             </button>
 
         </div>
 
     </div>
+
 </div>
 
 <!-- CARRINHO -->
 
-<div class="fundo-carrinho"
-id="fundoCarrinho"
-onclick="fecharCarrinho()"></div>
+<div class="fundo-carrinho" id="fundoCarrinho"></div>
 
 <aside class="painel-carrinho" id="painelCarrinho">
 
     <div class="topo-carrinho">
         <h2>🛒 MEU PEDIDO</h2>
 
-        <button class="fechar"
-        onclick="fecharCarrinho()">FECHAR ✕</button>
+        <button class="fechar" id="fecharCarrinho">
+            FECHAR ✕
+        </button>
     </div>
 
     <div class="itens-carrinho" id="itensCarrinho"></div>
@@ -606,299 +610,206 @@ onclick="fecharCarrinho()"></div>
         <span id="valorTotal">R$ 0,00</span>
     </div>
 
-    <button class="finalizar" onclick="finalizarPedido()">
+    <button class="finalizar" id="finalizar">
         FINALIZAR PELO WHATSAPP
     </button>
-
-    <p style="color:#999;font-size:11px;margin-top:12px">
-        Pagamento, entrega e disponibilidade serão
-        confirmados diretamente com o depósito.
-    </p>
 
 </aside>
 
 <script>
 
-/* ==========================
-   CONFIGURAÇÕES
-========================== */
+/* WHATSAPP DO DEPÓSITO */
 
-// SUBSTITUA PELO WHATSAPP REAL DO DEPÓSITO.
-// Use 55 + DDD + número, somente números.
-const WHATSAPP = "5511999999999";
+const WHATSAPP = "5516997625257";
 
 
-/* ==========================
-   CATÁLOGO DE PRODUTOS
-========================== */
+/* PRODUTOS */
 
 const produtos = [
 
-    {
-        id:1,
-        nome:"Fardinho de Skol",
-        preco:44.99,
-        categoria:"Cervejas",
-        icone:"🍺"
-    },
+{id:1,nome:"Fardinho de Skol",preco:44.99,categoria:"Cervejas",icone:"🍺"},
 
-    {
-        id:2,
-        nome:"Fardo de Cristal",
-        preco:29.99,
-        categoria:"Cervejas",
-        icone:"🍺"
-    },
+{id:2,nome:"Fardo de Cristal",preco:29.99,categoria:"Cervejas",icone:"🍺"},
 
-    {
-        id:3,
-        nome:"Fardo de Brahma",
-        preco:44.99,
-        categoria:"Cervejas",
-        icone:"🍺"
-    },
+{id:3,nome:"Fardo de Brahma",preco:44.99,categoria:"Cervejas",icone:"🍺"},
 
-    {
-        id:4,
-        nome:"Fardo de Antarctica Boa",
-        preco:44.99,
-        categoria:"Cervejas",
-        icone:"🍻"
-    },
+{id:4,nome:"Fardo de Antarctica Boa",preco:44.99,categoria:"Cervejas",icone:"🍻"},
 
-    {
-        id:5,
-        nome:"Fardo de Heineken",
-        preco:62.99,
-        categoria:"Cervejas",
-        icone:"🍺"
-    },
+{id:5,nome:"Fardo de Heineken",preco:62.99,categoria:"Cervejas",icone:"🍺"},
 
-    {
-        id:6,
-        nome:"Romarinho 23 unidades - Boa, Skol ou Brahma",
-        preco:62.99,
-        categoria:"Cervejas",
-        icone:"🍻",
-        descricao:"23 unidades de 300 ml."
-    },
+{id:6,nome:"Romarinho Boa, Skol ou Brahma",preco:62.99,categoria:"Cervejas",icone:"🍻",descricao:"23 unidades de 300 ml."},
 
-    {
-        id:7,
-        nome:"Romarinho Antarctica Original",
-        preco:75.99,
-        categoria:"Cervejas",
-        icone:"🍻",
-        descricao:"23 unidades de 300 ml."
-    },
+{id:7,nome:"Romarinho Antarctica Original",preco:75.99,categoria:"Cervejas",icone:"🍻",descricao:"23 unidades de 300 ml."},
 
-    {
-        id:8,
-        nome:"Romarinho Budweiser",
-        preco:69.99,
-        categoria:"Cervejas",
-        icone:"🍻",
-        descricao:"23 unidades de 300 ml."
-    },
+{id:8,nome:"Romarinho Budweiser",preco:69.99,categoria:"Cervejas",icone:"🍻",descricao:"23 unidades de 300 ml."},
 
-    {
-        id:9,
-        nome:"Promoção: 3 cervejas por R$ 10",
-        preco:10,
-        categoria:"Ofertas e Combos",
-        icone:"🔥",
-        descricao:"Consulte as marcas participantes e condições."
-    },
+{id:9,nome:"3 cervejas por R$ 10",preco:10,categoria:"Ofertas e Combos",icone:"🔥",descricao:"Consulte marcas participantes e condições."},
 
-    {
-        id:10,
-        nome:"Combo Mansão Maromba",
-        preco:25,
-        categoria:"Ofertas e Combos",
-        icone:"🎉"
-    },
+{id:10,nome:"Combo Mansão Maromba",preco:25,categoria:"Ofertas e Combos",icone:"🎉"},
 
-    {
-        id:11,
-        nome:"Combo Busca Brisa",
-        preco:70,
-        categoria:"Ofertas e Combos",
-        icone:"🧊",
-        descricao:"4 copos, 4 gelos e 1 energético Tadalafila da Baly."
-    },
+{id:11,nome:"Combo Busca Brisa",preco:70,categoria:"Ofertas e Combos",icone:"🧊",descricao:"4 copos, 4 gelos e 1 energético Tadalafila da Baly."},
 
-    {
-        id:12,
-        nome:"Canelinha da Rocha",
-        preco:19.99,
-        categoria:"Destilados",
-        icone:"🥃"
-    },
+{id:12,nome:"Canelinha da Rocha",preco:19.99,categoria:"Destilados",icone:"🥃"},
 
-    {
-        id:13,
-        nome:"Red Label",
-        preco:null,
-        categoria:"Destilados",
-        icone:"🥃"
-    },
+{id:13,nome:"Red Label",preco:null,categoria:"Destilados",icone:"🥃"},
 
-    {
-        id:14,
-        nome:"White Horse",
-        preco:null,
-        categoria:"Destilados",
-        icone:"🥃"
-    },
+{id:14,nome:"White Horse",preco:null,categoria:"Destilados",icone:"🥃"},
 
-    {
-        id:15,
-        nome:"Jack Daniel's Apple",
-        preco:null,
-        categoria:"Destilados",
-        icone:"🥃"
-    },
+{id:15,nome:"Jack Daniel's Apple",preco:null,categoria:"Destilados",icone:"🥃"},
 
-    {
-        id:16,
-        nome:"Jack Daniel's Honey",
-        preco:null,
-        categoria:"Destilados",
-        icone:"🥃"
-    },
+{id:16,nome:"Jack Daniel's Honey",preco:null,categoria:"Destilados",icone:"🥃"},
 
-    {
-        id:17,
-        nome:"Salgados fritos",
-        preco:null,
-        categoria:"Outros produtos",
-        icone:"🥟"
-    },
+{id:17,nome:"Salgados fritos",preco:null,categoria:"Outros produtos",icone:"🥟"},
 
-    {
-        id:18,
-        nome:"Carvão 3 kg",
-        preco:null,
-        categoria:"Outros produtos",
-        icone:"🔥"
-    }
+{id:18,nome:"Carvão 3 kg",preco:null,categoria:"Outros produtos",icone:"🔥"}
 
 ];
 
 
-/* ==========================
-   SISTEMA DO SITE
-========================== */
+/* VARIÁVEIS */
 
 let carrinho = [];
 let categoriaAtual = "Todos";
 
 const categorias = [
     "Todos",
-    ...new Set(produtos.map(p => p.categoria))
+    ...new Set(produtos.map(p=>p.categoria))
 ];
 
 function dinheiro(valor) {
-    return valor.toLocaleString("pt-BR", {
+
+    return valor.toLocaleString("pt-BR",{
         style:"currency",
         currency:"BRL"
     });
+
 }
 
 
-/* ==========================
-   IDADE
-========================== */
+/* CORREÇÃO DEFINITIVA DA IDADE */
+
+const telaIdade = document.getElementById("telaIdade");
+
+const botaoSim = document.getElementById("botaoSim");
+
+const botaoNao = document.getElementById("botaoNao");
+
 
 function confirmarIdade() {
 
-    localStorage.setItem("mais1_maioridade","sim");
+    try {
+        localStorage.setItem("mais1_maioridade","confirmado");
+    } catch(e) {
+        console.warn("Não foi possível salvar a confirmação.");
+    }
 
-    document.getElementById("telaIdade").style.display="none";
+    // ESCONDE IMEDIATAMENTE A TELA
+    telaIdade.classList.add("escondida");
+
 }
+
 
 function negarIdade() {
 
-    document.body.innerHTML = `
-        <div style="text-align:center;padding:100px 20px">
-            <h1 style="color:#f5c21b">
-                ACESSO NÃO PERMITIDO
-            </h1>
-            <p style="margin-top:15px">
-                Este catálogo é destinado somente
-                a maiores de 18 anos.
-            </p>
+    telaIdade.innerHTML = `
+        <div class="caixa-idade">
+            <h2>ACESSO NÃO PERMITIDO</h2>
+            <p>Este catálogo é destinado somente a maiores de 18 anos.</p>
         </div>
     `;
-}
 
-if(localStorage.getItem("mais1_maioridade")==="sim") {
-    document.getElementById("telaIdade").style.display="none";
 }
 
 
-/* ==========================
-   CATEGORIAS
-========================== */
+// Verifica se a pessoa já confirmou anteriormente.
+
+try {
+
+    if(localStorage.getItem("mais1_maioridade")==="confirmado") {
+
+        telaIdade.classList.add("escondida");
+
+    }
+
+} catch(e) {
+
+    // Se o armazenamento estiver bloqueado,
+    // o botão SIM continua funcionando normalmente.
+
+}
+
+
+// Eventos dos botões de idade.
+
+botaoSim.addEventListener("click",confirmarIdade);
+
+botaoNao.addEventListener("click",negarIdade);
+
+
+/* CATEGORIAS */
 
 function mostrarCategorias() {
 
     document.getElementById("categorias").innerHTML =
-    categorias.map(c => `
 
-        <button
-        class="categoria ${categoriaAtual===c?'ativa':''}"
-        onclick="selecionarCategoria('${c}')">
+    categorias.map(c=>`
+
+        <button class="categoria ${categoriaAtual===c?"ativa":""}"
+        data-categoria="${c}">
 
             ${c}
 
         </button>
 
     `).join("");
-}
-
-function selecionarCategoria(c) {
-
-    categoriaAtual=c;
-
-    mostrarCategorias();
-    mostrarProdutos();
-}
 
 
-/* ==========================
-   PRODUTOS
-========================== */
+    document.querySelectorAll(".categoria").forEach(botao=>{
 
-function mostrarProdutos() {
+        botao.addEventListener("click",()=>{
 
-    const busca = document
-        .getElementById("pesquisa")
-        .value.toLowerCase();
+            categoriaAtual=botao.dataset.categoria;
 
-    const filtrados = produtos.filter(p => {
+            mostrarCategorias();
+            mostrarProdutos();
 
-        const combinaCategoria =
-            categoriaAtual==="Todos" ||
-            p.categoria===categoriaAtual;
-
-        const combinaBusca =
-            p.nome.toLowerCase().includes(busca) ||
-            p.categoria.toLowerCase().includes(busca);
-
-        return combinaCategoria && combinaBusca;
+        });
 
     });
 
-    document.getElementById("produtos").innerHTML =
+}
 
-    filtrados.map(p => `
+
+/* PRODUTOS */
+
+function mostrarProdutos() {
+
+    const busca=document
+    .getElementById("pesquisa")
+    .value.toLowerCase();
+
+    const filtrados=produtos.filter(p=>{
+
+        const categoriaOk=
+        categoriaAtual==="Todos" ||
+        p.categoria===categoriaAtual;
+
+        const buscaOk=
+        p.nome.toLowerCase().includes(busca) ||
+        p.categoria.toLowerCase().includes(busca);
+
+        return categoriaOk && buscaOk;
+
+    });
+
+
+    document.getElementById("produtos").innerHTML=
+
+    filtrados.map(p=>`
 
         <div class="produto">
 
-            <div class="icone">
-                ${p.icone}
-            </div>
+            <div class="icone">${p.icone}</div>
 
             <small>${p.categoria}</small>
 
@@ -911,111 +822,122 @@ function mostrarProdutos() {
             <div class="inferior">
 
                 <span class="preco">
-                    ${p.preco===null
-                    ? "Consultar"
-                    : dinheiro(p.preco)}
+                    ${p.preco===null?"Consultar":dinheiro(p.preco)}
                 </span>
 
-                <button
-                class="adicionar"
-                onclick="adicionar(${p.id})">
-
+                <button class="adicionar" data-id="${p.id}">
                     + Adicionar
-
                 </button>
 
             </div>
 
         </div>
 
-    `).join("");
+    `).join("") || "<p>Nenhum produto encontrado.</p>";
 
-    if(filtrados.length===0) {
-        document.getElementById("produtos").innerHTML =
-        "<p>Nenhum produto encontrado.</p>";
-    }
+
+    document.querySelectorAll(".adicionar").forEach(botao=>{
+
+        botao.addEventListener("click",()=>{
+
+            adicionar(Number(botao.dataset.id));
+
+        });
+
+    });
 
 }
 
 
-/* ==========================
-   CARRINHO
-========================== */
+/* PESQUISA */
+
+document.getElementById("pesquisa")
+.addEventListener("input",mostrarProdutos);
+
+
+/* ADICIONAR AO CARRINHO */
 
 function adicionar(id) {
 
-    const produto = produtos.find(p=>p.id===id);
+    const produto=produtos.find(p=>p.id===id);
 
     if(produto.preco===null) {
 
         alert("Preço sob consulta. Entre em contato com o depósito.");
 
         return;
+
     }
 
-    const existente = carrinho.find(p=>p.id===id);
+    const existente=carrinho.find(p=>p.id===id);
 
     if(existente) {
+
         existente.quantidade++;
+
     } else {
+
         carrinho.push({
             ...produto,
             quantidade:1
         });
+
     }
 
     atualizarCarrinho();
 
 }
 
+
+/* ATUALIZAR CARRINHO */
+
 function atualizarCarrinho() {
 
-    const quantidade = carrinho.reduce(
+    const quantidade=carrinho.reduce(
         (s,p)=>s+p.quantidade,0
     );
 
     document.getElementById("contador").innerText=quantidade;
 
-    const total = carrinho.reduce(
+
+    const total=carrinho.reduce(
         (s,p)=>s+p.preco*p.quantidade,0
     );
 
-    document.getElementById("valorTotal").innerText =
-    dinheiro(total);
+    document.getElementById("valorTotal").innerText=dinheiro(total);
+
 
     if(carrinho.length===0) {
 
-        document.getElementById("itensCarrinho").innerHTML =
+        document.getElementById("itensCarrinho").innerHTML=
         '<p class="vazio">Seu carrinho está vazio.</p>';
 
         return;
+
     }
 
-    document.getElementById("itensCarrinho").innerHTML =
+
+    document.getElementById("itensCarrinho").innerHTML=
 
     carrinho.map(p=>`
 
         <div class="item-carrinho">
 
             <div>
+
                 <strong>${p.nome}</strong>
 
-                <small>
-                    ${dinheiro(p.preco)} cada
-                </small>
+                <small>${dinheiro(p.preco)} cada</small>
+
             </div>
 
             <div class="quantidade">
 
-                <button onclick="alterarQuantidade(${p.id},-1)">
-                    -
-                </button>
+                <button data-id="${p.id}" data-op="-1">-</button>
 
                 ${p.quantidade}
 
-                <button onclick="alterarQuantidade(${p.id},1)">
-                    +
-                </button>
+                <button data-id="${p.id}" data-op="1">+</button>
 
             </div>
 
@@ -1023,13 +945,28 @@ function atualizarCarrinho() {
 
     `).join("");
 
+
+    document.querySelectorAll(".quantidade button").forEach(botao=>{
+
+        botao.addEventListener("click",()=>{
+
+            alterarQuantidade(
+                Number(botao.dataset.id),
+                Number(botao.dataset.op)
+            );
+
+        });
+
+    });
+
 }
+
 
 function alterarQuantidade(id,alteracao) {
 
     const item=carrinho.find(p=>p.id===id);
 
-    if(!item) return;
+    if(!item)return;
 
     item.quantidade+=alteracao;
 
@@ -1044,9 +981,7 @@ function alterarQuantidade(id,alteracao) {
 }
 
 
-/* ==========================
-   ABRIR E FECHAR CARRINHO
-========================== */
+/* ABRIR E FECHAR CARRINHO */
 
 function abrirCarrinho() {
 
@@ -1057,6 +992,7 @@ function abrirCarrinho() {
     .style.display="block";
 
 }
+
 
 function fecharCarrinho() {
 
@@ -1069,45 +1005,81 @@ function fecharCarrinho() {
 }
 
 
-/* ==========================
-   WHATSAPP
-========================== */
+document.getElementById("abrirCarrinho")
+.addEventListener("click",abrirCarrinho);
+
+document.getElementById("fecharCarrinho")
+.addEventListener("click",fecharCarrinho);
+
+document.getElementById("fundoCarrinho")
+.addEventListener("click",fecharCarrinho);
+
+
+/* FINALIZAR PEDIDO */
 
 function finalizarPedido() {
 
     if(carrinho.length===0) {
 
-        alert("Adicione produtos ao carrinho primeiro!");
+        alert("Seu carrinho está vazio!");
 
         return;
+
     }
 
-    if(WHATSAPP==="16997625257") {
 
-        alert(
-            "Configure primeiro o WhatsApp verdadeiro do depósito no código."
-        );
-
-        return;
-    }
-
-    let mensagem =
+    let mensagem=
     "Olá! Gostaria de fazer um pedido no +1 Depósito de Bebidas:\n\n";
+
 
     carrinho.forEach(p=>{
 
-        mensagem +=
+        mensagem+=
         p.quantidade+"x "+p.nome+
         " — "+dinheiro(p.preco*p.quantidade)+"\n";
 
     });
 
-    const total = carrinho.reduce(
+
+    const total=carrinho.reduce(
         (s,p)=>s+p.preco*p.quantidade,0
     );
 
-    mensagem +=
-    "\nTOTAL DOS PRODUTOS: "+dinheiro(total);
 
-    mensagem +=
-    "\n\n
+    mensagem+="\nTOTAL: "+dinheiro(total);
+
+    mensagem+="\n\nTenho 18 anos ou mais. Por favor, confirme disponibilidade, entrega e pagamento.";
+
+
+    const link=
+    "https://wa.me/"+WHATSAPP+
+    "?text="+encodeURIComponent(mensagem);
+
+
+    window.open(link,"_blank");
+
+}
+
+
+document.getElementById("finalizar")
+.addEventListener("click",finalizarPedido);
+
+
+/* INICIALIZAÇÃO */
+
+mostrarCategorias();
+mostrarProdutos();
+atualizarCarrinho();
+
+document.getElementById("irCatalogo")
+.addEventListener("click",()=>{
+
+    document.getElementById("catalogo")
+    .scrollIntoView({behavior:"smooth"});
+
+});
+
+</script>
+
+</body>
+    </html>
