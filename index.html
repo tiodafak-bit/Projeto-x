@@ -15,10 +15,8 @@
 
 :root {
     --preto: #090909;
-    --cinza: #191919;
     --amarelo: #f5c21b;
     --dourado: #c99b25;
-    --branco: #fff;
 }
 
 body {
@@ -169,6 +167,8 @@ header {
     font-weight: bold;
 }
 
+/* PRODUTOS */
+
 .produtos {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -270,23 +270,17 @@ footer {
     font-size: 12px;
 }
 
-/* TELA DE IDADE */
+/* TELA +18 */
 
 .tela-idade {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,.97);
-    z-index: 99999;
+    z-index: 999999;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-}
-
-/* ESTA CLASSE ESCONDE A TELA */
-
-.tela-idade.escondida {
-    display: none !important;
 }
 
 .caixa-idade {
@@ -474,7 +468,6 @@ footer {
 <body>
 
 <header>
-
     <div class="logo-header">
         <img src="assets/logo-mais1.jpg" alt="Logo +1">
         <div>
@@ -486,11 +479,9 @@ footer {
     <button class="carrinho-topo" id="abrirCarrinho">
         🛒 <span id="contador">0</span>
     </button>
-
 </header>
 
 <section class="banner">
-
     <div>
         <p style="color:#f5c21b;font-weight:bold">
             SEJA BEM-VINDO!
@@ -512,7 +503,6 @@ footer {
     </div>
 
     <img src="assets/logo-mais1.jpg" alt="Logo oficial">
-
 </section>
 
 <main class="container">
@@ -557,7 +547,7 @@ footer {
     © 2026 Todos os direitos reservados.
 </footer>
 
-<!-- MODAL DE IDADE -->
+<!-- TELA DE MAIORIDADE -->
 
 <div class="tela-idade" id="telaIdade">
 
@@ -575,18 +565,16 @@ footer {
 
         <div class="botoes-idade">
 
-            <button class="sim" id="botaoSim">
+            <button type="button" class="sim" id="botaoSim">
                 SIM, TENHO 18+
             </button>
 
-            <button class="nao" id="botaoNao">
+            <button type="button" class="nao" id="botaoNao">
                 NÃO
             </button>
 
         </div>
-
     </div>
-
 </div>
 
 <!-- CARRINHO -->
@@ -677,16 +665,14 @@ const categorias = [
 ];
 
 function dinheiro(valor) {
-
     return valor.toLocaleString("pt-BR",{
         style:"currency",
         currency:"BRL"
     });
-
 }
 
 
-/* CORREÇÃO DEFINITIVA DA IDADE */
+/* CORREÇÃO DA TELA +18 */
 
 const telaIdade = document.getElementById("telaIdade");
 
@@ -694,56 +680,52 @@ const botaoSim = document.getElementById("botaoSim");
 
 const botaoNao = document.getElementById("botaoNao");
 
-
-function confirmarIdade() {
+function removerTelaIdade() {
 
     try {
         localStorage.setItem("mais1_maioridade","confirmado");
     } catch(e) {
-        console.warn("Não foi possível salvar a confirmação.");
+        // O acesso continua funcionando mesmo
+        // se o navegador bloquear o armazenamento.
     }
 
-    // ESCONDE IMEDIATAMENTE A TELA
-    telaIdade.classList.add("escondida");
+    // REMOVE A TELA COMPLETAMENTE DO HTML.
+    // Não depende de CSS, classes ou animações.
+    const tela = document.getElementById("telaIdade");
+
+    if(tela) {
+        tela.remove();
+    }
 
 }
 
+function bloquearAcesso() {
 
-function negarIdade() {
+    const tela = document.getElementById("telaIdade");
 
-    telaIdade.innerHTML = `
-        <div class="caixa-idade">
-            <h2>ACESSO NÃO PERMITIDO</h2>
-            <p>Este catálogo é destinado somente a maiores de 18 anos.</p>
-        </div>
-    `;
+    if(tela) {
+        tela.innerHTML = `
+            <div class="caixa-idade">
+                <h2>ACESSO NÃO PERMITIDO</h2>
+                <p>Este catálogo é destinado somente a maiores de 18 anos.</p>
+            </div>
+        `;
+    }
 
 }
 
-
-// Verifica se a pessoa já confirmou anteriormente.
-
+// Se já confirmou anteriormente, remove a tela.
 try {
 
     if(localStorage.getItem("mais1_maioridade")==="confirmado") {
-
-        telaIdade.classList.add("escondida");
-
+        removerTelaIdade();
     }
 
-} catch(e) {
+} catch(e) {}
 
-    // Se o armazenamento estiver bloqueado,
-    // o botão SIM continua funcionando normalmente.
-
-}
-
-
-// Eventos dos botões de idade.
-
-botaoSim.addEventListener("click",confirmarIdade);
-
-botaoNao.addEventListener("click",negarIdade);
+// Eventos dos botões.
+botaoSim.addEventListener("click",removerTelaIdade);
+botaoNao.addEventListener("click",bloquearAcesso);
 
 
 /* CATEGORIAS */
@@ -762,7 +744,6 @@ function mostrarCategorias() {
         </button>
 
     `).join("");
-
 
     document.querySelectorAll(".categoria").forEach(botao=>{
 
@@ -802,7 +783,6 @@ function mostrarProdutos() {
 
     });
 
-
     document.getElementById("produtos").innerHTML=
 
     filtrados.map(p=>`
@@ -835,7 +815,6 @@ function mostrarProdutos() {
 
     `).join("") || "<p>Nenhum produto encontrado.</p>";
 
-
     document.querySelectorAll(".adicionar").forEach(botao=>{
 
         botao.addEventListener("click",()=>{
@@ -862,26 +841,19 @@ function adicionar(id) {
     const produto=produtos.find(p=>p.id===id);
 
     if(produto.preco===null) {
-
         alert("Preço sob consulta. Entre em contato com o depósito.");
-
         return;
-
     }
 
     const existente=carrinho.find(p=>p.id===id);
 
     if(existente) {
-
         existente.quantidade++;
-
     } else {
-
         carrinho.push({
             ...produto,
             quantidade:1
         });
-
     }
 
     atualizarCarrinho();
@@ -899,13 +871,11 @@ function atualizarCarrinho() {
 
     document.getElementById("contador").innerText=quantidade;
 
-
     const total=carrinho.reduce(
         (s,p)=>s+p.preco*p.quantidade,0
     );
 
     document.getElementById("valorTotal").innerText=dinheiro(total);
-
 
     if(carrinho.length===0) {
 
@@ -913,9 +883,7 @@ function atualizarCarrinho() {
         '<p class="vazio">Seu carrinho está vazio.</p>';
 
         return;
-
     }
-
 
     document.getElementById("itensCarrinho").innerHTML=
 
@@ -924,11 +892,8 @@ function atualizarCarrinho() {
         <div class="item-carrinho">
 
             <div>
-
                 <strong>${p.nome}</strong>
-
                 <small>${dinheiro(p.preco)} cada</small>
-
             </div>
 
             <div class="quantidade">
@@ -944,7 +909,6 @@ function atualizarCarrinho() {
         </div>
 
     `).join("");
-
 
     document.querySelectorAll(".quantidade button").forEach(botao=>{
 
@@ -971,9 +935,7 @@ function alterarQuantidade(id,alteracao) {
     item.quantidade+=alteracao;
 
     if(item.quantidade<=0) {
-
         carrinho=carrinho.filter(p=>p.id!==id);
-
     }
 
     atualizarCarrinho();
@@ -993,7 +955,6 @@ function abrirCarrinho() {
 
 }
 
-
 function fecharCarrinho() {
 
     document.getElementById("painelCarrinho")
@@ -1003,7 +964,6 @@ function fecharCarrinho() {
     .style.display="none";
 
 }
-
 
 document.getElementById("abrirCarrinho")
 .addEventListener("click",abrirCarrinho);
@@ -1020,17 +980,12 @@ document.getElementById("fundoCarrinho")
 function finalizarPedido() {
 
     if(carrinho.length===0) {
-
         alert("Seu carrinho está vazio!");
-
         return;
-
     }
-
 
     let mensagem=
     "Olá! Gostaria de fazer um pedido no +1 Depósito de Bebidas:\n\n";
-
 
     carrinho.forEach(p=>{
 
@@ -1040,26 +995,21 @@ function finalizarPedido() {
 
     });
 
-
     const total=carrinho.reduce(
         (s,p)=>s+p.preco*p.quantidade,0
     );
 
-
     mensagem+="\nTOTAL: "+dinheiro(total);
 
-    mensagem+="\n\nTenho 18 anos ou mais. Por favor, confirme disponibilidade, entrega e pagamento.";
-
+    mensagem+="\n\nPor favor, confirme disponibilidade, entrega e pagamento.";
 
     const link=
     "https://wa.me/"+WHATSAPP+
     "?text="+encodeURIComponent(mensagem);
 
-
     window.open(link,"_blank");
 
 }
-
 
 document.getElementById("finalizar")
 .addEventListener("click",finalizarPedido);
