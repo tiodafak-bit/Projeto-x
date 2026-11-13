@@ -4,357 +4,1110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090909">
-<title>LDN Artigos | Estilo e Atitude</title>
+<title>+1 Depósito de Bebidas</title>
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#090909;color:#f5f5f5;font-family:Arial,sans-serif}
-button,input{font:inherit}
-a{color:inherit;text-decoration:none}
-.container{width:92%;max-width:1100px;margin:auto}
-
-.top{background:#e9e9e9;color:#111;text-align:center;padding:10px;font-size:10px;letter-spacing:2px;font-weight:bold}
-
-header{position:sticky;top:0;z-index:10;background:#0b0b0bf5;border-bottom:1px solid #292929}
-.nav{height:72px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px;font-size:14px}
-.logo img{width:45px;height:45px;object-fit:cover;border-radius:50%;border:1px solid #777}
-.logo small{display:block;font-size:8px;color:#aaa;margin-top:5px;letter-spacing:1px}
-.navlinks{display:flex;gap:20px;font-size:11px;color:#ccc}
-.cart-button{background:transparent;color:white;border:1px solid #777;padding:11px;font-size:10px;cursor:pointer}
-
-.hero{background:radial-gradient(ellipse at 80% 40%,#343434,#111 40%,#090909 75%);border-bottom:1px solid #292929}
-.hero-grid{min-height:420px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:25px;padding:40px 0}
-.kicker{font-size:10px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
-h1{font-size:clamp(44px,7vw,78px);line-height:.95;letter-spacing:-3px;margin:20px 0;font-weight:900}
-h1 span{color:#999}
-.hero p{color:#bbb;line-height:1.8;font-size:13px;max-width:430px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
-.btn{display:inline-block;background:#eee;color:#111;padding:14px 16px;font-size:10px;font-weight:bold;letter-spacing:1px;border:1px solid #eee;cursor:pointer}
-.btn.secondary{background:transparent;color:white;border-color:#555}
-.hero-logo{display:flex;justify-content:center;align-items:center;min-height:280px}
-.hero-logo img{width:min(75%,290px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid #777;box-shadow:0 20px 60px #000}
-
-.benefits{padding:17px 0;border-bottom:1px solid #292929;color:#bbb;font-size:10px;letter-spacing:1px}
-.benefits .container{display:flex;justify-content:space-around;gap:15px;flex-wrap:wrap}
-
-.catalog{padding:60px 0 70px}
-.heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
-.heading small{color:#aaa;letter-spacing:3px;text-transform:uppercase}
-h2{font-size:clamp(28px,5vw,44px);margin:12px 0 0;letter-spacing:-1px}
-.heading p{color:#aaa;font-size:12px;line-height:1.7;max-width:330px}
-
-.notice{border:1px dashed #555;background:#151515;padding:12px;margin-bottom:22px;font-size:11px;line-height:1.6;color:#ccc}
-.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
-.search{flex:1;min-width:180px;background:#151515;border:1px solid #333;color:white;padding:13px;outline:none}
-.filter{background:#151515;border:1px solid #333;color:#ddd;padding:11px 13px;font-size:10px;cursor:pointer}
-.filter.active,.filter:hover{background:#eee;color:#111}
-
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
-.product{background:#121212;border:1px solid #292929;transition:.2s;min-width:0}
-.product:hover{transform:translateY(-4px);border-color:#777}
-.photo{height:290px;background:#202020;position:relative}
-.photo img{width:100%;height:100%;object-fit:cover;display:block}
-.tag{position:absolute;top:10px;left:10px;background:#090909e8;border:1px solid #555;padding:7px;font-size:9px;letter-spacing:1px}
-.info{padding:15px}
-.meta{color:#999;font-size:9px;letter-spacing:2px}
-.info h3{font-size:15px;margin:11px 0 8px}
-.info p{font-size:11px;color:#aaa;line-height:1.6;min-height:35px}
-.buy{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #292929;padding-top:13px}
-.price{font-size:11px;font-weight:bold}
-.price small{display:block;color:#999;font-size:9px;margin-top:5px;font-weight:normal}
-.add{background:#eee;color:#111;border:0;padding:11px 9px;font-size:9px;font-weight:bold;cursor:pointer}
-.add:hover{background:white}
-
-.about{padding:55px 0;background:#121212;border-top:1px solid #292929}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.about p{font-size:13px;color:#aaa;line-height:1.9}
-.values{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.value{border:1px solid #333;padding:17px;background:#171717}
-.value b{font-size:11px;display:block;margin-bottom:8px}
-.value span{font-size:10px;color:#aaa;line-height:1.6}
-
-footer{padding:25px 0;color:#888;font-size:10px}
-.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.foot strong{color:white;letter-spacing:2px}
-
-.backdrop{position:fixed;inset:0;background:#000b;z-index:20;display:none}
-.backdrop.open{display:block}
-.drawer{position:fixed;z-index:21;right:0;top:0;width:min(400px,100%);height:100%;height:100dvh;background:#111;padding:20px;border-left:1px solid #444;display:flex;flex-direction:column;transform:translateX(105%);transition:.25s}
-.drawer.open{transform:translateX(0)}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;padding-bottom:15px}
-.close{background:transparent;color:white;border:1px solid #555;padding:9px;cursor:pointer}
-.cart-list{flex:1;overflow:auto}
-.cart-item{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #333}
-.cart-item img{width:70px;height:80px;object-fit:cover;background:#222}
-.cart-info{flex:1}
-.cart-info b{font-size:12px}
-.cart-info small{display:block;color:#aaa;font-size:10px;margin-top:7px}
-.qty{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
-.qty button{background:#252525;color:white;border:1px solid #444;padding:5px 10px;cursor:pointer}
-.remove{font-size:9px}
-.cart-bottom{border-top:1px solid #333;padding-top:15px}
-.cart-bottom p{font-size:10px;color:#999;line-height:1.6}
-.checkout{width:100%;margin-top:10px}
-.empty{text-align:center;color:#aaa;font-size:12px;padding:35px 10px;line-height:1.8}
-.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;background:#eee;color:#111;padding:12px 17px;font-size:11px;z-index:30;transition:.2s;pointer-events:none}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-
-@media(max-width:750px){
- .navlinks{display:none}
- .hero-grid{grid-template-columns:1fr;padding:30px 0}
- .hero-logo{grid-row:1;min-height:210px}
- .hero-logo img{width:180px}
- h1{font-size:55px}
- .heading{display:block}
- .heading p{margin-top:15px}
- .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .photo{height:clamp(160px,48vw,250px)}
- .info{padding:11px}
- .info h3{font-size:13px}
- .info p{font-size:10px;min-height:46px}
- .buy{align-items:stretch;flex-direction:column}
- .add{width:100%}
- .about-grid{grid-template-columns:1fr}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-@media(max-width:390px){
- .logo{font-size:11px;letter-spacing:1px}
- .logo img{width:38px;height:38px}
- .logo small{font-size:7px}
- .cart-button{padding:9px 7px;font-size:9px}
- .photo{height:165px}
- .info{padding:9px}
- .info h3{font-size:12px}
+
+:root {
+    --preto: #090909;
+    --cinza: #171717;
+    --amarelo: #f5c21b;
+    --dourado: #c99b25;
+    --branco: #ffffff;
+}
+
+body {
+    background: var(--preto);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #080808;
+    border-bottom: 2px solid var(--dourado);
+    padding: 12px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-header img {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.logo-header h2 {
+    font-size: 16px;
+    color: var(--amarelo);
+}
+
+.logo-header p {
+    font-size: 10px;
+    color: #ccc;
+}
+
+button {
+    cursor: pointer;
+}
+
+.carrinho-topo {
+    background: var(--amarelo);
+    color: black;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* CAPA */
+
+.banner {
+    margin: 22px auto;
+    width: 92%;
+    min-height: 250px;
+    border-radius: 18px;
+    border: 1px solid var(--dourado);
+    background: linear-gradient(130deg,#24200f,#090909 70%);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 25px;
+    gap: 15px;
+}
+
+.banner h1 {
+    font-size: 35px;
+    margin: 12px 0;
+}
+
+.banner h1 span {
+    color: var(--amarelo);
+}
+
+.banner p {
+    color: #ccc;
+    line-height: 1.5;
+}
+
+.banner img {
+    width: 190px;
+    border-radius: 50%;
+}
+
+.botao-banner {
+    background: var(--amarelo);
+    color: black;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 9px;
+    font-weight: bold;
+    margin-top: 17px;
+}
+
+/* CONTEÚDO */
+
+.container {
+    width: 92%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.titulo {
+    margin: 30px 0 15px;
+    color: var(--amarelo);
+    font-size: 24px;
+}
+
+.pesquisa {
+    width: 100%;
+    padding: 15px;
+    background: #171717;
+    border: 1px solid #444;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 18px;
+    outline: none;
+}
+
+.categorias {
+    display: flex;
+    gap: 9px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+}
+
+.categoria {
+    white-space: nowrap;
+    padding: 11px 16px;
+    border-radius: 30px;
+    background: #202020;
+    border: 1px solid #444;
+    color: white;
+}
+
+.categoria.ativa {
+    background: var(--amarelo);
+    color: black;
+    font-weight: bold;
+    border-color: var(--amarelo);
+}
+
+/* PRODUTOS */
+
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    padding-bottom: 35px;
+}
+
+.produto {
+    background: linear-gradient(145deg,#202020,#111);
+    border: 1px solid #393939;
+    border-radius: 15px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 205px;
+}
+
+.icone {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+    background: #302710;
+    border: 1px solid #70561b;
+    border-radius: 13px;
+    margin-bottom: 12px;
+}
+
+.produto small {
+    color: var(--amarelo);
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.produto h3 {
+    font-size: 16px;
+    margin: 7px 0;
+}
+
+.descricao {
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.inferior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px;
+    margin-top: auto;
+}
+
+.preco {
+    color: var(--amarelo);
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.adicionar {
+    background: transparent;
+    border: 1px solid var(--amarelo);
+    color: var(--amarelo);
+    padding: 9px 11px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.adicionar:hover {
+    background: var(--amarelo);
+    color: black;
+}
+
+/* AVISO */
+
+.aviso {
+    background: #1b1709;
+    border: 1px solid var(--dourado);
+    padding: 18px;
+    border-radius: 12px;
+    color: #ddd;
+    line-height: 1.6;
+    font-size: 13px;
+    margin-bottom: 30px;
+}
+
+.aviso strong {
+    color: var(--amarelo);
+}
+
+/* RODAPÉ */
+
+footer {
+    border-top: 1px solid #444;
+    text-align: center;
+    padding: 30px 15px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+/* MAIORIDADE */
+
+.tela-idade {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.97);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.caixa-idade {
+    background: #171717;
+    border: 2px solid var(--dourado);
+    padding: 30px 22px;
+    text-align: center;
+    border-radius: 20px;
+    max-width: 420px;
+    width: 100%;
+}
+
+.caixa-idade img {
+    width: 115px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.caixa-idade h2 {
+    color: var(--amarelo);
+    margin-bottom: 15px;
+}
+
+.caixa-idade p {
+    color: #ccc;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.botoes-idade {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.botoes-idade button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.sim {
+    background: var(--amarelo);
+}
+
+.nao {
+    background: #444;
+    color: white;
+}
+
+/* CARRINHO */
+
+.fundo-carrinho {
+    position: fixed;
+    inset: 0;
+    background: #000b;
+    z-index: 19;
+    display: none;
+}
+
+.painel-carrinho {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: min(420px,100%);
+    height: 100%;
+    background: #141414;
+    z-index: 20;
+    padding: 20px;
+    transform: translateX(110%);
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.painel-carrinho.aberto {
+    transform: translateX(0);
+}
+
+.topo-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fechar {
+    background: #333;
+    border: none;
+    color: white;
+    padding: 9px 12px;
+    border-radius: 8px;
+}
+
+.itens-carrinho {
+    overflow-y: auto;
+    flex: 1;
+    margin-top: 15px;
+}
+
+.item-carrinho {
+    padding: 14px 0;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.item-carrinho small {
+    color: #aaa;
+    display: block;
+    margin-top: 5px;
+}
+
+.quantidade {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.quantidade button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 6px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 18px 0;
+    border-top: 1px solid #444;
+}
+
+.finalizar {
+    width: 100%;
+    background: var(--amarelo);
+    color: black;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.vazio {
+    text-align: center;
+    padding: 35px 10px;
+    color: #aaa;
+}
+
+@media(max-width:700px) {
+    .produtos {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner img {
+        width: 130px;
+    }
+
+    .banner h1 {
+        font-size: 30px;
+    }
+}
+
+@media(max-width:390px) {
+    .produtos {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
-<div class="top">LDN ARTIGOS · ESTILO QUE MARCA PRESENÇA</div>
 
 <header>
-<div class="container nav">
-<a class="logo" href="#inicio">
-<img src="assets/logo-ldn.jpg" alt="LDN Artigos">
-<span>LDN ARTIGOS<small>ESTILO · ATITUDE · PRESENÇA</small></span>
-</a>
-<nav class="navlinks">
-<a href="#inicio">INÍCIO</a>
-<a href="#catalogo">CATÁLOGO</a>
-<a href="#marca">A MARCA</a>
-</nav>
-<button class="cart-button" onclick="openCart()">SACOLA (<span id="count">0</span>) ＋</button>
-</div>
+    <div class="logo-header">
+        <img src="assets/logo-mais1.jpg" alt="Logo +1">
+        <div>
+            <h2>+1 DEPÓSITO</h2>
+            <p>PREÇO BAIXO • CERVEJA GELADA</p>
+        </div>
+    </div>
+
+    <button class="carrinho-topo" onclick="abrirCarrinho()">
+        🛒 <span id="contador">0</span>
+    </button>
 </header>
 
-<main>
-<section class="hero" id="inicio">
-<div class="container hero-grid">
-<div>
-<div class="kicker">Seleção LDN · Coleção em destaque</div>
-<h1>VISTA SUA<br><span>ATITUDE.</span></h1>
-<p>Peças que falam por você. Explore camisetas, conjuntos, bonés e moletons em uma experiência moderna, simples e feita para comprar pelo celular.</p>
-<div class="actions">
-<a class="btn" href="#catalogo">EXPLORAR COLEÇÃO ↗</a>
-<a class="btn secondary" href="#marca">CONHEÇA A LDN</a>
-</div>
-</div>
-<div class="hero-logo">
-<img src="assets/logo-ldn.jpg" alt="Logo oficial LDN Artigos">
-</div>
-</div>
+<section class="banner">
+    <div>
+        <p style="color:#f5c21b;font-weight:bold">
+            SEJA BEM-VINDO!
+        </p>
+
+        <h1>
+            PREÇO BAIXO.<br>
+            <span>CERVEJA GELADA.</span>
+        </h1>
+
+        <p>
+            Encontre suas bebidas favoritas e monte
+            seu pedido em poucos cliques.
+        </p>
+
+        <button class="botao-banner"
+        onclick="document.getElementById('catalogo').scrollIntoView()">
+            CONFERIR CATÁLOGO ↓
+        </button>
+    </div>
+
+    <img src="assets/logo-mais1.jpg" alt="Logo oficial">
 </section>
 
-<div class="benefits"><div class="container">
-<span>✦ ESTILO URBANO</span>
-<span>✦ PEÇAS SELECIONADAS</span>
-<span>✦ ATENDIMENTO DIRETO</span>
-<span>✦ LDN ARTIGOS</span>
-</div></div>
+<main class="container">
 
-<section class="catalog" id="catalogo">
-<div class="container">
-<div class="heading">
-<div><small>Descubra a seleção</small><h2>PEÇAS EM DESTAQUE.</h2></div>
-<p>Escolha seus favoritos, adicione à sacola e prepare seu pedido. Um catálogo prático para conhecer os produtos da LDN.</p>
-</div>
+    <h2 class="titulo" id="catalogo">
+        🍺 NOSSO CATÁLOGO
+    </h2>
 
-<div class="notice"><b>DEMONSTRAÇÃO DA LOJA:</b> os preços e a disponibilidade serão confirmados com o proprietário. Adicione produtos à sacola para testar a experiência.</div>
+    <input
+        type="text"
+        class="pesquisa"
+        id="pesquisa"
+        placeholder="🔎 O que você está procurando?"
+        oninput="mostrarProdutos()"
+    >
 
-<div class="tools">
-<input class="search" id="search" placeholder="Buscar uma peça..." type="search">
-<button class="filter active" data-cat="Todos">TODOS</button>
-<button class="filter" data-cat="Camisetas">CAMISETAS</button>
-<button class="filter" data-cat="Bonés">BONÉS</button>
-<button class="filter" data-cat="Conjuntos">CONJUNTOS</button>
-<button class="filter" data-cat="Moletons">MOLETONS</button>
-<button class="filter" data-cat="Combos">COMBOS</button>
-</div>
+    <div class="categorias" id="categorias"></div>
 
-<div class="grid" id="products"></div>
-</div>
-</section>
+    <div class="produtos" id="produtos"></div>
 
-<section class="about" id="marca">
-<div class="container about-grid">
-<div>
-<div class="kicker">Mais que vestir</div>
-<h2>SEU ESTILO.<br><span style="color:#999">SUA IDENTIDADE.</span></h2>
-<p>A LDN Artigos reúne peças para quem gosta de expressar seu estilo nos detalhes. Explore os produtos, monte seu pedido e entre em contato com a loja para consultar preços e disponibilidade.</p>
-<a class="btn secondary" href="#catalogo">ENCONTRAR MINHA PEÇA ↗</a>
-</div>
-<div class="values">
-<div class="value"><b>01 / DESCOBRIR</b><span>Produtos organizados por categoria.</span></div>
-<div class="value"><b>02 / ESCOLHER</b><span>Adicione diferentes itens à sacola.</span></div>
-<div class="value"><b>03 / CONFERIR</b><span>Revise as quantidades antes de continuar.</span></div>
-<div class="value"><b>04 / CONECTAR</b><span>Prepare a mensagem para enviar à loja.</span></div>
-</div>
-</div>
-</section>
+    <div class="aviso">
+        <strong>ATENÇÃO:</strong><br>
+        A venda de bebidas alcoólicas é proibida
+        para menores de 18 anos.
+
+        A confirmação de idade no site não substitui
+        a verificação de documento no momento da venda
+        ou entrega.
+
+        Beba com responsabilidade.
+        Preços e disponibilidade sujeitos à confirmação.
+    </div>
+
 </main>
 
-<footer><div class="container foot">
-<strong>LDN ARTIGOS</strong>
-<span>CATÁLOGO DEMONSTRATIVO · PREÇOS SOB CONSULTA</span>
-<a href="#inicio">VOLTAR AO TOPO ↑</a>
-</div></footer>
+<footer>
+    <h3 style="color:#f5c21b;margin-bottom:8px">
+        +1 DEPÓSITO DE BEBIDAS
+    </h3>
 
-<div class="backdrop" id="backdrop" onclick="closeCart()"></div>
-<aside class="drawer" id="drawer">
-<div class="drawer-head"><b>SUA SACOLA</b><button class="close" onclick="closeCart()">FECHAR ✕</button></div>
-<div class="cart-list" id="cartList"></div>
-<div class="cart-bottom">
-<div style="display:flex;justify-content:space-between"><span style="font-size:11px;color:#aaa">TOTAL DE PEÇAS</span><b id="totalQty">0</b></div>
-<p>Os valores ainda precisam ser confirmados. O WhatsApp abrirá com a lista dos produtos escolhidos.</p>
-<button class="btn checkout" onclick="checkout()">CONTINUAR PELO WHATSAPP ↗</button>
+    PREÇO BAIXO • CERVEJA GELADA
+
+    <br><br>
+
+    © <span id="ano"></span> Todos os direitos reservados.
+</footer>
+
+<!-- TELA DE MAIORIDADE -->
+
+<div class="tela-idade" id="telaIdade">
+
+    <div class="caixa-idade">
+
+        <img src="assets/logo-mais1.jpg" alt="Logo">
+
+        <h2>VOCÊ TEM 18 ANOS OU MAIS?</h2>
+
+        <p>
+            Este estabelecimento comercializa bebidas
+            alcoólicas.
+
+            Para acessar o catálogo, confirme que possui
+            idade legal para consumir bebidas alcoólicas.
+        </p>
+
+        <div class="botoes-idade">
+
+            <button class="sim" onclick="confirmarIdade()">
+                SIM, TENHO 18+
+            </button>
+
+            <button class="nao" onclick="negarIdade()">
+                NÃO
+            </button>
+
+        </div>
+
+    </div>
 </div>
+
+<!-- CARRINHO -->
+
+<div class="fundo-carrinho"
+id="fundoCarrinho"
+onclick="fecharCarrinho()"></div>
+
+<aside class="painel-carrinho" id="painelCarrinho">
+
+    <div class="topo-carrinho">
+        <h2>🛒 MEU PEDIDO</h2>
+
+        <button class="fechar"
+        onclick="fecharCarrinho()">FECHAR ✕</button>
+    </div>
+
+    <div class="itens-carrinho" id="itensCarrinho"></div>
+
+    <div class="total">
+        <span>TOTAL:</span>
+        <span id="valorTotal">R$ 0,00</span>
+    </div>
+
+    <button class="finalizar" onclick="finalizarPedido()">
+        FINALIZAR PELO WHATSAPP
+    </button>
+
+    <p style="color:#999;font-size:11px;margin-top:12px">
+        Pagamento, entrega e disponibilidade serão
+        confirmados diretamente com o depósito.
+    </p>
+
 </aside>
-<div class="toast" id="toast"></div>
 
 <script>
-const products = [
- {id:1,name:"Camiseta Preta Sport",cat:"Camisetas",desc:"Camiseta preta com estampa esportiva.",img:"assets/camiseta-preta.jpg"},
- {id:2,name:"Camiseta Branca Sport",cat:"Camisetas",desc:"Visual clean com estampa em contraste.",img:"assets/camiseta-branca-sport.jpg"},
- {id:3,name:"Conjunto Esportivo Azul",cat:"Conjuntos",desc:"Conjunto esportivo azul-marinho.",img:"assets/conjunto-esportivo-azul.jpg"},
- {id:4,name:"Boné Motorsport",cat:"Bonés",desc:"Boné claro com detalhes escuros.",img:"assets/bone-motorsport.jpg"},
- {id:5,name:"Camiseta + Boné",cat:"Combos",desc:"Combinação casual para completar o visual.",img:"assets/camiseta-branca-bone-azul.jpg"},
- {id:6,name:"Moletom Estampado",cat:"Moletons",desc:"Moletom escuro com estampa gráfica.",img:"assets/moletom-estampado.jpg"}
+
+/* ==========================
+   CONFIGURAÇÕES
+========================== */
+
+// SUBSTITUA PELO WHATSAPP REAL DO DEPÓSITO.
+// Use 55 + DDD + número, somente números.
+const WHATSAPP = "5511999999999";
+
+
+/* ==========================
+   CATÁLOGO DE PRODUTOS
+========================== */
+
+const produtos = [
+
+    {
+        id:1,
+        nome:"Fardinho de Skol",
+        preco:44.99,
+        categoria:"Cervejas",
+        icone:"🍺"
+    },
+
+    {
+        id:2,
+        nome:"Fardo de Cristal",
+        preco:29.99,
+        categoria:"Cervejas",
+        icone:"🍺"
+    },
+
+    {
+        id:3,
+        nome:"Fardo de Brahma",
+        preco:44.99,
+        categoria:"Cervejas",
+        icone:"🍺"
+    },
+
+    {
+        id:4,
+        nome:"Fardo de Antarctica Boa",
+        preco:44.99,
+        categoria:"Cervejas",
+        icone:"🍻"
+    },
+
+    {
+        id:5,
+        nome:"Fardo de Heineken",
+        preco:62.99,
+        categoria:"Cervejas",
+        icone:"🍺"
+    },
+
+    {
+        id:6,
+        nome:"Romarinho 23 unidades - Boa, Skol ou Brahma",
+        preco:62.99,
+        categoria:"Cervejas",
+        icone:"🍻",
+        descricao:"23 unidades de 300 ml."
+    },
+
+    {
+        id:7,
+        nome:"Romarinho Antarctica Original",
+        preco:75.99,
+        categoria:"Cervejas",
+        icone:"🍻",
+        descricao:"23 unidades de 300 ml."
+    },
+
+    {
+        id:8,
+        nome:"Romarinho Budweiser",
+        preco:69.99,
+        categoria:"Cervejas",
+        icone:"🍻",
+        descricao:"23 unidades de 300 ml."
+    },
+
+    {
+        id:9,
+        nome:"Promoção: 3 cervejas por R$ 10",
+        preco:10,
+        categoria:"Ofertas e Combos",
+        icone:"🔥",
+        descricao:"Consulte as marcas participantes e condições."
+    },
+
+    {
+        id:10,
+        nome:"Combo Mansão Maromba",
+        preco:25,
+        categoria:"Ofertas e Combos",
+        icone:"🎉"
+    },
+
+    {
+        id:11,
+        nome:"Combo Busca Brisa",
+        preco:70,
+        categoria:"Ofertas e Combos",
+        icone:"🧊",
+        descricao:"4 copos, 4 gelos e 1 energético Tadalafila da Baly."
+    },
+
+    {
+        id:12,
+        nome:"Canelinha da Rocha",
+        preco:19.99,
+        categoria:"Destilados",
+        icone:"🥃"
+    },
+
+    {
+        id:13,
+        nome:"Red Label",
+        preco:null,
+        categoria:"Destilados",
+        icone:"🥃"
+    },
+
+    {
+        id:14,
+        nome:"White Horse",
+        preco:null,
+        categoria:"Destilados",
+        icone:"🥃"
+    },
+
+    {
+        id:15,
+        nome:"Jack Daniel's Apple",
+        preco:null,
+        categoria:"Destilados",
+        icone:"🥃"
+    },
+
+    {
+        id:16,
+        nome:"Jack Daniel's Honey",
+        preco:null,
+        categoria:"Destilados",
+        icone:"🥃"
+    },
+
+    {
+        id:17,
+        nome:"Salgados fritos",
+        preco:null,
+        categoria:"Outros produtos",
+        icone:"🥟"
+    },
+
+    {
+        id:18,
+        nome:"Carvão 3 kg",
+        preco:null,
+        categoria:"Outros produtos",
+        icone:"🔥"
+    }
+
 ];
 
-let category="Todos";
-let cart={};
 
-function renderProducts(){
- const q=document.getElementById("search").value.toLowerCase().trim();
- const filtered=products.filter(p=>
-  (category==="Todos"||p.cat===category)&&
-  (p.name+" "+p.cat+" "+p.desc).toLowerCase().includes(q)
- );
+/* ==========================
+   SISTEMA DO SITE
+========================== */
 
- document.getElementById("products").innerHTML=filtered.map(p=>`
- <article class="product">
-  <div class="photo">
-   <img src="${p.img}" alt="${p.name}" loading="lazy">
-   <span class="tag">${p.cat}</span>
-  </div>
-  <div class="info">
-   <div class="meta">LDN / SELEÇÃO</div>
-   <h3>${p.name}</h3>
-   <p>${p.desc}</p>
-   <div class="buy">
-    <div class="price">Consultar valor<small>Disponibilidade sob consulta</small></div>
-    <button class="add" onclick="addToCart(${p.id})">ADICIONAR ＋</button>
-   </div>
-  </div>
- </article>`).join("") || "<p>Nenhum produto encontrado.</p>";
+let carrinho = [];
+let categoriaAtual = "Todos";
+
+const categorias = [
+    "Todos",
+    ...new Set(produtos.map(p => p.categoria))
+];
+
+function dinheiro(valor) {
+    return valor.toLocaleString("pt-BR", {
+        style:"currency",
+        currency:"BRL"
+    });
 }
 
-function addToCart(id){
- cart[id]=(cart[id]||0)+1;
- renderCart();
- toast("Produto adicionado à sacola!");
+
+/* ==========================
+   IDADE
+========================== */
+
+function confirmarIdade() {
+
+    localStorage.setItem("mais1_maioridade","sim");
+
+    document.getElementById("telaIdade").style.display="none";
 }
 
-function changeQty(id,n){
- cart[id]=(cart[id]||0)+n;
- if(cart[id]<=0) delete cart[id];
- renderCart();
+function negarIdade() {
+
+    document.body.innerHTML = `
+        <div style="text-align:center;padding:100px 20px">
+            <h1 style="color:#f5c21b">
+                ACESSO NÃO PERMITIDO
+            </h1>
+            <p style="margin-top:15px">
+                Este catálogo é destinado somente
+                a maiores de 18 anos.
+            </p>
+        </div>
+    `;
 }
 
-function renderCart(){
- const entries=Object.entries(cart);
- const total=entries.reduce((sum,[id,n])=>sum+n,0);
- document.getElementById("count").textContent=total;
- document.getElementById("totalQty").textContent=total;
-
- document.getElementById("cartList").innerHTML=entries.length
- ? entries.map(([id,n])=>{
-   const p=products.find(x=>x.id===Number(id));
-   return `<div class="cart-item">
-    <img src="${p.img}" alt="">
-    <div class="cart-info">
-     <b>${p.name}</b>
-     <small>Preço a confirmar</small>
-     <div class="qty">
-      <button onclick="changeQty(${p.id},-1)">−</button>
-      <span>${n}</span>
-      <button onclick="changeQty(${p.id},1)">+</button>
-      <button class="remove" onclick="changeQty(${p.id},-${n})">REMOVER</button>
-     </div>
-    </div>
-   </div>`;
-  }).join("")
- : '<div class="empty">Sua sacola está vazia.<br>Escolha algumas peças para começar.</div>';
+if(localStorage.getItem("mais1_maioridade")==="sim") {
+    document.getElementById("telaIdade").style.display="none";
 }
 
-function openCart(){
- document.getElementById("drawer").classList.add("open");
- document.getElementById("backdrop").classList.add("open");
+
+/* ==========================
+   CATEGORIAS
+========================== */
+
+function mostrarCategorias() {
+
+    document.getElementById("categorias").innerHTML =
+    categorias.map(c => `
+
+        <button
+        class="categoria ${categoriaAtual===c?'ativa':''}"
+        onclick="selecionarCategoria('${c}')">
+
+            ${c}
+
+        </button>
+
+    `).join("");
 }
 
-function closeCart(){
- document.getElementById("drawer").classList.remove("open");
- document.getElementById("backdrop").classList.remove("open");
+function selecionarCategoria(c) {
+
+    categoriaAtual=c;
+
+    mostrarCategorias();
+    mostrarProdutos();
 }
 
-function toast(message){
- const el=document.getElementById("toast");
- el.textContent=message;
- el.classList.add("show");
- setTimeout(()=>el.classList.remove("show"),1800);
+
+/* ==========================
+   PRODUTOS
+========================== */
+
+function mostrarProdutos() {
+
+    const busca = document
+        .getElementById("pesquisa")
+        .value.toLowerCase();
+
+    const filtrados = produtos.filter(p => {
+
+        const combinaCategoria =
+            categoriaAtual==="Todos" ||
+            p.categoria===categoriaAtual;
+
+        const combinaBusca =
+            p.nome.toLowerCase().includes(busca) ||
+            p.categoria.toLowerCase().includes(busca);
+
+        return combinaCategoria && combinaBusca;
+
+    });
+
+    document.getElementById("produtos").innerHTML =
+
+    filtrados.map(p => `
+
+        <div class="produto">
+
+            <div class="icone">
+                ${p.icone}
+            </div>
+
+            <small>${p.categoria}</small>
+
+            <h3>${p.nome}</h3>
+
+            <p class="descricao">
+                ${p.descricao || ""}
+            </p>
+
+            <div class="inferior">
+
+                <span class="preco">
+                    ${p.preco===null
+                    ? "Consultar"
+                    : dinheiro(p.preco)}
+                </span>
+
+                <button
+                class="adicionar"
+                onclick="adicionar(${p.id})">
+
+                    + Adicionar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+    if(filtrados.length===0) {
+        document.getElementById("produtos").innerHTML =
+        "<p>Nenhum produto encontrado.</p>";
+    }
+
 }
 
-function checkout(){
- const entries=Object.entries(cart);
- if(!entries.length){toast("Adicione produtos antes de continuar.");return;}
 
- const lines=entries.map(([id,n])=>{
-  const p=products.find(x=>x.id===Number(id));
-  return "• "+p.name+" — quantidade: "+n;
- }).join("\n");
+/* ==========================
+   CARRINHO
+========================== */
 
- const message="Olá! Gostaria de consultar estes produtos da LDN Artigos:\n\n"+lines+"\n\nPode me informar os preços, tamanhos e disponibilidade?";
+function adicionar(id) {
 
- /* TROQUE PELO WHATSAPP REAL DA LOJA */
- const whatsapp="5511999999999";
+    const produto = produtos.find(p=>p.id===id);
 
- window.open("https://wa.me/"+whatsapp+"?text="+encodeURIComponent(message),"_blank");
+    if(produto.preco===null) {
+
+        alert("Preço sob consulta. Entre em contato com o depósito.");
+
+        return;
+    }
+
+    const existente = carrinho.find(p=>p.id===id);
+
+    if(existente) {
+        existente.quantidade++;
+    } else {
+        carrinho.push({
+            ...produto,
+            quantidade:1
+        });
+    }
+
+    atualizarCarrinho();
+
 }
 
-document.querySelectorAll(".filter").forEach(button=>{
- button.addEventListener("click",()=>{
-  document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
-  button.classList.add("active");
-  category=button.dataset.cat;
-  renderProducts();
- });
-});
+function atualizarCarrinho() {
 
-document.getElementById("search").addEventListener("input",renderProducts);
+    const quantidade = carrinho.reduce(
+        (s,p)=>s+p.quantidade,0
+    );
 
-renderProducts();
-renderCart();
-</script>
-</body>
-</html>
+    document.getElementById("contador").innerText=quantidade;
+
+    const total = carrinho.reduce(
+        (s,p)=>s+p.preco*p.quantidade,0
+    );
+
+    document.getElementById("valorTotal").innerText =
+    dinheiro(total);
+
+    if(carrinho.length===0) {
+
+        document.getElementById("itensCarrinho").innerHTML =
+        '<p class="vazio">Seu carrinho está vazio.</p>';
+
+        return;
+    }
+
+    document.getElementById("itensCarrinho").innerHTML =
+
+    carrinho.map(p=>`
+
+        <div class="item-carrinho">
+
+            <div>
+                <strong>${p.nome}</strong>
+
+                <small>
+                    ${dinheiro(p.preco)} cada
+                </small>
+            </div>
+
+            <div class="quantidade">
+
+                <button onclick="alterarQuantidade(${p.id},-1)">
+                    -
+                </button>
+
+                ${p.quantidade}
+
+                <button onclick="alterarQuantidade(${p.id},1)">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+function alterarQuantidade(id,alteracao) {
+
+    const item=carrinho.find(p=>p.id===id);
+
+    if(!item) return;
+
+    item.quantidade+=alteracao;
+
+    if(item.quantidade<=0) {
+
+        carrinho=carrinho.filter(p=>p.id!==id);
+
+    }
+
+    atualizarCarrinho();
+
+}
+
+
+/* ==========================
+   ABRIR E FECHAR CARRINHO
+========================== */
+
+function abrirCarrinho() {
+
+    document.getElementById("painelCarrinho")
+    .classList.add("aberto");
+
+    document.getElementById("fundoCarrinho")
+    .style.display="block";
+
+}
+
+function fecharCarrinho() {
+
+    document.getElementById("painelCarrinho")
+    .classList.remove("aberto");
+
+    document.getElementById("fundoCarrinho")
+    .style.display="none";
+
+}
+
+
+/* ==========================
+   WHATSAPP
+========================== */
+
+function finalizarPedido() {
+
+    if(carrinho.length===0) {
+
+        alert("Adicione produtos ao carrinho primeiro!");
+
+        return;
+    }
+
+    if(WHATSAPP==="16997625257") {
+
+        alert(
+            "Configure primeiro o WhatsApp verdadeiro do depósito no código."
+        );
+
+        return;
+    }
+
+    let mensagem =
+    "Olá! Gostaria de fazer um pedido no +1 Depósito de Bebidas:\n\n";
+
+    carrinho.forEach(p=>{
+
+        mensagem +=
+        p.quantidade+"x "+p.nome+
+        " — "+dinheiro(p.preco*p.quantidade)+"\n";
+
+    });
+
+    const total = carrinho.reduce(
+        (s,p)=>s+p.preco*p.quantidade,0
+    );
+
+    mensagem +=
+    "\nTOTAL DOS PRODUTOS: "+dinheiro(total);
+
+    mensagem +=
+    "\n\n
